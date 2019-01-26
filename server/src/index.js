@@ -35,9 +35,9 @@ module.exports = class Core {
     // configuration express with apollo server
     setupServer(){
         const server = new ApolloServer({ typeDefs, resolvers });
-        server.applyMiddleware({ app: this.app });
+        server.applyMiddleware({ app: this.app, path: '/' });
 
         // server listening on port
-        this.app.listen(config.server.port, () => console.log(`Server ready at http://localhost:${config.server.port}${server.graphqlPath}`));
+        this.app.listen(config.server.port, () => console.log(`Server ready at http://localhost:${config.server.port}`));
     };
 };
