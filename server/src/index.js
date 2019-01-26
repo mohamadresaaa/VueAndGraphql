@@ -17,18 +17,27 @@ const resolvers = {
 
 module.exports = class Core {
     constructor(){
+        this.setGlobalConfig();
         this.app = express();
     }
 
+    // run methods
     start(){
         this.setupServer();
     };
 
+    // global config
+    setGlobalConfig(){
+        require('dotenv').config();
+        global.config = require('../config');
+    };
+
+    // configuration express with apollo server
     setupServer(){
         const server = new ApolloServer({ typeDefs, resolvers });
         server.applyMiddleware({ app: this.app });
 
         // server listening on port
-        this.app.listen(4000, () => console.log(`Server ready at http://localhost:4000${server.graphqlPath}`));
+        this.app.listen(config.server.port, () => console.log(`Server ready at http://localhost:${config.server.port}${server.graphqlPath}`));
     };
 };
