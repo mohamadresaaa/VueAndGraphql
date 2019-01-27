@@ -10,3 +10,9 @@ type User {
     isActive: Boolean
     activeCode: String
 }
+
+type Category {
+    _id: ID
+    title: String! @unique
+    url: String! @unique
+}
