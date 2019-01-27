@@ -58,7 +58,11 @@ module.exports = class Core {
 
     // configuration express with apollo server
     setupServer(){
-        const server = new ApolloServer({ typeDefs, resolvers });
+        const server = new ApolloServer({ 
+            typeDefs,
+            resolvers,
+            context: { ...config.database.mongodb.models }
+        });
         server.applyMiddleware({ app: this.app, path: '/' });
 
         // server listening on port
