@@ -1,18 +1,41 @@
 const express = require('express');
 const { ApolloServer, gql } = require('apollo-server-express');
 
+
+const todoes = [
+    { task: '1', status: 'completed' },
+    { task: '2', status: 'uncompleted' },
+    { task: '3', status: 'uncompleted' }
+];
+
 // Construct a schema, using GraphQL schema language
 const typeDefs = gql`
-  type Query {
-    hello: String
-  }
+    type Todo {
+        task: String
+        status: String
+    }
+
+    type Query {
+        getTodoes: [Todo]
+    }
+
+    type Mutation {
+        addTodo(task: String, status: String): Todo
+    }
 `;
 
 // Provide resolver functions for your schema fields
 const resolvers = {
     Query: {
-      hello: () => 'Hello world!',
+        getTodoes: () => todoes,
     },
+    Mutation: {
+        addTodo: (_, args) => {
+            const todo = { task: args.task, status: args.status };
+            todoes.push(todo);
+            return todo;
+        }
+    }
   };
 
 module.exports = class Core {
