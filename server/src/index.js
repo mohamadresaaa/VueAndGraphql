@@ -1,28 +1,9 @@
 const express = require('express');
 const { ApolloServer, gql } = require('apollo-server-express');
 const mongoose = require('mongoose');
+const fs = require('fs');
+const path = require('path');
 
-const todoes = [
-    { task: '1', status: 'completed' },
-    { task: '2', status: 'uncompleted' },
-    { task: '3', status: 'uncompleted' }
-];
-
-// Construct a schema, using GraphQL schema language
-const typeDefs = gql`
-    type Todo {
-        task: String
-        status: String
-    }
-
-    type Query {
-        getTodoes: [Todo]
-    }
-
-    type Mutation {
-        addTodo(task: String, status: String): Todo
-    }
-`;
 
 // Provide resolver functions for your schema fields
 const resolvers = {
@@ -41,6 +22,7 @@ const resolvers = {
 module.exports = class Core {
     constructor(){
         this.setGlobalConfig();
+        this.setTypeDefs();
         this.app = express();
     }
 
@@ -56,10 +38,16 @@ module.exports = class Core {
         global.config = require('../config');
     };
 
+    // construct a schema, using GraphQL schema language
+    setTypeDefs(){
+        const filePath = path.join(__dirname, 'typeDefs.gql');
+        this.typeDefs = fs.readFileSync(filePath, 'utf-8');
+    };
+
     // configuration express with apollo server
     setupServer(){
         const server = new ApolloServer({ 
-            typeDefs,
+            typeDefs: this.typeDefs,
             resolvers,
             context: { ...config.database.mongodb.models }
         });
