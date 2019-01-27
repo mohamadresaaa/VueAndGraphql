@@ -42,11 +42,6 @@ const userSchema = new mongoose.Schema({
     activeCode: {
         type: String,
         default: '1234'
-    },
-    bookmarks: {
-        type: [mongoose.Schema.Types.ObjectId],
-        required: true,
-        ref: 'Article'
     }
 });
 
