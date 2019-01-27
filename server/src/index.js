@@ -6,23 +6,10 @@ const path = require('path');
 
 
 // Provide resolver functions for your schema fields
-const resolvers = {
-    Query: {
-        getTodoes: () => todoes,
-    },
-    Mutation: {
-        addTodo: (_, args) => {
-            const todo = { task: args.task, status: args.status };
-            todoes.push(todo);
-            return todo;
-        }
-    }
-  };
 
 module.exports = class Core {
     constructor(){
         this.setGlobalConfig();
-        this.setTypeDefs();
         this.app = express();
     }
 
@@ -41,14 +28,13 @@ module.exports = class Core {
     // construct a schema, using GraphQL schema language
     setTypeDefs(){
         const filePath = path.join(__dirname, 'typeDefs.gql');
-        this.typeDefs = fs.readFileSync(filePath, 'utf-8');
+        return fs.readFileSync(filePath, 'utf-8');
     };
 
     // configuration express with apollo server
     setupServer(){
         const server = new ApolloServer({ 
-            typeDefs: this.typeDefs,
-            resolvers,
+            typeDefs: this.setTypeDefs(),
             context: { ...config.database.mongodb.models }
         });
         server.applyMiddleware({ app: this.app, path: '/' });

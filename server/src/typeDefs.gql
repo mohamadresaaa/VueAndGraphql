@@ -1,8 +1,8 @@
 type User {
     _id: ID
     name: String
-    username: String! @unique
-    email: String! @unique
+    username: String!
+    email: String!
     password: String!
     role: String
     avatar: String
@@ -13,8 +13,8 @@ type User {
 
 type Category {
     _id: ID
-    title: String! @unique
-    url: String! @unique
+    title: String!
+    url: String!
 }
 
 type Article {
@@ -22,7 +22,7 @@ type Article {
     summery: String!
     content: String!
     image: String!
-    url: String! @unique
+    url: String!
     isActive: Boolean
     createdDate: String
     countView: Int
