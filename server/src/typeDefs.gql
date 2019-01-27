@@ -16,3 +16,16 @@ type Category {
     title: String! @unique
     url: String! @unique
 }
+
+type Article {
+    _id: ID
+    summery: String!
+    content: String!
+    image: String!
+    url: String! @unique
+    isActive: Boolean
+    createdDate: String
+    countView: Int
+    category: Category!
+    createdBy: User!
+}
