@@ -1,6 +1,6 @@
 const express = require('express');
 const { ApolloServer, gql } = require('apollo-server-express');
-
+const mongoose = require('mongoose');
 
 const todoes = [
     { task: '1', status: 'completed' },
@@ -47,6 +47,7 @@ module.exports = class Core {
     // run methods
     start(){
         this.setupServer();
+        this.setupDatabase();
     };
 
     // global config
@@ -62,5 +63,14 @@ module.exports = class Core {
 
         // server listening on port
         this.app.listen(config.server.port, () => console.log(`Server ready at http://localhost:${config.server.port}`));
+    };
+
+    setupDatabase(){
+        mongoose.Promise = global.Promise;
+        mongoose.connect(
+            config.database.mongodb.url,
+            { ...config.database.mongodb.options }
+        ).then(() => console.info('Database connected'))
+        .catch(err => console.error(`Error message: ${err.message}`));
     };
 };
