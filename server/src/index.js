@@ -5,7 +5,8 @@ const fs = require('fs');
 const path = require('path');
 
 
-// Provide resolver functions for your schema fields
+// import resolvers
+const resolvers = require('./resolvers');
 
 module.exports = class Core {
     constructor(){
@@ -35,6 +36,7 @@ module.exports = class Core {
     setupServer(){
         const server = new ApolloServer({ 
             typeDefs: this.setTypeDefs(),
+            resolvers,
             context: { ...config.database.mongodb.models }
         });
         server.applyMiddleware({ app: this.app, path: '/' });
