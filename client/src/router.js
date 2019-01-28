@@ -22,6 +22,11 @@ export default new Router({
       path: '/blog',
       name: 'blog',
       component: () => import('./views/Blog.vue')
+    },
+    {
+      path: '/contact_me',
+      name: 'contactMe',
+      component: () => import('./views/ContactMe.vue')
     }
   ]
 })
