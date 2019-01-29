@@ -27,6 +27,16 @@
                 </v-flex>
             </v-layout>
             <v-list>
+                <v-list-tile>
+                    <v-flex xs12 sm12 md12>
+                        <v-text-field
+                            label="search"
+                            placeholder="Search..."
+                            solo
+                        ></v-text-field>
+                    </v-flex>
+                </v-list-tile>
+
                 <v-list-tile v-for="link in links" :key="link.text" router :to="link.route">
                     <v-list-tile-action>
                         <v-icon class="white--text">
