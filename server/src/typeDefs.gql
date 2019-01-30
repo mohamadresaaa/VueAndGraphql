@@ -32,6 +32,8 @@ type Article {
 
 type Query {
   getArticles: [Article]
+
+  names: [String]
 }
 
 type Mutation {
