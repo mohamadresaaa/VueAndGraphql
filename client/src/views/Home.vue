@@ -1,33 +1,41 @@
 <template>
-  <div class="home">
-    <h1>This is an home page</h1>
-    <div v-show="$apollo.loading" class="font-weight-medium text-capitalize">
-      <v-progress-circular indeterminate color="primary"></v-progress-circular>
-      loading...
-    </div>
-    <div v-if="!$apollo.loading">
-      my team
-      <ul>
-        <li v-for="(name, index) in names" :key="index">
-          {{name}}
+  <v-container text-xs-center>
+    <v-layout row>
+      <v-dialog v-model="loading" persistent fullscreen>
+        <v-container fill-height>
+          <v-layout row justify-center align-center>
+            <v-progress-circular indeterminate :size="100" :width="10" color="secondary"></v-progress-circular>
+          </v-layout>
+        </v-container>
+      </v-dialog>
+    </v-layout>
+
+    <v-flex xs12>
+      <ul v-if="!loading">
+        <li v-for="(category, index) in categories" :key="index">
+          {{ category.title }} - {{ category.url }}
         </li>
       </ul>
-    </div>
-  </div>
+    </v-flex>
+  </v-container>
 </template>
 
 <script>
-import { gql } from 'apollo-boost';
+import { mapGetters } from "vuex";
 
 export default {
-  apollo: {
-    names: {
-      query: gql`
-        query{
-          names
-        }
-      `
+  name: "home",
+  created() {
+    this.handleGetCategories();
+  },
+  computed: {
+    ...mapGetters(["loading", "categories"])
+  },
+  methods: {
+    handleGetCategories() {
+      // reach out to Vuex store, fire action that gets posts for carousel
+      this.$store.dispatch("getCategories");
     }
   }
-}
+};
 </script>
