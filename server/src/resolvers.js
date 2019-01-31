@@ -1,4 +1,5 @@
 const signUp = require('./mutations/signUp');
+const addCategory = require('./mutations/addCategory');
 
 module.exports = {
     Query: {
@@ -7,6 +8,7 @@ module.exports = {
         }
     },
     Mutation: {
-        signUp
+        signUp,
+        addCategory
     }
 };
