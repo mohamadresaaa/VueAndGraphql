@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const { v4 } = require('uuid');
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -42,7 +43,7 @@ const userSchema = new mongoose.Schema({
     },
     activeCode: {
         type: String,
-        default: '1234'
+        default: v4()
     }
 });
 
