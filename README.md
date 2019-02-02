@@ -3,7 +3,7 @@ SPA with Vue and Graphql
 
 ## project commands
 
-## run server and client
+run server and client
 ```
 npm run dev
 ```
