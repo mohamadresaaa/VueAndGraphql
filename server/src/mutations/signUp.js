@@ -1,3 +1,5 @@
+const generateAvatar = require('../lib/generateAvatar');
+
 module.exports = async (_, {
     username,
     email,
@@ -18,6 +20,7 @@ module.exports = async (_, {
         username,
         email,
         password,
+        avatar: generateAvatar(username)
         // generate name
     }).save();
 
