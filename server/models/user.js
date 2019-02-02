@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -42,6 +43,18 @@ const userSchema = new mongoose.Schema({
     activeCode: {
         type: String,
         default: '1234'
+    }
+});
+
+userSchema.pre('save', async function(next) {
+    if(!this.isModified('password')) return next();
+
+    try {
+        let salt = await bcrypt.genSalt(10);
+        this.password = await bcrypt.hash(this.password, salt);
+        next();
+    } catch (err) {
+        next(err);
     }
 });
 
