@@ -30,6 +30,10 @@ type Article {
     createdBy: User!
 }
 
+type Token {
+    token: String!
+}
+
 type Query {
   getArticles: [Article]
 
@@ -41,7 +45,7 @@ type Query {
 type Mutation {
     # authenticate
     signUp(username: String!, email: String!, password: String!): User!
-    signIn(email: String!, password: String!): User!
+    signIn(email: String!, password: String!): Token!
 
 
     addCategory(title: String!, url: String!): Category!
