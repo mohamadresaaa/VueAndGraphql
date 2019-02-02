@@ -1,3 +1,5 @@
+const generateToken = require('../lib/generateToken');
+
 module.exports = async (_, {
     email,
     password
@@ -16,6 +18,6 @@ module.exports = async (_, {
     // if the password was not equal
     if(!isMatch) throw new Error('Incorrect email or password');
     
-    // otherwise
-    return user;
+    // otherwise generate token
+    return { token: await generateToken(user, 'secretKey') };
 };
