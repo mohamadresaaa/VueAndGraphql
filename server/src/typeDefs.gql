@@ -39,7 +39,10 @@ type Query {
 }
 
 type Mutation {
+    # authenticate
     signUp(username: String!, email: String!, password: String!): User
+    signIn(email: String!, password: String!): User
+
 
     addCategory(title: String!, url: String!): Category
 }
