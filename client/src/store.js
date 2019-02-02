@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
-import { gql } from "apollo-boost";
 import { defaultClient as apolloClient } from "./apollo";
+
+
+// import queries and mutations graphql
+import { getCategories } from './graphql/queries/categories';
 
 Vue.use(Vuex)
 
@@ -12,26 +14,14 @@ export default new Vuex.Store({
     loading: false
   },
   mutations: {
-    setCategories: (state, payload) => {
-      state.categories = payload;
-    },
-    setLoading: (state, payload) => {
-      state.loading = payload;
-    }
+    setCategories: (state, payload) => state.categories = payload,
+    setLoading: (state, payload) => state.loading = payload
   },
   actions: {
     getCategories: ({ commit }) => {
       commit('setLoading', true);
-      apolloClient.query({
-        query: gql `
-          query {
-            getCategories {
-              title
-              url
-            }
-          }
-        `
-      }).then(({ data }) => {
+      apolloClient.query({ query: getCategories })
+      .then(({ data }) => {
         commit('setCategories', data.getCategories);
         commit('setLoading', false);
       })
