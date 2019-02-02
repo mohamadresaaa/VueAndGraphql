@@ -20,7 +20,7 @@ module.exports = async (_, {
         username,
         email,
         password,
-        avatar: generateAvatar(username)
+        avatar: await generateAvatar(username)
         // generate name
     }).save();
 
