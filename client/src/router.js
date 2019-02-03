@@ -27,6 +27,11 @@ export default new Router({
       path: '/contact_me',
       name: 'contactMe',
       component: () => import('./views/ContactMe.vue')
+    },
+    {
+      path: '/sign_up',
+      name: 'signUp',
+      component: () => import('./views/auth/SignUp.vue')
     }
   ]
 })

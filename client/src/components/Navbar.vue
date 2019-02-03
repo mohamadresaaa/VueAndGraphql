@@ -9,11 +9,11 @@
                 <span class="font-weight-light text-lowercase">.org</span>
             </v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn class="hidden-sm-and-down" color="white darken-3" light router :to="authLinks[0].route">
+            <v-btn class="hidden-sm-and-down text-lowercase" color="white darken-3" light router :to="authLinks[0].route">
                 {{authLinks[0].text}}
                 <v-icon dark right>{{authLinks[0].icon}}</v-icon>
             </v-btn>
-            <v-btn class="hidden-sm-and-down" flat router :to="authLinks[1].route">
+            <v-btn class="hidden-sm-and-down text-lowercase" flat router :to="authLinks[1].route">
                 <span>{{authLinks[1].text}}</span>
             </v-btn>
         </v-toolbar>
@@ -80,7 +80,7 @@ export default {
       ],
       authLinks: [
         { icon: 'lock', text: 'Login', route: '/login' },
-        { text: 'Register', route: '/register' }
+        { text: 'Sign up', route: '/signUp' }
       ]
     }
   }
