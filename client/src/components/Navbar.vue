@@ -79,8 +79,8 @@ export default {
         { icon: 'contact_support', text: 'Contact me', route: '/contact_me' },
       ],
       authLinks: [
-        { icon: 'lock', text: 'Login', route: '/login' },
-        { text: 'Sign up', route: '/signUp' }
+        { icon: 'lock', text: 'Sign in', route: '/sign_in' },
+        { text: 'Sign up', route: '/sign_up' }
       ]
     }
   }
