@@ -37,8 +37,6 @@ type Token {
 type Query {
   getArticles: [Article]
 
-  names: [String]
-
   getCategories: [Category]
 }
 

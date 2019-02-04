@@ -5,9 +5,6 @@ const addCategory = require('./mutations/addCategory');
 
 module.exports = {
     Query: {
-        names: () => {
-            return ['mohamadreza', 'saeed', 'ali'];
-        },
         getCategories
     },
     Mutation: {
