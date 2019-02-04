@@ -8,7 +8,8 @@ export const signIn = ({ commit }, payload) => {
       variables: payload
     })
     .then(({ data }) => {
-      console.log('token', data.signIn);
+        // set access token
+        localStorage.setItem('accessToken', data.signIn.token);
     })
     .catch(err => console.error(err));
 };
