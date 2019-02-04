@@ -35,9 +35,9 @@ type Token {
 }
 
 type Query {
-  getArticles: [Article]
-
-  getCategories: [Category]
+    getCurrentUser: User
+    getArticles: [Article]
+    getCategories: [Category]
 }
 
 type Mutation {

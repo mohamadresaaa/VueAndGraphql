@@ -7,14 +7,8 @@ module.exports = async token => {
             // get user id
             let { id } = await jwt.verify(token, 'secretKey');
 
-            // find user
-            let user = await config.database.mongodb.models.User.findById(id);
-
-            // if user doesn't exists
-            if(!user) throw new Error('Token is not valid.');
-
-            // return it
-            return user;
+            // return id
+            return id;
         } catch (error) {
             throw new AuthenticationError('Your session has ended! Please sign in again.');
         }

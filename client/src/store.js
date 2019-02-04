@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 // import actions
 import { getCategories } from './store/actions/categories';
 import { signIn } from './store/actions/authenticate';
+import { getCurrentUser } from './store/actions/users';
 
 Vue.use(Vuex)
 
@@ -17,6 +18,7 @@ export default new Vuex.Store({
     setLoading: (state, payload) => state.loading = payload
   },
   actions: {
+    getCurrentUser,
     getCategories,
     signIn
   },
