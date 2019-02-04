@@ -7,7 +7,7 @@ export const getCurrentUser = ({ commit }) => {
     apolloClient.query({ query: GET_CURRENT_USER })
     .then(({ data }) => {
         commit('setLoading', false);
-        console.log(data.getCurrentUser);
+        commit('setUser', data.getCurrentUser);
     })
     .catch(err => {
         commit('setLoading', false);

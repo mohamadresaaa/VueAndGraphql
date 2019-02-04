@@ -37,11 +37,21 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
     data() {
         return {
             email: '',
             password: ''
+        }
+    },
+    computed: {
+        ...mapGetters(['user'])
+    },
+    watch: {
+        user(value){
+            if(value)
+                this.$router.push('/');
         }
     },
     methods: {

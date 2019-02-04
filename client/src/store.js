@@ -10,10 +10,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    user: null,
     categories: [],
     loading: false
   },
   mutations: {
+    setUser: (state, payload) => state.user = payload,
     setCategories: (state, payload) => state.categories = payload,
     setLoading: (state, payload) => state.loading = payload
   },
@@ -23,6 +25,7 @@ export default new Vuex.Store({
     signIn
   },
   getters: {
+    user: state => state.user,
     categories: state => state.categories,
     loading: state => state.loading
   }
