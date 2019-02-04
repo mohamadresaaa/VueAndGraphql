@@ -1,6 +1,6 @@
 import { gql } from "apollo-boost";
 
-export const getAll = gql `
+export const GET_CATEGORIES = gql `
     query {
         getCategories {
             title

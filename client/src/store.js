@@ -1,11 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { defaultClient as apolloClient } from "./apollo";
 
-
-// import queries and mutations graphql
-import { getAll } from './graphql/queries/categories';
-import { signIn } from './graphql/mutations/authenticate';
+// import actions
+import { getCategories } from './store/actions/categories';
+import { signIn } from './store/actions/authenticate';
 
 Vue.use(Vuex)
 
@@ -19,25 +17,8 @@ export default new Vuex.Store({
     setLoading: (state, payload) => state.loading = payload
   },
   actions: {
-    getCategories: ({ commit }) => {
-      commit('setLoading', true);
-      apolloClient.query({ query: getAll })
-      .then(({ data }) => {
-        commit('setCategories', data.getCategories);
-        commit('setLoading', false);
-      })
-      .catch(() => commit('setLoading', false));
-    },
-    signIn: ({ commit }, payload) => {
-      apolloClient.mutate({ 
-        mutation: signIn,
-        variables: payload
-      })
-      .then(({ data }) => {
-        console.log('token', data.signIn);
-      })
-      .catch(err => console.error(err));
-    }
+    getCategories,
+    signIn
   },
   getters: {
     categories: state => state.categories,
