@@ -4,7 +4,7 @@ import { defaultClient as apolloClient } from "./apollo";
 
 
 // import queries and mutations graphql
-import { getCategories } from './graphql/queries/categories';
+import { getAll } from './graphql/queries/categories';
 import { signIn } from './graphql/mutations/authenticate';
 
 Vue.use(Vuex)
@@ -21,7 +21,7 @@ export default new Vuex.Store({
   actions: {
     getCategories: ({ commit }) => {
       commit('setLoading', true);
-      apolloClient.query({ query: getCategories })
+      apolloClient.query({ query: getAll })
       .then(({ data }) => {
         commit('setCategories', data.getCategories);
         commit('setLoading', false);
