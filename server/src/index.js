@@ -1,12 +1,13 @@
 const express = require('express');
-const { ApolloServer, gql } = require('apollo-server-express');
+const { ApolloServer } = require('apollo-server-express');
 const mongoose = require('mongoose');
 const fs = require('fs');
 const path = require('path');
 
 
-// import resolvers
+// import resolvers and context
 const resolvers = require('./resolvers');
+const context = require('./context');
 
 module.exports = class Core {
     constructor(){
@@ -37,7 +38,7 @@ module.exports = class Core {
         const server = new ApolloServer({ 
             typeDefs: this.setTypeDefs(),
             resolvers,
-            context: { ...config.database.mongodb.models }
+            context
         });
         server.applyMiddleware({ app: this.app, path: '/' });
 
