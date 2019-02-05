@@ -3,6 +3,9 @@ import router from '../../router';
 import { SIGN_IN } from '../../graphql/mutations/authenticate';
 
 export const signIn = ({ commit }, payload) => {
+    // clear error
+    commit('clearError');
+    
     // clear access token
     localStorage.setItem('accessToken', '');
     
@@ -18,7 +21,9 @@ export const signIn = ({ commit }, payload) => {
         router.go();
         router.push('/');
     })
-    .catch(err => console.error(err));
+    .catch(err => {
+        commit('setError', err);
+    });
 };
 
 export const signOut = async ({ commit }) => {

@@ -1,5 +1,6 @@
 export default {
     user: null,
     categories: [],
-    loading: false
+    loading: false,
+    error: null
 };

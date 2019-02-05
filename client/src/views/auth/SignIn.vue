@@ -8,6 +8,12 @@
                     </v-flex>
                 </v-layout>
                 <v-form @submit.prevent="handleSignIn" class="px-3">
+                    <v-layout v-if="error" row class="mb-3">
+                        <v-flex xs12>
+                            <formAlert :message="error.message"></formAlert>
+                        </v-flex>
+                    </v-layout>
+                    
                     <v-layout row>
                         <v-flex xs12>
                             <v-text-field v-model="email" label="Email" required outline></v-text-field>
@@ -38,6 +44,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import formAlert from '../../components/FormAlert';
 export default {
     data() {
         return {
@@ -46,7 +53,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['user'])
+        ...mapGetters(['error','user'])
     },
     watch: {
         user(value){
@@ -62,5 +69,6 @@ export default {
             });
         }
     },
+    components: { formAlert }
 }
 </script>
