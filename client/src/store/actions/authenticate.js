@@ -3,6 +3,9 @@ import router from '../../router';
 import { SIGN_IN } from '../../graphql/mutations/authenticate';
 
 export const signIn = ({ commit }, payload) => {
+    // clear access token
+    localStorage.setItem('accessToken', '');
+    
     apolloClient.mutate({ 
       mutation: SIGN_IN,
       variables: payload
@@ -10,6 +13,7 @@ export const signIn = ({ commit }, payload) => {
     .then(({ data }) => {
         // set access token
         localStorage.setItem('accessToken', data.signIn.token);
+
         // refresh and redirect to home page
         router.go();
         router.push('/');

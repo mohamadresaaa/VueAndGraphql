@@ -11,6 +11,7 @@
     </v-layout> -->
 
     <v-flex xs12>
+      <v-btn color="success" router to="/profile">profile</v-btn>
       <ul v-if="!loading">
         <li v-for="(category, index) in categories" :key="index">
           {{ category.title }} - {{ category.url }}
