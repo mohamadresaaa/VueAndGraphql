@@ -25,7 +25,7 @@ export const signOut = async ({ commit }) => {
     localStorage.setItem('accessToken', '');
 
     // end session
-    apolloClient.resetStore();
+    await apolloClient.resetStore();
 
     // redirect to home page and kick user of private pages
     router.push('/');
