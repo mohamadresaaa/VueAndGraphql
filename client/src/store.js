@@ -5,9 +5,7 @@ import Vuex from 'vuex'
 import { mutations } from './store/mutations';
 
 // import actions
-import { getCategories } from './store/actions/categories';
-import { signIn, signOut } from './store/actions/authenticate';
-import { getCurrentUser } from './store/actions/users';
+import { actions } from './store/actions';
 
 Vue.use(Vuex)
 
@@ -18,12 +16,7 @@ export default new Vuex.Store({
     loading: false
   },
   mutations,
-  actions: {
-    getCurrentUser,
-    getCategories,
-    signIn,
-    signOut
-  },
+  actions,
   getters: {
     user: state => state.user,
     categories: state => state.categories,
