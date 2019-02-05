@@ -9,12 +9,9 @@
                 <span class="font-weight-light text-lowercase">.org</span>
             </v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn class="hidden-sm-and-down text-lowercase" color="white darken-3" light router :to="authLinks[0].route">
-                {{authLinks[0].text}}
-                <v-icon dark right>{{authLinks[0].icon}}</v-icon>
-            </v-btn>
-            <v-btn class="hidden-sm-and-down text-lowercase" flat router :to="authLinks[1].route">
-                <span>{{authLinks[1].text}}</span>
+            <v-btn color="white darken-3" class="hidden-sm-and-down text-lowercase" light router v-for="(link, index) in authLinks" :key="index" :flat="link.icon == null ? true : false" :to="link.route">
+                {{ link.text }}
+                <v-icon v-if="link.icon" dark right>{{ link.icon }}</v-icon>
             </v-btn>
         </v-toolbar>
         <v-navigation-drawer app v-model="drawer" class="blue accent-2">
@@ -80,7 +77,7 @@ export default {
       ],
       authLinks: [
         { icon: 'lock', text: 'Sign in', route: '/sign_in' },
-        { text: 'Sign up', route: '/sign_up' }
+        { icon: null, text: 'Sign up', route: '/sign_up' }
       ]
     }
   }
