@@ -16,3 +16,17 @@ export const signIn = ({ commit }, payload) => {
     })
     .catch(err => console.error(err));
 };
+
+export const signOut = async ({ commit }) => {
+    // clear user in state
+    commit('clearUser', null);
+
+    // remove accessToken in localStorage
+    localStorage.setItem('accessToken', '');
+
+    // end session
+    apolloClient.resetStore();
+
+    // redirect to home page and kick user of private pages
+    router.push('/');
+};

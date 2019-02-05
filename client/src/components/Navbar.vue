@@ -9,9 +9,13 @@
                 <span class="font-weight-light text-lowercase">.org</span>
             </v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn color="white darken-3" class="hidden-sm-and-down text-lowercase" light router v-for="(link, index) in authLinks" :key="index" :flat="link.icon == null ? true : false" :to="link.route">
+            <v-btn light color="white darken-3" class="hidden-sm-and-down text-lowercase" router v-for="(link, index) in authLinks" :key="index" :flat="link.icon == null ? true : false" :to="link.route">
                 {{ link.text }}
                 <v-icon v-if="link.icon" dark right>{{ link.icon }}</v-icon>
+            </v-btn>
+            <v-btn light v-if="user" color="white darken-3" class="hidden-sm-and-down text-lowercase" @click="handleSignOutUser">
+                {{signOut.text}}
+                <v-icon dark right>{{signOut.icon}}</v-icon>
             </v-btn>
         </v-toolbar>
         <v-navigation-drawer app v-model="drawer" class="blue accent-2">
@@ -26,11 +30,7 @@
             <v-list>
                 <v-list-tile>
                     <v-flex xs12 sm12 md12>
-                        <v-text-field
-                            label="search"
-                            placeholder="Search..."
-                            solo
-                        ></v-text-field>
+                        <v-text-field label="search" placeholder="Search..." solo></v-text-field>
                     </v-flex>
                 </v-list-tile>
 
@@ -47,15 +47,27 @@
                     </v-list-tile-content>
                 </v-list-tile>
 
-                <v-list-tile v-show="navigationDrawerAuthLink" class="hidden-md-and-up" router to="/sign_in">
+                <v-list-tile ripple class="hidden-md-and-up" v-for="(link, index) in authLinks" :key="index" router :to="link.route">
                     <v-list-tile-action>
-                        <v-icon class="white--text">
-                            lock
+                        <v-icon v-if="link.icon" class="white--text">
+                            {{link.icon}}
                         </v-icon>
                     </v-list-tile-action>
                     <v-list-tile-content>
                         <v-list-tile-title class="white--text">
-                            Login Or Register
+                            {{link.text}}
+                        </v-list-tile-title>
+                    </v-list-tile-content>
+                </v-list-tile>
+                <v-list-tile v-if="user" class="hidden-md-and-up" @click="handleSignOutUser">
+                    <v-list-tile-action>
+                        <v-icon class="white--text">
+                            {{signOut.icon}}
+                        </v-icon>
+                    </v-list-tile-action>
+                    <v-list-tile-content>
+                        <v-list-tile-title class="white--text">
+                            {{signOut.text}}
                         </v-list-tile-title>
                     </v-list-tile-content>
                 </v-list-tile>
@@ -66,39 +78,37 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import { truncate } from 'fs';
 
 export default {
-  data() {
-    return {
-      drawer: false,
-      links: [
-        { icon: 'home', text: 'Home', route: '/' },
-        { icon: 'library_books', text: 'Blog', route: '/Blog' },
-        { icon: 'person', text: 'About me', route: '/about_me' },
-        { icon: 'contact_support', text: 'Contact me', route: '/contact_me' },
-      ]
-    }
-  },
-  computed: {
-    ...mapGetters(['user']),
-    authLinks() {
-        let items = [
-            { icon: 'lock', text: 'Sign in', route: '/sign_in' },
-            { icon: null, text: 'Sign up', route: '/sign_up' }
-        ];
-        if(this.user){
-            return items = [
-                { icon: 'arrow_forward', text: 'Sign out', route: '/sign_out' }
-            ]
-        }
-        return items;
+    data() {
+        return {
+            drawer: false,
+            links: [
+                { icon: 'home', text: 'Home', route: '/' },
+                { icon: 'library_books', text: 'Blog', route: '/Blog' },
+                { icon: 'person', text: 'About me', route: '/about_me' },
+                { icon: 'contact_support', text: 'Contact me', route: '/contact_me' },
+            ],
+            signOut: { icon: 'arrow_forward', text: 'Sign out' }
+        };
     },
-    navigationDrawerAuthLink(){
-        if(this.user)
-            return false;
-        return true;
+    methods: {
+        handleSignOutUser(){
+            this.$store.dispatch('signOut');
+        }
+    },
+    computed: {
+        ...mapGetters(['user']),
+        authLinks() {
+            let items = [
+                { icon: 'lock', text: 'Sign in', route: '/sign_in' },
+                { icon: null, text: 'Sign up', route: '/sign_up' }
+            ];
+
+            if(this.user) return items = null;
+
+            return items;
+        }
     }
-  }
 }
 </script>

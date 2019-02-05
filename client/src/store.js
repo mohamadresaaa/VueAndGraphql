@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 // import actions
 import { getCategories } from './store/actions/categories';
-import { signIn } from './store/actions/authenticate';
+import { signIn, signOut } from './store/actions/authenticate';
 import { getCurrentUser } from './store/actions/users';
 
 Vue.use(Vuex)
@@ -17,12 +17,14 @@ export default new Vuex.Store({
   mutations: {
     setUser: (state, payload) => state.user = payload,
     setCategories: (state, payload) => state.categories = payload,
-    setLoading: (state, payload) => state.loading = payload
+    setLoading: (state, payload) => state.loading = payload,
+    clearUser: state => state.user = null
   },
   actions: {
     getCurrentUser,
     getCategories,
-    signIn
+    signIn,
+    signOut
   },
   getters: {
     user: state => state.user,
