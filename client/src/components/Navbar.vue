@@ -47,7 +47,7 @@
                     </v-list-tile-content>
                 </v-list-tile>
 
-                <v-list-tile class="hidden-md-and-up" router to="/login">
+                <v-list-tile v-show="navigationDrawerAuthLink" class="hidden-md-and-up" router to="/sign_in">
                     <v-list-tile-action>
                         <v-icon class="white--text">
                             lock
@@ -65,6 +65,9 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+import { truncate } from 'fs';
+
 export default {
   data() {
     return {
@@ -74,11 +77,27 @@ export default {
         { icon: 'library_books', text: 'Blog', route: '/Blog' },
         { icon: 'person', text: 'About me', route: '/about_me' },
         { icon: 'contact_support', text: 'Contact me', route: '/contact_me' },
-      ],
-      authLinks: [
-        { icon: 'lock', text: 'Sign in', route: '/sign_in' },
-        { icon: null, text: 'Sign up', route: '/sign_up' }
       ]
+    }
+  },
+  computed: {
+    ...mapGetters(['user']),
+    authLinks() {
+        let items = [
+            { icon: 'lock', text: 'Sign in', route: '/sign_in' },
+            { icon: null, text: 'Sign up', route: '/sign_up' }
+        ];
+        if(this.user){
+            return items = [
+                { icon: 'arrow_forward', text: 'Sign out', route: '/sign_out' }
+            ]
+        }
+        return items;
+    },
+    navigationDrawerAuthLink(){
+        if(this.user)
+            return false;
+        return true;
     }
   }
 }

@@ -12,6 +12,7 @@ export const signIn = ({ commit }, payload) => {
         localStorage.setItem('accessToken', data.signIn.token);
         // redirect to home page
         router.push('/');
+        router.go();
     })
     .catch(err => console.error(err));
 };
