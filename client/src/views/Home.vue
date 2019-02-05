@@ -1,6 +1,6 @@
 <template>
   <v-container text-xs-center>
-    <v-layout row>
+    <!-- <v-layout row>
       <v-dialog v-model="loading" persistent fullscreen>
         <v-container fill-height>
           <v-layout row justify-center align-center>
@@ -8,7 +8,7 @@
           </v-layout>
         </v-container>
       </v-dialog>
-    </v-layout>
+    </v-layout> -->
 
     <v-flex xs12>
       <ul v-if="!loading">

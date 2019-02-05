@@ -10,9 +10,9 @@ export const signIn = ({ commit }, payload) => {
     .then(({ data }) => {
         // set access token
         localStorage.setItem('accessToken', data.signIn.token);
-        // redirect to home page
-        router.push('/');
+        // refresh and redirect to home page
         router.go();
+        router.push('/');
     })
     .catch(err => console.error(err));
 };
