@@ -1,4 +1,4 @@
-export const state = {
+export default {
     user: null,
     categories: [],
     loading: false

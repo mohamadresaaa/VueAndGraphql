@@ -1,4 +1,4 @@
-export const mutations = {
+export default {
     setUser: (state, payload) => state.user = payload,
     setCategories: (state, payload) => state.categories = payload,
     setLoading: (state, payload) => state.loading = payload,
