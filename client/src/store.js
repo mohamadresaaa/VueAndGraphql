@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+// import mutations
+import { mutations } from './store/mutations';
+
 // import actions
 import { getCategories } from './store/actions/categories';
 import { signIn, signOut } from './store/actions/authenticate';
@@ -14,12 +17,7 @@ export default new Vuex.Store({
     categories: [],
     loading: false
   },
-  mutations: {
-    setUser: (state, payload) => state.user = payload,
-    setCategories: (state, payload) => state.categories = payload,
-    setLoading: (state, payload) => state.loading = payload,
-    clearUser: state => state.user = null
-  },
+  mutations,
   actions: {
     getCurrentUser,
     getCategories,
