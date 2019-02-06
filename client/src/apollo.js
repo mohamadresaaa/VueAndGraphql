@@ -1,5 +1,6 @@
 import ApolloClient from 'apollo-boost'
 import VueApollo from 'vue-apollo'
+import store from './store';
 
 // setup apollo client
 export const defaultClient = new ApolloClient({ 
@@ -26,7 +27,9 @@ export const defaultClient = new ApolloClient({
 
         if(graphQLErrors)
             for (const err of graphQLErrors) {
-                console.dir(err);
+                // signOut user (to clear accessToken) 
+                if(err.name === 'AuthenticationError')
+                    store.dispatch('signOut')
             }
     }
 });
