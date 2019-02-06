@@ -5,8 +5,9 @@ const fs = require('fs');
 const path = require('path');
 
 
-// import resolvers and context
+// import resolvers, formatError, context
 const resolvers = require('./resolvers');
+const formatError = require('./formatError');
 const context = require('./context');
 
 module.exports = class Core {
@@ -38,6 +39,7 @@ module.exports = class Core {
         const server = new ApolloServer({ 
             typeDefs: this.setTypeDefs(),
             resolvers,
+            formatError,
             context
         });
         server.applyMiddleware({ app: this.app, path: '/' });
