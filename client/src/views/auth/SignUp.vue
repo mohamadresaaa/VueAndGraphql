@@ -84,7 +84,7 @@ export default {
     methods: {
         handleSignUp(){
             if(this.$refs.form.validate()){
-                this.store.dispatch('signUp', { 
+                this.$store.dispatch('signUp', { 
                     username: this.username,
                     email: this.email,
                     password: this.password

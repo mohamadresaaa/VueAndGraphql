@@ -1,8 +1,9 @@
 import { getCategories } from './categories';
-import { signIn, signOut } from './authenticate';
+import { signUp, signIn, signOut } from './authenticate';
 import { getCurrentUser } from './users';
 
 export default {
+    signUp,
     signIn,
     signOut,
     getCurrentUser,
