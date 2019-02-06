@@ -1,4 +1,4 @@
 module.exports = error => ({ 
     name: error.name,
-    message: error.message
+    message: error.message.replace('Context creation failed:', '')
 });
