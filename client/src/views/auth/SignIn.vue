@@ -56,7 +56,8 @@ export default {
             password: '',
             emailRules: [
                 // check if email in input
-                email => !!email || 'Email is required'
+                email => !!email || 'Email is required',
+                email => /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(email) || 'Email must be valid'
             ],
             passwordRules: [
                 // check if email in input
