@@ -5,6 +5,9 @@ import { SIGN_IN } from '../../graphql/mutations/authenticate';
 export const signIn = ({ commit }, payload) => {
     // clear error
     commit('clearError');
+
+    // set loading
+    commit('setLoading', true);
     
     // clear access token
     localStorage.setItem('accessToken', '');
@@ -14,6 +17,9 @@ export const signIn = ({ commit }, payload) => {
       variables: payload
     })
     .then(({ data }) => {
+        // set loading
+        commit('setLoading', false);
+
         // set access token
         localStorage.setItem('accessToken', data.signIn.token);
 
@@ -22,6 +28,10 @@ export const signIn = ({ commit }, payload) => {
         router.push('/');
     })
     .catch(err => {
+        // set loading
+        commit('setLoading', false);
+
+        // set error
         commit('setError', err);
     });
 };

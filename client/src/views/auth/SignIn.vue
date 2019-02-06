@@ -26,7 +26,10 @@
                     </v-layout>
                     <v-layout justify-center align-content-center row>
                         <v-flex xs12 sm6 offset-sm4>
-                            <v-btn color="primary" type="submit">Sign in</v-btn>
+                            <v-btn :loading="loading" :disabled="loading" color="primary" type="submit">
+                                Sign in
+                                <span slot="loader">Loading...</span>
+                            </v-btn>
                         </v-flex>
                     </v-layout>
                     <v-layout justify-center align-content-center row>
@@ -53,7 +56,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['error','user'])
+        ...mapGetters(['loading','error','user'])
     },
     watch: {
         user(value){
