@@ -7,7 +7,7 @@
                         <h2 class="font-weight-medium text-capitalize ma-3">sign in</h2>
                     </v-flex>
                 </v-layout>
-                <v-form @submit.prevent="handleSignIn" class="px-3">
+                <v-form v-model="isFormValid" lazy-validation ref="form" @submit.prevent="handleSignIn" class="px-3">
                     <v-layout v-if="error" row class="mb-3">
                         <v-flex xs12>
                             <formAlert :message="error.message"></formAlert>
@@ -16,17 +16,17 @@
                     
                     <v-layout row>
                         <v-flex xs12>
-                            <v-text-field v-model="email" label="Email" required outline></v-text-field>
+                            <v-text-field :rules="emailRules" v-model="email" label="Email" required outline></v-text-field>
                         </v-flex>
                     </v-layout>
                     <v-layout row>
                         <v-flex xs12>
-                            <v-text-field v-model="password" type="password" label="Password" required outline></v-text-field>
+                            <v-text-field :rules="passwordRules" v-model="password" type="password" label="Password" required outline></v-text-field>
                         </v-flex>
                     </v-layout>
                     <v-layout justify-center align-content-center row>
                         <v-flex xs12 sm6 offset-sm4>
-                            <v-btn :loading="loading" :disabled="loading" color="primary" type="submit">
+                            <v-btn :loading="loading" :disabled="!isFormValid" color="primary" type="submit">
                                 Sign in
                                 <span slot="loader">Loading...</span>
                             </v-btn>
@@ -51,8 +51,17 @@ import formAlert from '../../components/FormAlert';
 export default {
     data() {
         return {
+            isFormValid: true,
             email: '',
-            password: ''
+            password: '',
+            emailRules: [
+                // check if email in input
+                email => !!email || 'Email is required'
+            ],
+            passwordRules: [
+                // check if email in input
+                password => !!password || 'Password is required'
+            ]
         }
     },
     computed: {
@@ -66,10 +75,12 @@ export default {
     },
     methods: {
         handleSignIn(){
-            this.$store.dispatch('signIn', { 
-                email: this.email,
-                password: this.password
-            });
+            if(this.$refs.form.validate()){
+                this.$store.dispatch('signIn', { 
+                    email: this.email,
+                    password: this.password
+                });
+            }
         }
     },
     components: { formAlert }
