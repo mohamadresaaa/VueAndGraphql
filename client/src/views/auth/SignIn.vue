@@ -26,7 +26,7 @@
                     </v-layout>
                     <v-layout justify-center align-content-center row>
                         <v-flex xs12 sm6 offset-sm4>
-                            <v-btn :loading="loading" :disabled="!isFormValid" color="primary" type="submit">
+                            <v-btn :loading="loading" :disabled="!isFormValid || loading" color="primary" type="submit">
                                 Sign in
                                 <span slot="loader">Loading...</span>
                             </v-btn>
