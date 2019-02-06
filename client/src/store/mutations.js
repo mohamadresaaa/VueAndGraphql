@@ -4,5 +4,6 @@ export default {
     setCategories: (state, payload) => state.categories = payload,
     setLoading: (state, payload) => state.loading = payload,
     setError: (state, payload) => state.error = payload,
+    setAuthError: (state, payload) => state.authError = payload,
     clearError: state => state.error = null
 };
