@@ -9,13 +9,17 @@
                 <span class="font-weight-light text-lowercase">.org</span>
             </v-toolbar-title>
             <v-spacer></v-spacer>
+
+            <!-- Auth link -->
             <v-btn light color="white darken-3" class="hidden-sm-and-down text-lowercase" router v-for="(link, index) in authLinks" :key="index" :flat="link.icon == null ? true : false" :to="link.route">
                 {{ link.text }}
                 <v-icon v-if="link.icon" dark right>{{ link.icon }}</v-icon>
             </v-btn>
-            <v-btn light v-if="user" color="white darken-3" class="hidden-sm-and-down text-lowercase" @click="handleSignOutUser">
-                {{signOut.text}}
-                <v-icon dark right>{{signOut.icon}}</v-icon>
+
+            <!-- sign out -->
+            <v-btn light v-if="user" color="white darken-3" class="text-lowercase" @click="handleSignOutUser">
+                Sign out
+                <v-icon dark right>arrow_forward</v-icon>
             </v-btn>
         </v-toolbar>
         <v-navigation-drawer app v-model="drawer" class="blue accent-2">
@@ -34,82 +38,30 @@
                     </v-flex>
                 </v-list-tile>
 
-                <!-- default navbar link -->
-                <defaultLinks></defaultLinks>
+                <!-- default navigation link -->
+                <DefaultNavigationLinks/>
+                
+                <!-- auth navigation link -->
+                <AuthNavigationLinks :user="user" />
 
-                <v-list-tile ripple class="hidden-md-and-up" v-for="(link, index) in authLinks" :key="index" router :to="link.route">
-                    <v-list-tile-action>
-                        <v-icon v-if="link.icon" class="white--text">
-                            {{link.icon}}
-                        </v-icon>
-                    </v-list-tile-action>
-                    <v-list-tile-content>
-                        <v-list-tile-title class="white--text">
-                            {{link.text}}
-                        </v-list-tile-title>
-                    </v-list-tile-content>
-                </v-list-tile>
-                <v-list-tile v-if="user" class="hidden-md-and-up" @click="handleSignOutUser">
-                    <v-list-tile-action>
-                        <v-icon class="white--text">
-                            {{signOut.icon}}
-                        </v-icon>
-                    </v-list-tile-action>
-                    <v-list-tile-content>
-                        <v-list-tile-title class="white--text">
-                            {{signOut.text}}
-                        </v-list-tile-title>
-                    </v-list-tile-content>
-                </v-list-tile>
-            </v-list>
-
-            <v-list class="white--text">
-                <v-list-tile>
-                    <v-list-tile-action>
-                    <v-icon>home</v-icon>
-                    </v-list-tile-action>
-                    <v-list-tile-title>Home</v-list-tile-title>
-                </v-list-tile>
-                <v-list-group
-                    value="false"
-                    >
-                    <v-list-tile slot="activator">
-                        <v-list-tile-title>Admin</v-list-tile-title>
-                    </v-list-tile>
-
-                    <v-list-tile
-                        v-for="(admin, i) in admins"
-                        :key="i"
-                    >
-                        <v-list-tile-title v-text="admin[0]"></v-list-tile-title>
-                        
-                        <v-icon class="white--text" v-text="admin[1]"></v-icon>
-                    </v-list-tile>
-                </v-list-group>
+                <!-- account navigation link -->
+                <AccountNavigationLink :user="user" />
             </v-list>
         </v-navigation-drawer>
     </nav>
 </template>
 
 <script>
-import defaultLinks from './navbarLinks/defaultLinks';
+import DefaultNavigationLinks from './navigationLinks/DefaultNavigationLinks';
+import AuthNavigationLinks from './navigationLinks/AuthNavigationLinks';
+import AccountNavigationLink from './navigationLinks/AccountNavigationLink';
+
 import { mapGetters } from 'vuex';
 
 export default {
     data() {
         return {
-            drawer: false,
-            signOut: { icon: 'arrow_forward', text: 'Sign out' },
-            admins: [
-                ['Management', 'people_outline'],
-                ['Settings', 'settings']
-            ],
-            cruds: [
-                ['Create', 'add'],
-                ['Read', 'insert_drive_file'],
-                ['Update', 'update'],
-                ['Delete', 'delete']
-            ]
+            drawer: false
         };
     },
     methods: {
@@ -130,6 +82,6 @@ export default {
             return items;
         }
     },
-    components: { defaultLinks }
+    components: { DefaultNavigationLinks, AuthNavigationLinks, AccountNavigationLink }
 }
 </script>
