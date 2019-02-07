@@ -13,7 +13,7 @@ module.exports = async (_, {
     if(!user) throw new Error('Incorrect email or password');
 
     // if user is disable
-    if(!user.isActive) throw new Error('Your account is disabled');
+    if(!user.isActive) throw new Error('Your account is disabled, please confirm your email');
 
     // compare password
     const isMatch = await user.comparePassword(password);
