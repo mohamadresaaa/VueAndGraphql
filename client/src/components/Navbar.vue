@@ -10,13 +10,10 @@
             </v-toolbar-title>
             <v-spacer></v-spacer>
 
-            <!-- Auth link -->
-            <v-btn light color="white darken-3" class="hidden-sm-and-down text-lowercase" router v-for="(link, index) in authLinks" :key="index" :flat="link.icon == null ? true : false" :to="link.route">
-                {{ link.text }}
-                <v-icon v-if="link.icon" dark right>{{ link.icon }}</v-icon>
-            </v-btn>
+            <!-- auth link -->
+            <AuthNavbarLinks :user="user" />
 
-            <!-- sign out -->
+            <!-- account actions -->
             <v-btn light v-if="user" color="white darken-3" class="text-lowercase" @click="handleSignOutUser">
                 Sign out
                 <v-icon dark right>arrow_forward</v-icon>
@@ -32,6 +29,8 @@
                 </v-flex>
             </v-layout>
             <v-list>
+
+                <!-- search box -->
                 <v-list-tile>
                     <v-flex xs12 sm12 md12>
                         <v-text-field label="search" placeholder="Search..." solo></v-text-field>
@@ -52,6 +51,10 @@
 </template>
 
 <script>
+// navbar link component
+import AuthNavbarLinks from './navbarLinks/authNavbarLinks';
+
+// navagation link component
 import DefaultNavigationLinks from './navigationLinks/DefaultNavigationLinks';
 import AuthNavigationLinks from './navigationLinks/AuthNavigationLinks';
 import AccountNavigationLink from './navigationLinks/AccountNavigationLink';
@@ -82,6 +85,6 @@ export default {
             return items;
         }
     },
-    components: { DefaultNavigationLinks, AuthNavigationLinks, AccountNavigationLink }
+    components: { AuthNavbarLinks, DefaultNavigationLinks, AuthNavigationLinks, AccountNavigationLink }
 }
 </script>
