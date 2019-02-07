@@ -1,6 +1,6 @@
 <template>
     <v-alert outline :value="true" transition="scale-transition" dismissible>
-      {{ message }}
+      {{ message.replace('GraphQL error:', '') }}
     </v-alert>
 </template>
 
