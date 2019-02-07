@@ -34,18 +34,8 @@
                     </v-flex>
                 </v-list-tile>
 
-                <v-list-tile ripple v-for="link in links" :key="link.text" router :to="link.route">
-                    <v-list-tile-action>
-                        <v-icon class="white--text">
-                            {{link.icon}}
-                        </v-icon>
-                    </v-list-tile-action>
-                    <v-list-tile-content>
-                        <v-list-tile-title class="white--text">
-                            {{link.text}}
-                        </v-list-tile-title>
-                    </v-list-tile-content>
-                </v-list-tile>
+                <!-- default navbar link -->
+                <defaultLinks></defaultLinks>
 
                 <v-list-tile ripple class="hidden-md-and-up" v-for="(link, index) in authLinks" :key="index" router :to="link.route">
                     <v-list-tile-action>
@@ -72,24 +62,54 @@
                     </v-list-tile-content>
                 </v-list-tile>
             </v-list>
+
+            <v-list class="white--text">
+                <v-list-tile>
+                    <v-list-tile-action>
+                    <v-icon>home</v-icon>
+                    </v-list-tile-action>
+                    <v-list-tile-title>Home</v-list-tile-title>
+                </v-list-tile>
+                <v-list-group
+                    value="false"
+                    >
+                    <v-list-tile slot="activator">
+                        <v-list-tile-title>Admin</v-list-tile-title>
+                    </v-list-tile>
+
+                    <v-list-tile
+                        v-for="(admin, i) in admins"
+                        :key="i"
+                    >
+                        <v-list-tile-title v-text="admin[0]"></v-list-tile-title>
+                        
+                        <v-icon class="white--text" v-text="admin[1]"></v-icon>
+                    </v-list-tile>
+                </v-list-group>
+            </v-list>
         </v-navigation-drawer>
     </nav>
 </template>
 
 <script>
+import defaultLinks from './navbarLinks/defaultLinks';
 import { mapGetters } from 'vuex';
 
 export default {
     data() {
         return {
             drawer: false,
-            links: [
-                { icon: 'home', text: 'Home', route: '/' },
-                { icon: 'library_books', text: 'Blog', route: '/Blog' },
-                { icon: 'person', text: 'About me', route: '/about_me' },
-                { icon: 'contact_support', text: 'Contact me', route: '/contact_me' },
+            signOut: { icon: 'arrow_forward', text: 'Sign out' },
+            admins: [
+                ['Management', 'people_outline'],
+                ['Settings', 'settings']
             ],
-            signOut: { icon: 'arrow_forward', text: 'Sign out' }
+            cruds: [
+                ['Create', 'add'],
+                ['Read', 'insert_drive_file'],
+                ['Update', 'update'],
+                ['Delete', 'delete']
+            ]
         };
     },
     methods: {
@@ -109,6 +129,7 @@ export default {
 
             return items;
         }
-    }
+    },
+    components: { defaultLinks }
 }
 </script>
