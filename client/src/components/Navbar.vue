@@ -14,10 +14,8 @@
             <AuthNavbarLinks :user="user" />
 
             <!-- account actions -->
-            <v-btn light v-if="user" color="white darken-3" class="text-lowercase" @click="handleSignOutUser">
-                Sign out
-                <v-icon dark right>arrow_forward</v-icon>
-            </v-btn>
+            <AccountNavbarLink :user="user" />
+
         </v-toolbar>
         <v-navigation-drawer app v-model="drawer" class="blue accent-2">
             <v-layout column align-center>
@@ -52,7 +50,8 @@
 
 <script>
 // navbar link component
-import AuthNavbarLinks from './navbarLinks/authNavbarLinks';
+import AuthNavbarLinks from './navbarLinks/AuthNavbarLinks';
+import AccountNavbarLink from './navbarLinks/AccountNavbarLink'
 
 // navagation link component
 import DefaultNavigationLinks from './navigationLinks/DefaultNavigationLinks';
@@ -60,6 +59,7 @@ import AuthNavigationLinks from './navigationLinks/AuthNavigationLinks';
 import AccountNavigationLink from './navigationLinks/AccountNavigationLink';
 
 import { mapGetters } from 'vuex';
+import { posix } from 'path';
 
 export default {
     data() {
@@ -67,24 +67,9 @@ export default {
             drawer: false
         };
     },
-    methods: {
-        handleSignOutUser(){
-            this.$store.dispatch('signOut');
-        }
-    },
     computed: {
-        ...mapGetters(['user']),
-        authLinks() {
-            let items = [
-                { icon: 'lock', text: 'Sign in', route: '/sign_in' },
-                { icon: null, text: 'Sign up', route: '/sign_up' }
-            ];
-
-            if(this.user) return items = null;
-
-            return items;
-        }
+        ...mapGetters(['user'])
     },
-    components: { AuthNavbarLinks, DefaultNavigationLinks, AuthNavigationLinks, AccountNavigationLink }
+    components: { AuthNavbarLinks, AccountNavbarLink, DefaultNavigationLinks, AuthNavigationLinks, AccountNavigationLink }
 }
 </script>
