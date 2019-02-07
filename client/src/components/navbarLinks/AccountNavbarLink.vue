@@ -1,5 +1,5 @@
 <template>
-    <v-menu v-if="user" transition="slide-x-transition" bottom right>
+    <v-menu class="hidden-sm-and-down" v-if="user" transition="slide-x-transition" bottom right>
       <v-btn light color="white darken-3" slot="activator">
         {{ user.name === null ? user.username : user.name }}
       </v-btn>
