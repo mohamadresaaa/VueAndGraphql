@@ -12,6 +12,9 @@ module.exports = async (_, {
     // if not user exists
     if(!user) throw new Error('Incorrect email or password');
 
+    // if user is disable
+    if(!user.isActive) throw new Error('Your account is disabled');
+
     // compare password
     const isMatch = await user.comparePassword(password);
 
