@@ -35,14 +35,17 @@
                     </v-flex>
                 </v-list-tile>
 
-                <!-- default navigation link -->
+                <!-- default navigation links -->
                 <DefaultNavigationLinks/>
                 
-                <!-- auth navigation link -->
+                <!-- auth navigation links -->
                 <AuthNavigationLinks :user="user" />
 
-                <!-- account navigation link -->
-                <AccountNavigationLink :user="user" />
+                <!-- admin navigation links -->
+                <AdminNavigationLinks :user="user" />
+
+                <!-- account navigation links -->
+                <AccountNavigationLinks :user="user" />
             </v-list>
         </v-navigation-drawer>
     </nav>
@@ -56,7 +59,8 @@ import AccountNavbarLink from './navbarLinks/AccountNavbarLink'
 // navagation link component
 import DefaultNavigationLinks from './navigationLinks/DefaultNavigationLinks';
 import AuthNavigationLinks from './navigationLinks/AuthNavigationLinks';
-import AccountNavigationLink from './navigationLinks/AccountNavigationLink';
+import AccountNavigationLinks from './navigationLinks/AccountNavigationLinks';
+import AdminNavigationLinks from './navigationLinks/AdminNavigationLinks';
 
 import { mapGetters } from 'vuex';
 
@@ -69,6 +73,6 @@ export default {
     computed: {
         ...mapGetters(['user'])
     },
-    components: { AuthNavbarLinks, AccountNavbarLink, DefaultNavigationLinks, AuthNavigationLinks, AccountNavigationLink }
+    components: { AuthNavbarLinks, AccountNavbarLink, DefaultNavigationLinks, AuthNavigationLinks, AccountNavigationLinks, AdminNavigationLinks }
 }
 </script>
