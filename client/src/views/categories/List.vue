@@ -18,11 +18,11 @@
             </v-tooltip>
         </v-layout>
 
-      <v-card v-for="note in notes" :key="note.notes" class="mb-3">
-        <v-layout row wrap :class="`pa-3 project ${note.status}`">
+      <v-card v-for="(category, index) in categories" :key="index" class="mb-3">
+        <v-layout row wrap class="pa-3">
           <v-flex xs6 md6>
             <div class="caption grey--text">Category title</div>
-            <div class="primary--text">{{note.title}}</div>
+            <div class="primary--text">{{category.title}}</div>
           </v-flex>
           <v-flex xs6 sm4 md2>
             <div class="text-xs-center">
@@ -39,43 +39,21 @@
     </div>
 </template>
 
-<style>
-  .project.complete{
-    border-left: 4px solid #2ecc71;
-  }
-  .project.ongoing{
-    border-left: 4px solid #f39c12;
-  }
-  .project.overdue{
-    border-left: 4px solid #e74c3c;
-  }
-
-  .v-chip.complete{
-    background-color: #2ecc71;
-  }
-  .v-chip.ongoing{
-    background-color: #f39c12;
-  } 
-  .v-chip.overdue{
-    background-color: #e74c3c;
-  }
-</style>
-
 <script>
+import { mapGetters } from 'vuex';
 export default {
-  data() {
-    return {
-      notes: [
-        { title: 'Design a new website'},
-        { title: 'Code up the homepage'},
-        { title: 'Design video thumbnails'},
-        { title: 'Create a community forum'},
-      ]
-    }
+  created() {
+    this.getCategories();
+  },
+  computed: {
+    ...mapGetters(['categories'])
   },
   methods: {
+    getCategories(){
+      this.$store.dispatch('getCategories');
+    },
     sortBy(prop) {
-      return this.notes.sort((a, b) => a[prop] < b[prop] ? -1 : 1);
+      return this.categories.sort((a, b) => a[prop] < b[prop] ? -1 : 1);
     }
   },
 }
