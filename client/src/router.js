@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Profile from './views/Profile.vue'
-import Categories from './views/categories/CategoryList.vue'
+import CategoryList from './views/categories/List.vue'
 import authGuard from './authGuard';
 
 Vue.use(Router)
@@ -50,7 +50,7 @@ export default new Router({
     {
       path: '/admin/categories',
       name: 'categories',
-      component: Categories
+      component: CategoryList
     }
   ]
 })

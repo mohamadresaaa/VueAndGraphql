@@ -59,7 +59,6 @@ import AuthNavigationLinks from './navigationLinks/AuthNavigationLinks';
 import AccountNavigationLink from './navigationLinks/AccountNavigationLink';
 
 import { mapGetters } from 'vuex';
-import { posix } from 'path';
 
 export default {
     data() {
