@@ -7,9 +7,6 @@
             <v-list-tile v-for="(item, index) in items" :key="index" router :to="item.route">
                 <v-list-tile-title v-text="item.text"></v-list-tile-title>    
             </v-list-tile>
-            <v-list-tile>
-                <v-list-tile-title>test</v-list-tile-title>    
-            </v-list-tile>
         </v-list-group>
     </v-list>
 </template>
