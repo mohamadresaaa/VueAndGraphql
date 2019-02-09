@@ -2,12 +2,12 @@
     <div>
         <v-list-tile ripple v-for="(item, index) in items" :key="index" router :to="item.route">
             <v-list-tile-action>
-                <v-icon class="white--text">
+                <v-icon class="black--text">
                     {{item.icon}}
                 </v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
-                <v-list-tile-title class="white--text">
+                <v-list-tile-title class="black--text">
                     {{item.text}}
                 </v-list-tile-title>
             </v-list-tile-content>

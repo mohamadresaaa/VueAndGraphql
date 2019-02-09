@@ -1,6 +1,6 @@
 <template>
     <v-list v-if="isAdmin">
-        <v-list-group class="white--text">
+        <v-list-group class="black--text">
             <v-list-tile slot="activator">
                 <v-list-tile-title>Admin</v-list-tile-title>
             </v-list-tile>

@@ -1,12 +1,12 @@
 <template>
     <v-list v-if="user">
-        <v-list-group class="hidden-md-and-up white--text">
+        <v-list-group class="hidden-md-and-up black--text">
             <v-list-tile slot="activator">
                 <v-list-tile-title>Account</v-list-tile-title>
             </v-list-tile>
             <v-list-tile v-for="(item, index) in items" :key="index" router :to="item.route">
                 <v-list-tile-title v-text="item.text"></v-list-tile-title>    
-                <v-icon class="white--text" v-text="item.icon"></v-icon>
+                <v-icon class="black--text" v-text="item.icon"></v-icon>
             </v-list-tile>
 
             <!-- sign out -->

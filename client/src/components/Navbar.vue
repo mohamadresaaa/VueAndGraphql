@@ -17,13 +17,13 @@
             <AccountNavbarLink :user="user" />
 
         </v-toolbar>
-        <v-navigation-drawer app v-model="drawer" class="blue accent-2">
+        <v-navigation-drawer app v-model="drawer">
             <v-layout column align-center>
                 <v-flex class="mt-5 mb-5">
                     <v-avatar size="100">
                         <img class="text-lg-center" src="https://avatars3.githubusercontent.com/u/41260098?s=460&v=4">
                     </v-avatar>
-                    <span class="white--text subheading ml-2">Mohamadreza Mosalli</span>
+                    <span class="black--text subheading ml-2">Mohamadreza Mosalli</span>
                 </v-flex>
             </v-layout>
             <v-list>
