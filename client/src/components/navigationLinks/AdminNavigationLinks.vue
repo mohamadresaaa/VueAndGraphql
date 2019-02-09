@@ -1,5 +1,5 @@
 <template>
-    <v-list v-if="isAdmin">
+    <v-list v-if="user && user.role === 'admin'">
         <v-list-group class="black--text">
             <v-list-tile slot="activator">
                 <v-list-tile-title>Admin</v-list-tile-title>
@@ -16,16 +16,9 @@ export default {
     props: ['user'],
     data() {
         return {
-            isAdmin: false,
             items: [
                 { text: 'Categories', route: '/admin/categories' }
             ]
-        }
-    },
-    watch: {
-        user(value){
-            if(value.role === 'admin')
-                this.isAdmin = true;
         }
     }
 }

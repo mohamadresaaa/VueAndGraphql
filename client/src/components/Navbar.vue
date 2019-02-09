@@ -18,12 +18,14 @@
 
         </v-toolbar>
         <v-navigation-drawer app v-model="drawer">
-            <v-layout column align-center>
+
+            <!-- avatar of user -->
+            <v-layout v-if="user" column align-center>
                 <v-flex class="mt-5 mb-5">
                     <v-avatar size="100">
-                        <img class="text-lg-center" src="https://avatars3.githubusercontent.com/u/41260098?s=460&v=4">
+                        <img class="text-lg-center" :src="user.avatar">
                     </v-avatar>
-                    <span class="black--text subheading ml-2">Mohamadreza Mosalli</span>
+                    <span class="black--text subheading ml-2">{{ user.name === null ? user.username : user.name }}</span>
                 </v-flex>
             </v-layout>
             <v-list>
@@ -67,7 +69,8 @@ import { mapGetters } from 'vuex';
 export default {
     data() {
         return {
-            drawer: false
+            drawer: false,
+            avatar: null
         };
     },
     computed: {
