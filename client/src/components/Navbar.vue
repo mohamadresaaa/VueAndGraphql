@@ -20,12 +20,12 @@
         <v-navigation-drawer app v-model="drawer">
 
             <!-- avatar of user -->
-            <v-layout v-if="user" column align-center>
+            <v-layout v-if="user" column align-center id="avatarBackground">
                 <v-flex class="mt-5 mb-5">
                     <v-avatar size="100">
                         <img class="text-lg-center" :src="user.avatar">
                     </v-avatar>
-                    <span class="black--text subheading ml-2">{{ user.name === null ? user.username : user.name }}</span>
+                    <span class="white--text subheading ml-2">{{ user.name === null ? user.username : user.name }}</span>
                 </v-flex>
             </v-layout>
             <v-list>
@@ -52,6 +52,12 @@
         </v-navigation-drawer>
     </nav>
 </template>
+
+<style>
+    #avatarBackground{
+        background-color: #0984e3
+    }
+</style>
 
 <script>
 // navbar link component
