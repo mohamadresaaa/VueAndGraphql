@@ -15,6 +15,9 @@ export const getCategories = ({ commit }) => {
 };
 
 export const addCategory = ({ commit }, payload) => {
+  // clear error
+  commit('clearError');
+
   // set loading
   commit('setLoading', true);
   apolloClient.mutate({ mutation: ADD_CATEGORY, variables: payload })
