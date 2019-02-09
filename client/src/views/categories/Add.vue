@@ -5,6 +5,9 @@
                 <h2>Add a New Category</h2>
             </v-card-title>
             <v-card-text>
+                <v-flex v-if="error">
+                    <li type="square" class="font-weight-medium red--text">{{ `${error.message.replace('GraphQL error:', '')}!` }}</li>
+                </v-flex>
                 <v-form v-model="isFormValid" lazy-validation ref="form" @submit.prevent="handleAddCategory" class="px-3">
                     <v-text-field v-model="title" :rules="titleRules" label="Title" prepend-icon="title"></v-text-field>
                     <v-text-field v-model="url" :rules="urlRules" label="Url"></v-text-field>
@@ -34,12 +37,15 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['loading'])
+        ...mapGetters(['loading', 'error'])
     },
     methods: {
         handleAddCategory(){
             if(this.$refs.form.validate()){
-                // use dispatch
+                this.$store.dispatch('addCategory', {
+                    title: this.title,
+                    url: this.url
+                });
             }
         }
     },

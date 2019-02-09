@@ -12,7 +12,7 @@ module.exports = async (_, {
 
     // checked url exists
     const urlExists = await Category.findOne({ url });
-    if(urlExists) throw new Error('url is already taken');
+    if(urlExists) throw new Error('Url is already taken');
 
     // create category
     let newCategory = await Category({
