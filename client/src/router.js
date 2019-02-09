@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Profile from './views/Profile.vue'
+import Categories from './views/categories/CategoryList.vue'
 import authGuard from './authGuard';
 
 Vue.use(Router)
@@ -45,6 +46,11 @@ export default new Router({
       name: 'profile',
       component: Profile,
       beforeEnter: authGuard
+    },
+    {
+      path: '/admin/categories',
+      name: 'categories',
+      component: Categories
     }
   ]
 })
