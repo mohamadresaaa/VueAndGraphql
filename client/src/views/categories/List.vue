@@ -24,7 +24,7 @@
         </v-tooltip>
       </v-layout>
 
-      <v-card v-for="(category, index) in categories" :key="index" class="mb-3">
+      <v-card v-for="category in categories" :key="category._id" class="mb-3">
         <v-layout row wrap class="pa-3">
           
           <!-- category title -->
