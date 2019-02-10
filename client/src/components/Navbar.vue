@@ -12,6 +12,11 @@
             </v-toolbar-title>
 
             <v-spacer></v-spacer>
+            
+            <!-- search box -->
+            <v-text-field class="hidden-sm-and-down" solo-inverted flat hide-details label="Search" prepend-inner-icon="search"></v-text-field>
+            
+            <v-spacer></v-spacer>
 
             <!-- auth link -->
             <AuthNavbarLinks :user="user" />
@@ -32,13 +37,6 @@
                 </v-flex>
             </v-layout>
             <v-list>
-
-                <!-- search box -->
-                <v-list-tile>
-                    <v-flex xs12 sm12 md12>
-                        <v-text-field label="search" placeholder="Search..." solo></v-text-field>
-                    </v-flex>
-                </v-list-tile>
 
                 <!-- default navigation links -->
                 <DefaultNavigationLinks/>
