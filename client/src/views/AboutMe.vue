@@ -3,6 +3,7 @@
     <h1 class="font-weight-medium text-capitalize">about me</h1>
     <v-card v-for="(todo, index) in todoes" :key="index" class="mt-3">
         <v-layout row wrap class="pa-3">
+          <!-- avatar of user -->
           <v-flex xs12 md2>
             <v-responsive class="pa-3">
               <v-avatar size="150" class="grey lighten-2">
@@ -10,6 +11,8 @@
               </v-avatar>
             </v-responsive>
           </v-flex>
+          
+          <!-- bio of user -->
           <v-flex xs12 md10>
             <div class="grey--text mb-1">Mohamadreza Mosalli</div>
             <v-divider></v-divider>

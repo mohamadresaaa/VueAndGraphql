@@ -2,28 +2,36 @@
     <v-layout row wrap>
         <v-flex xs12 sm6 offset-sm3>
             <v-card color="blue-grey lighten-5">
+                <!-- heading -->
                 <v-layout row wrap>
                     <v-flex xs12 sm6 offset-sm5>
                         <h2 class="font-weight-medium text-capitalize ma-3">sign in</h2>
                     </v-flex>
                 </v-layout>
+                
                 <v-form v-model="isFormValid" lazy-validation ref="form" @submit.prevent="handleSignIn" class="px-3">
+                    <!-- error alert -->
                     <v-layout v-if="error" row class="mb-3">
                         <v-flex xs12>
                             <formAlert :message="error.message"></formAlert>
                         </v-flex>
                     </v-layout>
                     
+                    <!-- email field -->
                     <v-layout row>
                         <v-flex xs12>
                             <v-text-field :rules="emailRules" v-model="email" label="Email" required outline></v-text-field>
                         </v-flex>
                     </v-layout>
+
+                    <!-- password field -->
                     <v-layout row>
                         <v-flex xs12>
                             <v-text-field :rules="passwordRules" v-model="password" type="password" label="Password" required outline></v-text-field>
                         </v-flex>
                     </v-layout>
+
+                    <!-- submit button -->
                     <v-layout justify-center align-content-center row>
                         <v-flex xs12 sm6 offset-sm4>
                             <v-btn :loading="loading" :disabled="!isFormValid || loading" color="primary" type="submit">
@@ -32,6 +40,8 @@
                             </v-btn>
                         </v-flex>
                     </v-layout>
+
+                    <!-- sign up link -->
                     <v-layout justify-center align-content-center row>
                         <v-flex xs12 sm6 offset-sm2>
                             <h3 class="mt-3 mb-3">Don't have an account?
@@ -39,6 +49,7 @@
                             </h3>
                         </v-flex>
                     </v-layout>
+                    
                 </v-form>
             </v-card>
         </v-flex>

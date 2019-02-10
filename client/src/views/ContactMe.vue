@@ -2,8 +2,10 @@
   <v-layout row wrap>
     <v-flex xs12 sm6 md12>
       <v-card>
+        <!-- background image -->
         <v-img src="https://cdn.vuetifyjs.com/images/lists/ali.png" height="335px">
         
+        <!-- subtitle -->
         <v-layout column fill-height>
             <v-card-title>
               <h1 class="font-weight-medium white--text text-capitalize mb-3">contact me</h1>
@@ -11,6 +13,7 @@
           </v-layout>
         </v-img>
 
+        <!-- phone -->
         <v-list two-line>
           <v-list-tile>
             <v-list-tile-action>
@@ -24,6 +27,7 @@
 
           <v-divider inset></v-divider>
 
+          <!-- email -->
           <v-list-tile>
             <v-list-tile-action>
               <v-icon color="indigo">mail</v-icon>
@@ -35,8 +39,9 @@
             </v-list-tile-content>
           </v-list-tile>
 
-            <v-divider inset></v-divider>
+          <v-divider inset></v-divider>
 
+          <!-- github page -->
           <v-list-tile>
             <v-list-tile-action>
                 <v-icon color="indigo">device_hub</v-icon>
@@ -50,6 +55,7 @@
 
           <v-divider inset></v-divider>
 
+          <!-- location -->
           <v-list-tile>
             <v-list-tile-action>
               <v-icon color="indigo">location_on</v-icon>

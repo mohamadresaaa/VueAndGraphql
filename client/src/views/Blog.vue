@@ -1,6 +1,9 @@
 <template>
   <div>
+    <!-- subtitle -->
     <h1 class="font-weight-medium text-capitalize mb-3">blog</h1>
+    
+    <!-- loading -->
     <v-layout row>
       <v-dialog v-model="loading" persistent fullscreen>
         <v-container fill-height>
@@ -10,7 +13,8 @@
         </v-container>
       </v-dialog>
     </v-layout>
-
+    
+    <!-- categories -->
     <v-menu v-if="!loading" min-width=200 offset-y>
       <v-btn class="text-capitalize" slot="activator" color="secondary" dark>
         Categories
@@ -23,9 +27,10 @@
     </v-menu>
       <v-layout v-if="!loading" justify-center align-center wrap>
         <v-flex xs12>
-            <v-layout row wrap>
-              <v-flex class="pa-2" xs12 sm6 md4 v-for="(article, index) in articles" :key="index">
-                  <v-container grid-list-xl pa-0>
+          <!-- articles -->
+          <v-layout row wrap>
+            <v-flex class="pa-2" xs12 sm6 md4 v-for="(article, index) in articles" :key="index">
+              <v-container grid-list-xl pa-0>
                 <v-card>
                   <v-img class="white--text" height="200px" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg">
                   </v-img>
@@ -41,9 +46,9 @@
                     <v-btn color="primary" class="text-capitalize">read more</v-btn>
                   </v-card-actions>
                 </v-card>
-                </v-container>
-              </v-flex>
-            </v-layout>
+              </v-container>
+            </v-flex>
+          </v-layout>
         </v-flex>
       </v-layout>
   </div>
