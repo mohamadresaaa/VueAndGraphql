@@ -32,7 +32,7 @@ export const defaultClient = new ApolloClient({
                     store.commit('setAuthError', err);
 
                     // signOut user (to clear accessToken) 
-                    store.dispatch('signOut')
+                    store.dispatch('signOut');
                 }
             }
     }

@@ -4,11 +4,13 @@
     <v-content class="ma-4">
       <router-view>
       </router-view>
+
       <!-- Auth Error Snackbar -->
       <v-snackbar v-if="authError" v-model="authErrorSnackbar" :timeout='5000' color="info" bottom>
         {{authError.message}}
         <v-btn dark flat to="/sign_in">Sign in</v-btn>
       </v-snackbar>
+      
     </v-content>
   </v-app>
 </template>
