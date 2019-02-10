@@ -5,6 +5,7 @@ import Profile from './views/Profile.vue'
 import CategoryList from './views/categories/List.vue'
 import AddCategory from './views/categories/Add.vue'
 import authGuard from './authGuard';
+import { adminLevel } from './ACL';
 
 Vue.use(Router)
 
@@ -51,12 +52,14 @@ export default new Router({
     {
       path: '/admin/categories',
       name: 'categories',
-      component: CategoryList
+      component: CategoryList,
+      beforeEnter: adminLevel
     },
     {
       path: '/admin/categories/add',
       name: 'addCategories',
-      component: AddCategory
+      component: AddCategory,
+      beforeEnter: adminLevel
     }
   ]
 })
