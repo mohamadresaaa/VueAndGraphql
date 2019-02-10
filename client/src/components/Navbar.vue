@@ -2,12 +2,15 @@
     <nav>
         <v-toolbar app dark color="primary">
             <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
+            
+            <!-- website name -->
             <v-toolbar-title class="headline text-uppercase">
                 <router-link to="/">
                     <span class="white--text">hexzm</span>
                 </router-link>
                 <span class="font-weight-light text-lowercase">.org</span>
             </v-toolbar-title>
+
             <v-spacer></v-spacer>
 
             <!-- auth link -->

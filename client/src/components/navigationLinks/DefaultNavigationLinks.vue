@@ -1,11 +1,14 @@
 <template>
     <div>
         <v-list-tile ripple v-for="(item, index) in items" :key="index" router :to="item.route">
+            <!-- icon -->
             <v-list-tile-action>
                 <v-icon class="black--text">
                     {{item.icon}}
                 </v-icon>
             </v-list-tile-action>
+
+            <!-- text -->
             <v-list-tile-content>
                 <v-list-tile-title class="black--text">
                     {{item.text}}
