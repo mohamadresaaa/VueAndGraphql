@@ -1,6 +1,6 @@
 import { defaultClient as apolloClient } from '../../apollo';
 import router from '../../router';
-import { SIGN_UP, SIGN_IN } from '../../graphql/mutations/authenticate';
+import { SIGN_UP, SIGN_IN } from '../../graphql/authenticate';
 
 export const signUp = ({ commit }, payload) => {
     // clear error
