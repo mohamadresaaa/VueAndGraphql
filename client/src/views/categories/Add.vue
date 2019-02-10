@@ -58,6 +58,7 @@ export default {
                     title: this.title,
                     url: this.url
                 });
+                this.$router.push('/admin/categories');
             }
         }
     },
