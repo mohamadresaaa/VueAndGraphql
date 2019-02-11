@@ -1,6 +1,7 @@
 import { getCategories, addCategory } from './category';
 import { signUp, signIn, signOut } from './authenticate';
 import { getCurrentUser } from './user';
+import { getTodos } from './todo';
 
 // using actions
 export default {
@@ -9,5 +10,6 @@ export default {
     signOut,
     getCurrentUser,
     getCategories,
-    addCategory
+    addCategory,
+    getTodos
 };

@@ -9,25 +9,35 @@
             </v-btn>
             <span>Create a new todo</span>
         </v-tooltip>
+
+        <v-tooltip bottom>
+          <!-- total todos -->
+          <v-btn slot="activator" flat color="grey" disabled>
+            <span class="caption text-capitalize">total ({{ todos.length }})</span>
+          </v-btn>
+
+          <!-- tooltip -->
+          <span>Total number of todos</span>
+        </v-tooltip>
     </v-layout>
-    <v-card v-for="(todo, index) in todoes" :key="index" class="mb-3">
-        <v-layout row wrap :class="`pa-3 project ${todo.status}`">
+    <v-card v-for="(todo, index) in todos" :key="index" class="mb-3">
+        <v-layout row wrap :class="`pa-3 project ${todo.status === true ? 'complete' : 'uncomplete'}`">
           <v-flex xs12 md6>
             <div class="caption grey--text">Content</div>
-            <div>{{todo.content}}</div>
+            <div>{{todo.text}}</div>
           </v-flex>
           <v-flex xs6 sm4 md2>
             <div class="caption grey--text">Due by</div>
-            <div>{{todo.due}}</div>
+            <div>{{todo.createdAt}}</div>
           </v-flex>
           <v-flex xs6 sm4 md2>
             <div>
-              <v-chip small :class="`${todo.status} white--text caption`">{{todo.status}}</v-chip>
+              <v-chip small :class="`${todo.status === true ? 'complete' : 'uncomplete'} white--text caption`">{{todo.status === true ? 'complete' : 'uncomplete'}}</v-chip>
             </div>
           </v-flex>
           <v-flex xs12 sm4 md2>
             <div class="text-xs-center">
-                <v-btn v-if="todo.status == 'uncomplete'" fab dark small color="success">
+                <v-btn v-if="!todo.status" fab dark small color="success">
                     <v-icon dark>done</v-icon>
                 </v-btn>
                 <v-btn router to="/todoes/edit" fab dark small color="primary">
@@ -60,16 +70,19 @@
 </style>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
-  data() {
-    return {
-      todoes: [
-        { title: 'Design a new website', due: '1st Jan 2019', status: 'uncomplete', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'},
-        { title: 'Code up the homepage', due: '10th Jan 2019', status: 'complete', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'},
-        { title: 'Design video thumbnails', due: '20th Dec 2018', status: 'complete', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'},
-        { title: 'Create a community forum', due: '20th Oct 2018', status: 'uncomplete', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'},
-      ]
-    }
-  }
+    created() {
+        this.handleGetTodos();
+    },
+    computed: {
+        ...mapGetters(['todos'])
+    },
+    methods: {
+        handleGetTodos() {
+            this.$store.dispatch('getTodos');
+        }
+    },
 }
 </script>
