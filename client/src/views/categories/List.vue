@@ -64,13 +64,13 @@
 import { mapGetters } from 'vuex';
 export default {
   created() {
-    this.getCategories();
+    this.handleGetCategories();
   },
   computed: {
     ...mapGetters(['categories'])
   },
   methods: {
-    getCategories(){
+    handleGetCategories(){
       this.$store.dispatch('getCategories');
     },
     sortBy(prop) {
