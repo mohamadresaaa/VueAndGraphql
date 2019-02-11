@@ -1,9 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
-import Profile from './views/Profile.vue'
-import CategoryList from './views/categories/List.vue'
-import AddCategory from './views/categories/Add.vue'
+
+// views
+import Home from './views/Home.vue';
+import Profile from './views/Profile.vue';
+import CategoryList from './views/categories/List.vue';
+import AddCategory from './views/categories/Add.vue';
+import Todos from './views/todos/List.vue';
+
+// middleware
 import authGuard from './authGuard';
 import { adminLevel } from './ACL';
 
@@ -60,6 +65,11 @@ export default new Router({
       name: 'addCategories',
       component: AddCategory,
       beforeEnter: adminLevel
+    },
+    {
+      path: '/todos',
+      name: 'todos',
+      component: Todos
     }
   ]
 })
