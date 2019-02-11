@@ -1,3 +1,5 @@
+const generateAvatar = require('../lib/generateAvatar');
+const generateToken = require('../lib/generateToken');
 const signUp = async (_, { username, email, password }, { User }) => {
     // checked username exists
     const usernameExists = await User.findOne({ username });
