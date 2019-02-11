@@ -1,5 +1,5 @@
 const { signUp, signIn } = require('./authenticate');
-const { addCategory } = require('./categories');
+const { addCategory } = require('./category');
 
 module.exports = {
     signUp,
