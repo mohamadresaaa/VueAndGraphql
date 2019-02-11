@@ -7,12 +7,15 @@
             </v-card-title>
 
             <v-card-text>
-                <!-- error message -->
-                <v-flex v-if="error">
-                    <li type="square" class="font-weight-medium red--text">{{ `${error.message.replace('GraphQL error:', '')}!` }}</li>
-                </v-flex>
-
                 <v-form v-model="isFormValid" lazy-validation ref="form" @submit.prevent="handleAddCategory" class="px-3">
+                    
+                    <!-- error alert -->
+                    <v-layout v-if="error" row class="mb-3">
+                        <v-flex xs12>
+                            <formAlert :message="error.message"></formAlert>
+                        </v-flex>
+                    </v-layout>
+                    
                     <!-- title field -->
                     <v-text-field v-model="title" :rules="titleRules" label="Title" prepend-icon="title"></v-text-field>
                     
@@ -37,6 +40,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import formAlert from '../../components/FormAlert';
 
 export default {
     data() {
@@ -58,9 +62,9 @@ export default {
                     title: this.title,
                     url: this.url
                 });
-                this.$router.push('/admin/categories');
             }
         }
     },
+    components: { formAlert }
 }
 </script>

@@ -1,5 +1,6 @@
 import { defaultClient as apolloClient } from '../../apollo';
 import { GET_CATEGORIES, ADD_CATEGORY } from '../../graphql/categories';
+import router from '../../router';
 
 export const getCategories = ({ commit }) => {
   // set loading 
@@ -56,6 +57,9 @@ export const addCategory = ({ commit }, payload) => {
   .then(() => {
     // loading end
     commit('setLoading', false);
+
+    // redirect to /admin/categories
+    router.push('/admin/categories');
   })
   .catch(err => {
     // loading end
