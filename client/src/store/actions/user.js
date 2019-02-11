@@ -1,6 +1,6 @@
 import { defaultClient as apolloClient } from '../../apollo';
 
-import { GET_CURRENT_USER } from '../../graphql/users';
+import { GET_CURRENT_USER } from '../../graphql/user';
 
 export const getCurrentUser = ({ commit }) => {
     // set loading

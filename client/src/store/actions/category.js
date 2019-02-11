@@ -1,5 +1,5 @@
 import { defaultClient as apolloClient } from '../../apollo';
-import { GET_CATEGORIES, ADD_CATEGORY } from '../../graphql/categories';
+import { GET_CATEGORIES, ADD_CATEGORY } from '../../graphql/category';
 import router from '../../router';
 
 export const getCategories = ({ commit }) => {

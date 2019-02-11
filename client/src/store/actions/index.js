@@ -1,6 +1,6 @@
-import { getCategories, addCategory } from './categories';
+import { getCategories, addCategory } from './category';
 import { signUp, signIn, signOut } from './authenticate';
-import { getCurrentUser } from './users';
+import { getCurrentUser } from './user';
 
 // using actions
 export default {
