@@ -1,14 +1,10 @@
 const signUp = require('./mutations/signUp');
 const signIn = require('./mutations/signIn');
-const getCurrentUser = require('./queries/getCurrentUser');
-const getCategories = require('./queries/getCategories');
 const addCategory = require('./mutations/addCategory');
+const Query = require('./queries');
 
 module.exports = {
-    Query: {
-        getCurrentUser,
-        getCategories
-    },
+    Query,
     Mutation: {
         signUp,
         signIn,
