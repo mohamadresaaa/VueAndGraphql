@@ -35,6 +35,7 @@ type Token {
 }
 
 type Todo { 
+    _id: ID
     text: String!
     status: Boolean!
     createdAt: String
@@ -45,6 +46,7 @@ type Query {
     getCurrentUser: User
     getArticles: [Article]
     getCategories: [Category]
+    getTodos: [Todo]
 }
 
 type Mutation {
