@@ -9,11 +9,15 @@ const todoSchema = new mongoose.Schema({
         type: Boolean,
         required: true
     },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'User'
     }
-}, { timestamps: true });
+});
 
 module.exports = mongoose.model('Todo', todoSchema);
