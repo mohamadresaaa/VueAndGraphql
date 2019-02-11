@@ -1,4 +1,4 @@
-const Mutation = require('./mutations');
-const Query = require('./queries');
+const Mutation = require('./graphql/mutations');
+const Query = require('./graphql/queries');
 
 module.exports = { Query, Mutation };

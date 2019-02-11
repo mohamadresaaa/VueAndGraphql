@@ -1,9 +1,6 @@
-module.exports = async (_, {
-    title,
-    url
-}, {
-    Category
-}) => {
+const getCategories = async (_, args, { Category }) => (await Category.find());
+
+const addCategory = async (_, { title, url }, { Category }) => {
     // set url
 
     // checked title exists
@@ -22,4 +19,9 @@ module.exports = async (_, {
 
     // return it
     return newCategory;
+};
+
+module.exports = { 
+    getCategories,
+    addCategory
 };
