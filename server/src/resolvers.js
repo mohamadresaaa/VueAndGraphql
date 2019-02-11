@@ -1,13 +1,4 @@
-const signUp = require('./mutations/signUp');
-const signIn = require('./mutations/signIn');
-const addCategory = require('./mutations/addCategory');
+const Mutation = require('./mutations');
 const Query = require('./queries');
 
-module.exports = {
-    Query,
-    Mutation: {
-        signUp,
-        signIn,
-        addCategory
-    }
-};
+module.exports = { Query, Mutation };
