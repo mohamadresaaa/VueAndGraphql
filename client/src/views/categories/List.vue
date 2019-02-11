@@ -22,6 +22,16 @@
           <!-- tooltip -->
           <span>Sort by title of category</span>
         </v-tooltip>
+
+        <v-tooltip bottom>
+          <!-- total categories -->
+          <v-btn slot="activator" flat color="grey" disabled>
+            <span class="caption text-capitalize">total ({{ categories.length }})</span>
+          </v-btn>
+
+          <!-- tooltip -->
+          <span>Total number of categories</span>
+        </v-tooltip>
       </v-layout>
 
       <v-card v-for="category in categories" :key="category._id" class="mb-3">
