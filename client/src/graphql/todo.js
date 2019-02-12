@@ -19,6 +19,7 @@ export const ADD_TODO = gql `
         addTodo(content: $content, status: $status, user: $user){
             content
             status
+            createdAt
             user {
                 _id
             }
