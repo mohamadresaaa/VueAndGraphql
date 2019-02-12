@@ -1,6 +1,6 @@
-const models = require('../models');
+import models from '../models';
 
-module.exports = {
+export default {
     mongodb: {
         url: process.env.MONGODB_DATABASE_URL,
         options: {

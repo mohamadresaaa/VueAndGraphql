@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const todoSchema = new mongoose.Schema({
     text: {
@@ -20,4 +20,4 @@ const todoSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Todo', todoSchema);
+export default mongoose.model('Todo', todoSchema);

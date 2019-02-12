@@ -1,7 +1,7 @@
-const Category = require('./category');
-const Article = require('./article');
-const User = require('./user');
-const Todo = require('./todo');
+import Category from './category';
+import Article from './article';
+import User from './user';
+import Todo from './todo';
 
 module.exports = {
     Article,
