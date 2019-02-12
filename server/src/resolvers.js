@@ -1,4 +1,4 @@
-const Mutation = require('./graphql/mutations');
-const Query = require('./graphql/queries');
+import Mutation from './graphql/mutations';
+import Query from './graphql/queries';
 
 module.exports = { Query, Mutation };

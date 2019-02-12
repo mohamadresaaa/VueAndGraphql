@@ -1,7 +1,7 @@
-const jwt = require('jsonwebtoken');
-const { AuthenticationError } = require('apollo-server-express');
+import jwt from 'jsonwebtoken';
+import { AuthenticationError } from 'apollo-server-express';
 
-module.exports = async token => {
+export default async token => {
     if (token) {
         try {
             // get user id

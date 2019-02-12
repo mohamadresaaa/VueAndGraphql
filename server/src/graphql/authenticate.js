@@ -1,6 +1,7 @@
-const generateAvatar = require('../lib/generateAvatar');
-const generateToken = require('../lib/generateToken');
-const signUp = async (_, { username, email, password }, { User }) => {
+import generateAvatar from '../lib/generateAvatar';
+import generateToken from '../lib/generateToken';
+
+export const signUp = async (_, { username, email, password }, { User }) => {
     // checked username exists
     const usernameExists = await User.findOne({ username });
     if(usernameExists) throw new Error('Username is already taken');
@@ -22,7 +23,7 @@ const signUp = async (_, { username, email, password }, { User }) => {
     return newUser;
 };
 
-const signIn = async (_, { email, password }, { User }) => {
+export const signIn = async (_, { email, password }, { User }) => {
     // find user
     const user = await User.findOne({ email });
 
@@ -40,9 +41,4 @@ const signIn = async (_, { email, password }, { User }) => {
     
     // otherwise generate token
     return { token: await generateToken(user, 'secretKey') };
-};
-
-module.exports = {
-    signUp,
-    signIn
 };

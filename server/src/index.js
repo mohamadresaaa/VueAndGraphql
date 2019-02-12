@@ -1,16 +1,17 @@
-const express = require('express');
-const { ApolloServer } = require('apollo-server-express');
-const mongoose = require('mongoose');
-const fs = require('fs');
-const path = require('path');
+import express from 'express';
+import { ApolloServer } from 'apollo-server-express';
+import mongoose from 'mongoose';
+import fs from 'fs';
+import path from 'path';
+import dotenv from 'dotenv';
 
 
 // import resolvers, formatError, context
-const resolvers = require('./resolvers');
-const formatError = require('./formatError');
-const context = require('./context');
+import resolvers from './resolvers';
+import formatError from './formatError';
+import context from './context';
 
-module.exports = class Core {
+export default class Core {
     constructor(){
         this.setGlobalConfig();
         this.app = express();
@@ -24,7 +25,7 @@ module.exports = class Core {
 
     // global config
     setGlobalConfig(){
-        require('dotenv').config();
+        dotenv.config();
         global.config = require('../config');
     };
 

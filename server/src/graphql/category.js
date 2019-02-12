@@ -1,6 +1,6 @@
-const getCategories = async (_, args, { Category }) => (await Category.find());
+export const getCategories = async (_, args, { Category }) => (await Category.find());
 
-const addCategory = async (_, { title, url }, { Category }) => {
+export const addCategory = async (_, { title, url }, { Category }) => {
     // set url
 
     // checked title exists
@@ -19,9 +19,4 @@ const addCategory = async (_, { title, url }, { Category }) => {
 
     // return it
     return newCategory;
-};
-
-module.exports = { 
-    getCategories,
-    addCategory
 };

@@ -1,6 +1,6 @@
-const getUserId = require('./lib/verifyToken');
+import getUserId from './lib/verifyToken';
 
-module.exports = async ({ req }) => {
+export default async ({ req }) => {
     let token = req.headers['authorization'];
     return { 
         ...config.database.mongodb.models,

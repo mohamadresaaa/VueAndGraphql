@@ -1,6 +1,6 @@
-const { signUp, signIn } = require('./authenticate');
-const { addCategory } = require('./category');
-const { addTodo } = require('./todo');
+import { signUp, signIn } from './authenticate';
+import { addCategory } from './category';
+import { addTodo } from './todo';
 
 module.exports = {
     signUp,

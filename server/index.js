@@ -1,3 +1,3 @@
-const core = require('./src');
+import Core from './src';
 
-new core().start();
+new Core().start();

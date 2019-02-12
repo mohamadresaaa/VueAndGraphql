@@ -1,8 +1,8 @@
-const getTodos = async (_, args, { Todo }) => {
+export const getTodos = async (_, args, { Todo }) => {
     return await Todo.find();
 };
 
-const addTodo = async (_,{ text, status, user },{ Todo }) => {
+export const addTodo = async (_,{ text, status, user },{ Todo }) => {
     // create todo
     let newTodo = await Todo({
         text,
@@ -12,9 +12,4 @@ const addTodo = async (_,{ text, status, user },{ Todo }) => {
 
     // return it
     return newTodo;
-};
-
-module.exports = {
-    getTodos,
-    addTodo
 };

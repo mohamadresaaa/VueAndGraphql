@@ -1,6 +1,6 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 
-module.exports = async (user, secretKey) => {
+export default async (user, secretKey) => {
     return await jwt.sign({
             id: user._id
         },
