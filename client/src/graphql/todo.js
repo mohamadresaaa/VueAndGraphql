@@ -13,3 +13,15 @@ export const GET_TODOS = gql `
         }
     }
 `;
+
+export const ADD_TODO = gql `
+    mutation ($text: String!, $status: Boolean!, $user: ID!){
+        addTodo(text: $text, status: $status, user: $user){
+            text
+            status
+            user {
+                _id
+            }
+        }
+    }
+`;
