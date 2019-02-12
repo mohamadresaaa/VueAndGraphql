@@ -42,6 +42,14 @@ type Todo {
     user: User!
 }
 
+type Note {
+    _id: ID
+    title: String!
+    content: String!
+    createdAt: String
+    user: User!
+}
+
 type Query {
     getCurrentUser: User
     getArticles: [Article]
