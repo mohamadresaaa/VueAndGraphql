@@ -46,7 +46,7 @@ export const addCategory = ({ commit }, payload) => {
       });
     },
     optimisticResponse: {
-      __typename: 'mutation',
+      __typename: 'Mutation',
       addCategory: {
         __typename: 'Category',
         _id: -1,

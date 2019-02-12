@@ -47,7 +47,7 @@ export const addTodo = ({ commit }, payload) => {
             });
         },
         optimisticResponse: {
-            __typename: 'mutation',
+            __typename: 'Mutation',
             addTodo: {
                 __typename: 'Todo',
                 _id: -1,
