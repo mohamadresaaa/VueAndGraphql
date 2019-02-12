@@ -36,7 +36,7 @@ type Token {
 
 type Todo { 
     _id: ID
-    text: String!
+    content: String!
     status: Boolean!
     createdAt: String
     user: User!
@@ -58,5 +58,5 @@ type Mutation {
     addCategory(title: String!, url: String!): Category!
 
     # todo
-    addTodo(text: String!, status: Boolean!, user: ID): Todo
+    addTodo(content: String!, status: Boolean!, user: ID): Todo
 }

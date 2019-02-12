@@ -16,8 +16,8 @@
                         </v-flex>
                     </v-layout>
                     
-                    <!-- text field -->
-                    <v-text-field v-model="text" :rules="textRules" label="Text"></v-text-field>
+                    <!-- content field -->
+                    <v-text-field v-model="content" :rules="contentRules" label="Content"></v-text-field>
                     
                     
                     <!-- status field -->
@@ -46,9 +46,9 @@ import formAlert from '../../components/FormAlert';
 export default {
     data() {
         return {
-            text: '',
+            content: '',
             status: false,
-            textRules: [text => !!text || 'Text is required'],
+            contentRules: [content => !!content || 'Content is required'],
             isFormValid: true
         }
     },
@@ -59,7 +59,7 @@ export default {
         handleAddTodo(){
             if(this.$refs.form.validate()){
                 this.$store.dispatch('addTodo', {
-                    text: this.text,
+                    content: this.content,
                     status: this.status,
                     user: this.user._id
                 });

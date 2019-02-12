@@ -4,7 +4,7 @@ export const GET_TODOS = gql `
     query {
         getTodos {
             _id
-            text
+            content
             status
             createdAt
             user {
@@ -15,9 +15,9 @@ export const GET_TODOS = gql `
 `;
 
 export const ADD_TODO = gql `
-    mutation ($text: String!, $status: Boolean!, $user: ID!){
-        addTodo(text: $text, status: $status, user: $user){
-            text
+    mutation ($content: String!, $status: Boolean!, $user: ID!){
+        addTodo(content: $content, status: $status, user: $user){
+            content
             status
             user {
                 _id
