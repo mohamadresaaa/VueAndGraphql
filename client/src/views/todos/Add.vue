@@ -53,7 +53,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['loading', 'error'])
+        ...mapGetters(['loading', 'error', 'user'])
     },
     methods: {
         handleAddTodo(){
@@ -61,7 +61,7 @@ export default {
                 this.$store.dispatch('addTodo', {
                     text: this.text,
                     status: this.status,
-                    // user
+                    user: this.user._id
                 });
             }
         }

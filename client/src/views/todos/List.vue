@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h1 class="font-weight-medium text-capitalize">todoes</h1>
+    <h1 class="font-weight-medium text-capitalize">todo list</h1>
     <v-layout row wrap class="mb-3">
         <v-tooltip bottom>
-            <v-btn router to="/todoes/add" slot="activator" flat color="grey">
+            <v-btn router to="/todos/add" slot="activator" flat color="grey">
                 <v-icon small left>create_new_folder</v-icon>
                 <span class="caption text-capitalize">new todo</span>
             </v-btn>
