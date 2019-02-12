@@ -7,6 +7,7 @@ import Profile from './views/Profile.vue';
 import CategoryList from './views/categories/List.vue';
 import AddCategory from './views/categories/Add.vue';
 import Todos from './views/todos/List.vue';
+import AddTodo from './views/todos/Add.vue';
 
 // middleware
 import authGuard from './authGuard';
@@ -70,6 +71,11 @@ export default new Router({
       path: '/todos',
       name: 'todos',
       component: Todos
+    },
+    {
+      path: '/todos/add',
+      name: 'addTodo',
+      component: AddTodo
     }
   ]
 })
