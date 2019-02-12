@@ -11,14 +11,14 @@
   "author": "Mohamadreza Mosalli",
   "license": "ISC",
   "dependencies": {
-    "apollo-server-express": "^2.3.3",
-    "bcrypt": "^3.0.3",
+    "apollo-server-express": "^2.4.0",
+    "bcrypt": "^3.0.4",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "graphql": "^14.1.1",
     "jsonwebtoken": "^8.4.0",
     "md5": "^2.2.1",
-    "mongoose": "^5.4.9",
+    "mongoose": "^5.4.11",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
@@ -27,6 +27,6 @@
     "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.3.1",
     "concurrently": "^4.1.0",
-    "nodemon": "^1.18.9"
+    "nodemon": "^1.18.10"
   }
 }

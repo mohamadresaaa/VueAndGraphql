@@ -51,11 +51,17 @@ export const addTodo = ({ commit }, payload) => {
             addTodo: {
                 __typename: 'Todo',
                 _id: -1,
-                ...payload
+                content: payload.content,
+                status: payload.status,
+                createdAt: Date.now().toString(),
+                user: {
+                    __typename: 'User',
+                    _id: payload.user
+                }
             }
         }
     })
-    .then(() => {
+    .then(({ data }) => {
         // loading end
         commit('setLoading', false);
 
