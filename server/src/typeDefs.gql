@@ -66,5 +66,8 @@ type Mutation {
     addCategory(title: String!, url: String!): Category!
 
     # todo
-    addTodo(content: String!, status: Boolean!, user: ID): Todo
+    addTodo(content: String!, status: Boolean!, user: ID!): Todo
+
+    # note
+    addNote(title: String!, content: String!, user: ID!): Note
 }
