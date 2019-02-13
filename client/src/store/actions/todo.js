@@ -2,11 +2,14 @@ import { defaultClient as apolloClient } from '../../apollo';
 import { GET_TODOS, ADD_TODO } from '../../graphql/todo';
 import router from '../../router';
 
-export const getTodos = ({ commit }) => {
+export const getTodos = ({ commit }, payload) => {
     // set loading
     commit('setLoading', true);
 
-    apolloClient.query({ query: GET_TODOS })
+    apolloClient.query({ 
+        query: GET_TODOS,
+        variables: payload
+    })
     .then(({ data }) => {
         // set todos
         commit('setTodos', data.getTodos);

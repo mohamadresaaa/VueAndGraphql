@@ -1,6 +1,4 @@
-export const getTodos = async (_, args, { Todo }) => {
-    return await Todo.find();
-};
+export const getTodos = async (_, { userId }, { Todo }) => (await Todo.find({ user: userId }));
 
 export const addTodo = async (_,{ content, status, user },{ Todo }) => {
     // create todo

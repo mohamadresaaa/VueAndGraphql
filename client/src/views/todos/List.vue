@@ -73,16 +73,21 @@
 import { mapGetters } from 'vuex';
 
 export default {
-    created() {
+  watch: {
+    user(value){
+      if(value)
         this.handleGetTodos();
-    },
-    computed: {
-        ...mapGetters(['todos'])
-    },
-    methods: {
-        handleGetTodos() {
-            this.$store.dispatch('getTodos');
-        }
-    },
+    }
+  },
+  computed: {
+    ...mapGetters(['user', 'todos'])
+  },
+  methods: {
+    handleGetTodos() {
+      this.$store.dispatch('getTodos', {
+        userId: this.user._id
+      });
+    }
+  },
 }
 </script>

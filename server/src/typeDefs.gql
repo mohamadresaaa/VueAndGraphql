@@ -54,7 +54,7 @@ type Query {
     getCurrentUser: User
     getArticles: [Article]
     getCategories: [Category]
-    getTodos: [Todo]
+    getTodos(userId: ID!): [Todo]
 }
 
 type Mutation {

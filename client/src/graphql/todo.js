@@ -1,8 +1,8 @@
 import { gql } from "apollo-boost";
 
 export const GET_TODOS = gql `
-    query {
-        getTodos {
+    query($userId: ID!) {
+        getTodos(userId: $userId) {
             _id
             content
             status
