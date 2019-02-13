@@ -1,6 +1,6 @@
 import generateAvatar from '../lib/generateAvatar';
 import generateToken from '../lib/generateToken';
-import { validationUsername } from '../lib/regex';
+import { validationUsername, separatingEmail } from '../lib/regex';
 
 export const signUp = async (_, { username, email, password }, { User }) => {
     // check username is valid
@@ -19,6 +19,7 @@ export const signUp = async (_, { username, email, password }, { User }) => {
 
     // create user
     let newUser = await User({
+        name: email.replace(separatingEmail, ''),
         username,
         email,
         password,
