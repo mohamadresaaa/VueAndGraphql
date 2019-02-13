@@ -13,6 +13,7 @@ export const GET_CATEGORIES = gql `
 export const ADD_CATEGORY = gql `
     mutation ($title: String!, $url: String!){
         addCategory(title: $title, url: $url){
+            _id
             title
             url
         }
