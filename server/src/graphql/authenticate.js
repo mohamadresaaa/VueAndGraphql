@@ -1,14 +1,21 @@
 import generateAvatar from '../lib/generateAvatar';
 import generateToken from '../lib/generateToken';
+import { validationUsername } from '../lib/regex';
 
 export const signUp = async (_, { username, email, password }, { User }) => {
+    // check username is valid
+    if(!validationUsername.test(username)) 
+        throw new Error('Username is not valid');
+
     // checked username exists
     const usernameExists = await User.findOne({ username });
-    if(usernameExists) throw new Error('Username is already taken');
+    if(usernameExists)
+        throw new Error('Username is already taken');
 
     // checked email exists
     const emailExists = await User.findOne({ email });
-    if(emailExists) throw new Error('Email is invalid or already taken');
+    if(emailExists) 
+        throw new Error('Email is invalid or already taken');
 
     // create user
     let newUser = await User({
