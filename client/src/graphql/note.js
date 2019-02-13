@@ -10,3 +10,17 @@ export const GET_NOTES = gql `
         }
     }
 `;
+
+export const ADD_NOTE = gql `
+    mutation ($title: String!, $content: String!, $user: ID!){
+        addNote(title: $title, content: $content, user: $user){
+            _id
+            title
+            content
+            createdAt
+            user {
+                _id
+            }
+        }
+    }
+`

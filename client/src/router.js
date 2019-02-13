@@ -9,6 +9,7 @@ import AddCategory from './views/categories/Add.vue';
 import Todos from './views/todos/List.vue';
 import AddTodo from './views/todos/Add.vue';
 import Notes from './views/notes/List.vue';
+import AddNote from './views/notes/Add.vue';
 
 // middleware
 import authGuard from './authGuard';
@@ -82,6 +83,11 @@ export default new Router({
       path: '/notes',
       name: 'notes',
       component: Notes
+    },
+    {
+      path: '/notes/add',
+      name: 'addNote',
+      component: AddNote
     }
   ]
 })
