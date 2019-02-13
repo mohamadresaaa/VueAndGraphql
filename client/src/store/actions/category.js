@@ -34,7 +34,10 @@ export const addCategory = ({ commit }, payload) => {
     variables: payload,
     update: (cache, { data: { addCategory } }) => {
       // finding the query we want to update
-      const data = cache.readQuery({ query: GET_CATEGORIES });
+      const data = cache.readQuery({ 
+        query: GET_CATEGORIES,
+        variables: { userId: payload.user }
+      });
 
       // update data
       data.getCategories.unshift(addCategory);
