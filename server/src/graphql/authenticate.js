@@ -50,3 +50,16 @@ export const signIn = async (_, { email, password }, { User }) => {
     // otherwise generate token
     return { token: await generateToken(user, 'secretKey') };
 };
+
+export const forgotPassword = async (_, { email }, { User }) => {
+    // find user
+    let user = await User.find({ email });
+
+    // if not, handle it
+    if(!user) throw new Error('The email you entered is not correct');
+
+    // send mail
+  
+    // return message
+    return { message: 'Password recovery link sent' };
+};
