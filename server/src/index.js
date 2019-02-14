@@ -13,7 +13,6 @@ import context from './context';
 
 export default class Core {
     constructor(){
-        this.setGlobalConfig();
         this.app = express();
     }
 
@@ -21,12 +20,6 @@ export default class Core {
     start(){
         this.setupServer();
         this.setupDatabase();
-    };
-
-    // global config
-    setGlobalConfig(){
-        dotenv.config();
-        global.config = require('../config');
     };
 
     // construct a schema, using GraphQL schema language
