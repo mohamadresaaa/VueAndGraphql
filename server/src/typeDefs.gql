@@ -50,6 +50,10 @@ type Note {
     user: User!
 }
 
+type Message {
+    message: String!
+}
+
 type Query {
     getCurrentUser: User
     getArticles: [Article]
@@ -63,11 +67,14 @@ type Mutation {
     signUp(username: String!, email: String!, password: String!): User!
     signIn(email: String!, password: String!): Token!
 
+    # user
+    changePassword(oldPassword: String!, newPassword: String!, userId: ID!): Message!
+
     # category
     addCategory(title: String!, url: String!): Category!
 
     # todo
-    addTodo(content: String!, status: Boolean!, user: ID!): Todo
+    addTodo(content: String!, status: Boolean!, user: ID!): Todo!
 
     # note
     addNote(title: String!, content: String!, user: ID!): Note
