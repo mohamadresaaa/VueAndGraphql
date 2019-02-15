@@ -2,6 +2,10 @@ import generateAvatar from '../lib/generateAvatar';
 import generateToken from '../lib/generateToken';
 import { validationUsername, separatingEmail } from '../lib/regex';
 
+import sendMail from '../lib/mail';
+import forgotPasswordTemplate from '../mailTemplate/forgotPassword';
+
+
 export const signUp = async (_, { username, email, password }, { User }) => {
     // check username is valid
     if(!validationUsername.test(username)) 
@@ -53,13 +57,14 @@ export const signIn = async (_, { email, password }, { User }) => {
 
 export const forgotPassword = async (_, { email }, { User }) => {
     // find user
-    let user = await User.find({ email });
+    let user = await User.findOne({ email });
 
     // if not, handle it
     if(!user) throw new Error('The email you entered is not correct');
 
     // send mail
-  
+    await sendMail(config.service.mail, await forgotPasswordTemplate(user));
+
     // return message
     return { message: 'Password recovery link sent' };
 };
