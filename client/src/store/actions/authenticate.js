@@ -1,6 +1,6 @@
 import { defaultClient as apolloClient } from '../../apollo';
 import router from '../../router';
-import { SIGN_UP, SIGN_IN } from '../../graphql/authenticate';
+import { SIGN_UP, SIGN_IN, FORGOT_PASSWORD } from '../../graphql/authenticate';
 
 export const signUp = ({ commit }, payload) => {
     // clear error
@@ -61,6 +61,32 @@ export const signIn = ({ commit }, payload) => {
         // set error
         commit('setError', err);
     });
+};
+
+export const forgotPassword = ({ commit }, payload) => {
+    // clear error
+    commit('clearError');
+
+    // set loading
+    commit('setLoading', true);
+
+    apolloClient.mutate({
+        mutation: FORGOT_PASSWORD,
+        variables: payload
+    })
+    .then(({ data }) => {
+        console.log('data:', data);
+
+        // set loading
+        commit('setLoading', false);
+    })
+    .catch(err => {
+        // set error
+        commit('setError', err);
+
+        // set loading
+        commit('setLoading', false);
+    })
 };
 
 export const signOut = async ({ commit }) => {
