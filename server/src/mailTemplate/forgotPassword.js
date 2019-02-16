@@ -1,9 +1,9 @@
 export default async user => ({
     from: '"Hexzm" <info@hexzm.com>',
     to: `${user.email}`,
-    subject: 'بازیابی رمز عبور',
+    subject: 'Password recovery',
     html: `
-        <table class="body-wrap" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;direction: rtl; box-sizing: border-box; font-size: 14px; width: 100%; background-color: #f6f6f6; margin: 0;"
+        <table class="body-wrap" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; width: 100%; background-color: #f6f6f6; margin: 0;"
         bgcolor="#f6f6f6">
         <tbody>
             <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
@@ -23,7 +23,7 @@ export default async user => ({
                                             <tbody>
                                                 <tr>
                                                     <td style="vertical-align: top; padding-bottom:30px;" align="center">
-                                                        <a href="${config.server.domain}" target="_blank">
+                                                        <a href="${config.server.port}" target="_blank">
                                                             <img src="https://coderthemes.com/adminox/horizontal/assets/images/logo_dark.png" alt="logo" height="36">
                                                             <br>
                                                         </a>
@@ -32,14 +32,14 @@ export default async user => ({
                                                 <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                                     <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;"
                                                         valign="top">
-                                                        برای بازیابی رمز عبور روی لینک کلیک نمایید.
+                                                        Click the link to restore the password.
                                                     </td>
                                                 </tr>
     
                                                 <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                                     <td class="content-block" itemprop="handler" itemscope="" itemtype="http://schema.org/HttpActionHandler" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;"
                                                         valign="top">
-                                                        <a href="${config.server.domain}/auth/resetpassword/${user.activeCode}" class="btn-primary" itemprop="url" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; color: #FFF; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: grid; border-radius: 5px; text-transform: capitalize; background-color: #007CB9; margin: 0; border-color: #007CB9; border-style: solid; border-width: 8px 16px;">لینک</a>
+                                                        <a href="${config.server.port}/auth/resetpassword/${user.activeCode}" class="btn-primary" itemprop="url" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; color: #FFF; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: grid; border-radius: 5px; text-transform: capitalize; background-color: #007CB9; margin: 0; border-color: #007CB9; border-style: solid; border-width: 8px 16px;">link</a>
                                                     </td>
                                                 </tr>
                                             </tbody>
