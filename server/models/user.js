@@ -43,11 +43,14 @@ const userSchema = new mongoose.Schema({
     },
     activeCode: {
         type: String,
-        default: v4()
+        unique: true
     }
 });
 
 userSchema.pre('save', async function(next) {
+    // set active code
+    this.activeCode = v4();
+
     if(!this.isModified('password')) return next();
 
     try {

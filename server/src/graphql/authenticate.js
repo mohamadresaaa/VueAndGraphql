@@ -4,6 +4,7 @@ import { validationUsername, separatingEmail } from '../lib/regex';
 
 import sendMail from '../lib/mail';
 import forgotPasswordTemplate from '../mailTemplate/forgotPassword';
+import resetPasswordTemplate from '../mailTemplate/passwordRecovery';
 
 
 export const signUp = async (_, { username, email, password }, { User }) => {
@@ -67,4 +68,22 @@ export const forgotPassword = async (_, { email }, { User }) => {
 
     // return message
     return { message: 'Password recovery link sent' };
+};
+
+export const resetPassword = async (_, { newPassword, activeCode }, { User }) => {
+    // find user
+    let user = await User.findOne({ activeCode });
+
+    // if not, handle it
+    if(!user) throw new Error('The code is not valid');
+    
+    // set new password
+    user.password = newPassword;
+    await user.save();
+
+    // send mail
+    await sendMail(await resetPasswordTemplate(user));
+
+    // return message
+    return { message: 'Password recovery was successful' };
 };

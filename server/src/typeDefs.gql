@@ -67,6 +67,7 @@ type Mutation {
     signUp(username: String!, email: String!, password: String!): User!
     signIn(email: String!, password: String!): Token!
     forgotPassword(email: String!): Message!
+    resetPassword(newPassword: String!, activeCode: String!): Message!
 
     # user
     changePassword(oldPassword: String!, newPassword: String!, userId: ID!): Message!
