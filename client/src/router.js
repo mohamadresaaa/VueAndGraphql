@@ -52,6 +52,11 @@ export default new Router({
       component: () => import('./views/auth/SignIn.vue')
     },
     {
+      path: '/forgotPassword',
+      name: 'forgotPassword',
+      component: () => import('./views/auth/ForgotPassword.vue')
+    },
+    {
       path: '/profile',
       name: 'profile',
       component: Profile,
