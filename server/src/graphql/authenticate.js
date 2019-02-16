@@ -63,7 +63,7 @@ export const forgotPassword = async (_, { email }, { User }) => {
     if(!user) throw new Error('The email you entered is not correct');
 
     // send mail
-    await sendMail(config.service.mail, await forgotPasswordTemplate(user));
+    await sendMail(await forgotPasswordTemplate(user));
 
     // return message
     return { message: 'Password recovery link sent' };

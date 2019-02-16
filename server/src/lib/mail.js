@@ -1,12 +1,12 @@
 import { createTransport } from 'nodemailer';
 
-export default async (config, template) => (
+export default async (template) => (
     createTransport({
-        host: config.host,
-        port: config.port,
+        host: config.service.mail.host,
+        port: config.service.mail.port,
         auth: {
-            user: config.auth.user,
-            pass: config.auth.password
+            user: config.service.mail.auth.user,
+            pass: config.service.mail.auth.password
         }
     }).sendMail(template)
 );
