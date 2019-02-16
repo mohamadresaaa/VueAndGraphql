@@ -14,15 +14,15 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <h4 class="mt-3 mb-3">Already have an account?
-                    <router-link to="/sign_in">Sign in</router-link>
+                <h4 class="mt-3 mb-3">Don't have an account?
+                    <router-link to="/sign_up">Sign up</router-link>
                 </h4>
                 <v-spacer></v-spacer>
               </v-card-actions>
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn :loading="loading" :disabled="!isFormValid || loading" @click="handleSignIn" color="primary" type="submit">
-                    Sign up
+                    Sign in
                     <span slot="loader">Loading...</span>
                 </v-btn>
                 <v-spacer></v-spacer>

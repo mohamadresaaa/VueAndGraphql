@@ -1,63 +1,33 @@
 <template>
-    <v-layout row wrap>
-        <v-flex xs12 sm6 offset-sm3>
-            <v-card color="blue-grey lighten-5">
-                <!-- heading -->
-                <v-layout row wrap>
-                    <v-flex xs12 sm6 offset-sm5>
-                        <h2 class="font-weight-medium text-capitalize ma-3">sign up</h2>
-                    </v-flex>
-                </v-layout>
-
-                <v-form v-model="isFormValid" lazy-validation ref="form" @submit.prevent="handleSignUp" class="px-3">
-                    <!-- error alert -->
-                    <v-layout v-if="error" row class="mb-3">
-                        <v-flex xs12>
-                            <formAlert :message="error.message"></formAlert>
-                        </v-flex>
-                    </v-layout>
-
-                    <!-- username field -->
-                    <v-layout row>
-                        <v-flex xs12>
-                            <v-text-field v-model="username" :rules="usernameRules" label="Username" required outline></v-text-field>
-                        </v-flex>
-                    </v-layout>
-
-                    <!-- email field -->
-                    <v-layout row>
-                        <v-flex xs12>
-                            <v-text-field v-model="email" :rules="emailRules" type="email" label="Email" required outline></v-text-field>
-                        </v-flex>
-                    </v-layout>
-
-                    <!-- password field -->
-                    <v-layout row>
-                        <v-flex xs12>
-                            <v-text-field v-model="password" :rules="passwordRules" type="password" label="Password" required outline></v-text-field>
-                        </v-flex>
-                    </v-layout>
-
-                    <!-- submit button -->
-                    <v-layout justify-center align-content-center row>
-                        <v-flex xs12 sm6 offset-sm4>
-                            <v-btn :loading="loading" :disabled="!isFormValid || loading" color="primary" type="submit">
-                                Sign up
-                                <span slot="loader">Loading...</span>
-                            </v-btn>
-                        </v-flex>
-                    </v-layout>
-
-                    <!-- sign in link -->
-                    <v-layout justify-center align-content-center row>
-                        <v-flex xs12 sm6 offset-sm2>
-                            <h3 class="mt-3 mb-3">Already have an account?
-                                <router-link to="/sign_in">Sign in</router-link>
-                            </h3>
-                        </v-flex>
-                    </v-layout>
-                    
+    <v-layout align-center justify-center>
+        <v-flex xs12 sm8 md6>
+            <v-card class="elevation-12">
+              <v-toolbar dark color="primary">
+                <v-toolbar-title>Sign up</v-toolbar-title>
+              </v-toolbar>
+              <v-card-text>
+                <formAlert v-if="error" :message="error.message" class="mb-3" />
+                <v-form v-model="isFormValid" lazy-validation ref="form">
+                  <v-text-field v-model="username" :rules="usernameRules" prepend-icon="person" name="username" label="Username" type="text"></v-text-field>
+                  <v-text-field v-model="email" :rules="emailRules" prepend-icon="email" name="email" label="Email" type="email"></v-text-field>
+                  <v-text-field v-model="password" :rules="passwordRules" prepend-icon="lock" name="password" label="Password" type="password"></v-text-field>
                 </v-form>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <h4 class="mt-3 mb-3">Already have an account?
+                    <router-link to="/sign_in">Sign in</router-link>
+                </h4>
+                <v-spacer></v-spacer>
+              </v-card-actions>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn :loading="loading" :disabled="!isFormValid || loading" @click="handleSignUp" color="primary" type="submit">
+                    Sign up
+                    <span slot="loader">Loading...</span>
+                </v-btn>
+                <v-spacer></v-spacer>
+              </v-card-actions>
             </v-card>
         </v-flex>
     </v-layout>
