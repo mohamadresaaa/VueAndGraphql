@@ -19,6 +19,9 @@ export const signUp = ({ commit }, payload) => {
 
         // redirect to sign in page
         router.push('/sign_in');
+
+        // set loading
+        commit('setLoading', false);
     })
     .catch(err => {
         // set loading
