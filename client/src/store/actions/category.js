@@ -58,11 +58,14 @@ export const addCategory = ({ commit }, payload) => {
     }
   })
   .then(() => {
-    // loading end
-    commit('setLoading', false);
+    // set message
+    commit('setMessage', 'The category has been successfully created.');
 
     // redirect to /admin/categories
     router.push('/admin/categories');
+
+    // set loading
+    commit('setLoading', false);
   })
   .catch(err => {
     // loading end
