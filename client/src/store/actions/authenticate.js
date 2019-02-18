@@ -14,8 +14,8 @@ export const signUp = ({ commit }, payload) => {
       variables: payload
     })
     .then(({ data }) => {
-        // set loading
-        commit('setLoading', false);
+        // set message
+        commit('setMessage', data.signUp.message);
 
         // redirect to sign in page
         router.push('/sign_in');

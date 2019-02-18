@@ -64,7 +64,7 @@ type Query {
 
 type Mutation {
     # authenticate
-    signUp(username: String!, email: String!, password: String!): User!
+    signUp(username: String!, email: String!, password: String!): Message!
     signIn(email: String!, password: String!): Token!
     forgotPassword(email: String!): Message!
     resetPassword(newPassword: String!, activeCode: String!): Message!

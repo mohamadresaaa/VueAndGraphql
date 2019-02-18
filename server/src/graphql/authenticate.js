@@ -32,8 +32,8 @@ export const signUp = async (_, { username, email, password }, { User }) => {
         // generate name
     }).save();
 
-    // return it
-    return newUser;
+    // return message
+    return { message: 'Your account was successfully registered. Please refer to your email for activation' };
 };
 
 export const signIn = async (_, { email, password }, { User }) => {
