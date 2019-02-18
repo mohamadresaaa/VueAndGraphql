@@ -75,7 +75,8 @@ export const forgotPassword = ({ commit }, payload) => {
         variables: payload
     })
     .then(({ data }) => {
-        console.log('data:', data);
+        // set message 
+        commit('setMessage', data.forgotPassword.message);
 
         // set loading
         commit('setLoading', false);
