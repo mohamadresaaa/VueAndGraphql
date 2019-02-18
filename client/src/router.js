@@ -12,7 +12,7 @@ import Notes from './views/notes/List.vue';
 import AddNote from './views/notes/Add.vue';
 
 // middleware
-import authGuard from './authGuard';
+import { beforeAuthenticate, afterAuthenticate } from './authMiddleware';
 import { adminLevel } from './ACL';
 
 Vue.use(Router)
@@ -49,7 +49,8 @@ export default new Router({
     {
       path: '/sign_in',
       name: 'signIn',
-      component: () => import('./views/auth/SignIn.vue')
+      component: () => import('./views/auth/SignIn.vue'),
+      beforeEnter: beforeAuthenticate
     },
     {
       path: '/forgotPassword',
@@ -60,7 +61,7 @@ export default new Router({
       path: '/profile',
       name: 'profile',
       component: Profile,
-      beforeEnter: authGuard
+      beforeEnter: afterAuthenticate
     },
     {
       path: '/admin/categories',
