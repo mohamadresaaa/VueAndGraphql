@@ -5,10 +5,16 @@
       <router-view>
       </router-view>
 
-      <!-- Auth Error Snackbar -->
+      <!-- auth error snackbar -->
       <v-snackbar v-if="authError" v-model="authErrorSnackbar" :timeout='5000' color="info" bottom>
         {{authError.message}}
         <v-btn dark flat to="/sign_in">Sign in</v-btn>
+      </v-snackbar>
+
+      <!-- message snackbar -->
+      <v-snackbar v-if="message" v-model="messageSnackbar" bottom>
+        {{message}}
+        <v-btn dark flat @click="closeMessage">Close</v-btn>
       </v-snackbar>
       
     </v-content>
@@ -22,7 +28,8 @@ export default {
   name: 'App',
   data() {
     return {
-      authErrorSnackbar: false
+      authErrorSnackbar: false,
+      messageSnackbar: false
     }
   },
   watch: {
@@ -31,10 +38,21 @@ export default {
       if(value !== null) {
         this.authErrorSnackbar = true;
       }
+    },
+    message(value) {
+      // if message is not null, show message snackbar
+      if(value !== null) {
+        this.messageSnackbar = true;
+      }
     }
   },
   computed: {
-    ...mapGetters(['authError'])
+    ...mapGetters(['authError', 'message'])
+  },
+  methods: {
+    closeMessage() {
+      this.$store.dispatch('message');
+    }
   },
   components: { Navbar }
 }

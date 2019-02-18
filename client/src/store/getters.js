@@ -5,5 +5,6 @@ export default {
     notes: state => state.notes,
     loading: state => state.loading,
     error: state => state.error,
-    authError: state => state.authError
+    authError: state => state.authError,
+    message: state => state.message
 };

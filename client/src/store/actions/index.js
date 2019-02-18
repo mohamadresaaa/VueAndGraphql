@@ -3,6 +3,7 @@ import { signUp, signIn, forgotPassword, signOut } from './authenticate';
 import { getCurrentUser } from './user';
 import { getTodos, addTodo } from './todo';
 import { getNotes, addNote } from './note';
+import message from './message';
 
 // using actions
 export default {
@@ -16,5 +17,6 @@ export default {
     getTodos,
     addTodo,
     getNotes,
-    addNote
+    addNote,
+    message
 };

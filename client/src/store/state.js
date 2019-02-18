@@ -5,5 +5,6 @@ export default {
     notes: [],
     loading: false,
     error: null,
-    authError: null
+    authError: null,
+    message: null
 };
