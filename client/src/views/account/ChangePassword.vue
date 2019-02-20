@@ -32,7 +32,7 @@ import { mapGetters } from 'vuex';
 import formAlert from '../../components/FormAlert';
 
 export default {
-    name: 'forgotPassword',
+    name: 'changePassword',
     data() {
         return {
             isFormValid: true,
