@@ -44,7 +44,8 @@ export default new Router({
     {
       path: '/sign_up',
       name: 'signUp',
-      component: () => import('./views/auth/SignUp.vue')
+      component: () => import('./views/auth/SignUp.vue'),
+      beforeEnter: beforeAuthenticate
     },
     {
       path: '/sign_in',
@@ -55,7 +56,8 @@ export default new Router({
     {
       path: '/forgotPassword',
       name: 'forgotPassword',
-      component: () => import('./views/auth/ForgotPassword.vue')
+      component: () => import('./views/auth/ForgotPassword.vue'),
+      beforeEnter: beforeAuthenticate
     },
     {
       path: '/profile',
@@ -78,17 +80,20 @@ export default new Router({
     {
       path: '/todos',
       name: 'todos',
-      component: Todos
+      component: Todos,
+      beforeEnter: afterAuthenticate
     },
     {
       path: '/todos/add',
       name: 'addTodo',
-      component: AddTodo
+      component: AddTodo,
+      beforeEnter: afterAuthenticate
     },
     {
       path: '/notes',
       name: 'notes',
-      component: Notes
+      component: Notes,
+      beforeEnter: afterAuthenticate
     },
     {
       path: '/notes/add',
