@@ -3,7 +3,6 @@ import Router from 'vue-router'
 
 // views
 import Home from './views/Home.vue';
-import Profile from './views/Profile.vue';
 import CategoryList from './views/categories/List.vue';
 import AddCategory from './views/categories/Add.vue';
 import Todos from './views/todos/List.vue';
@@ -58,12 +57,6 @@ export default new Router({
       name: 'forgotPassword',
       component: () => import('./views/auth/ForgotPassword.vue'),
       beforeEnter: beforeAuthenticate
-    },
-    {
-      path: '/profile',
-      name: 'profile',
-      component: Profile,
-      beforeEnter: afterAuthenticate
     },
     {
       path: '/admin/categories',
