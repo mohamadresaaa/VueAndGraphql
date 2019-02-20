@@ -36,6 +36,7 @@
 import { mapGetters } from 'vuex';
 import formAlert from '../../components/FormAlert';
 export default {
+    name: 'signIn',
     data() {
         return {
             isFormValid: true,

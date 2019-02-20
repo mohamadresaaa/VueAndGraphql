@@ -62,7 +62,9 @@
 
 <script>
 import { mapGetters } from 'vuex';
+
 export default {
+  name: 'categories',
   created() {
     this.handleGetCategories();
   },

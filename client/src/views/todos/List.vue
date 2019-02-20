@@ -73,6 +73,7 @@
 import { mapGetters } from 'vuex';
 
 export default {
+  name: 'todos',
   watch: {
     user(value){
       if(value)

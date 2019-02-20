@@ -25,6 +25,7 @@
 
 <script>
 export default {
+  name: 'aboutMe',
   data() {
     return {
       todoes: [

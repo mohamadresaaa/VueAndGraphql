@@ -25,7 +25,7 @@
 import { mapGetters } from "vuex";
 
 export default {
-  name: "home",
+  name: 'home',
   created() {
     this.handleGetCategories();
   },

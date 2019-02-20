@@ -56,6 +56,7 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
+  name: 'blog',
   data() {
     return {
       articles: [

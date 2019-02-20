@@ -73,7 +73,7 @@ export default new Router({
     },
     {
       path: '/admin/categories/add',
-      name: 'addCategories',
+      name: 'addCategory',
       component: AddCategory,
       beforeEnter: adminLevel
     },
@@ -98,7 +98,8 @@ export default new Router({
     {
       path: '/notes/add',
       name: 'addNote',
-      component: AddNote
+      component: AddNote,
+      beforeEnter: afterAuthenticate
     }
   ]
 })
