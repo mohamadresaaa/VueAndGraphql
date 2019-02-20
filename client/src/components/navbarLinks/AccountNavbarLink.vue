@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       items: [
-        { text: 'change password', route: '/changePassword' }
+        { text: 'change password', route: '/user/changePassword' }
       ]
     }
   },

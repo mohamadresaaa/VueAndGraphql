@@ -27,7 +27,7 @@ export default {
     data() {
         return {
             items: [
-                { icon: '', text: 'change password', route: '/changePassword' }
+                { icon: '', text: 'change password', route: '/user/changePassword' }
             ]
         }
     },

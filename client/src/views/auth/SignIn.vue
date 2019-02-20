@@ -48,7 +48,7 @@ export default {
                 email => /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(email) || 'Email must be valid'
             ],
             passwordRules: [
-                // check if email in input
+                // check if password in input
                 password => !!password || 'Password is required'
             ]
         }

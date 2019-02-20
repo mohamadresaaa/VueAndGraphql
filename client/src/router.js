@@ -9,6 +9,7 @@ import Todos from './views/todos/List.vue';
 import AddTodo from './views/todos/Add.vue';
 import Notes from './views/notes/List.vue';
 import AddNote from './views/notes/Add.vue';
+import ChangePassword from './views/account/ChangePassword.vue';
 
 // middleware
 import { beforeAuthenticate, afterAuthenticate } from './authMiddleware';
@@ -57,6 +58,12 @@ export default new Router({
       name: 'forgotPassword',
       component: () => import('./views/auth/ForgotPassword.vue'),
       beforeEnter: beforeAuthenticate
+    },
+    {
+      path: '/user/changePassword',
+      name: 'changePassword',
+      component: ChangePassword,
+      beforeEnter: afterAuthenticate
     },
     {
       path: '/admin/categories',
