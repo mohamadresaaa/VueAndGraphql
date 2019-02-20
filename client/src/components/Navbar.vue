@@ -44,6 +44,9 @@
                 <!-- auth navigation links -->
                 <AuthNavigationLinks :user="user" />
 
+                <!-- service navigation links -->
+                <ServiceNavigationLinks :user="user" />
+
                 <!-- admin navigation links -->
                 <AdminNavigationLinks :user="user" />
 
@@ -70,6 +73,7 @@ import DefaultNavigationLinks from './navigationLinks/DefaultNavigationLinks';
 import AuthNavigationLinks from './navigationLinks/AuthNavigationLinks';
 import AccountNavigationLinks from './navigationLinks/AccountNavigationLinks';
 import AdminNavigationLinks from './navigationLinks/AdminNavigationLinks';
+import ServiceNavigationLinks from './navigationLinks/ServiceNavigationLinks';
 
 import { mapGetters } from 'vuex';
 
@@ -83,6 +87,6 @@ export default {
     computed: {
         ...mapGetters(['user'])
     },
-    components: { AuthNavbarLinks, AccountNavbarLink, DefaultNavigationLinks, AuthNavigationLinks, AccountNavigationLinks, AdminNavigationLinks }
+    components: { AuthNavbarLinks, AccountNavbarLink, DefaultNavigationLinks, AuthNavigationLinks, AccountNavigationLinks, AdminNavigationLinks, ServiceNavigationLinks }
 }
 </script>
