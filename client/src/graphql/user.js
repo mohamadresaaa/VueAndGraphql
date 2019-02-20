@@ -13,3 +13,11 @@ export const GET_CURRENT_USER = gql `
         }
     }
 `;
+
+export const CHANGE_PASSWORD = gql `
+    mutation ($oldPassword: String!, $newPassword: String!, $userId: ID!){
+        changePassword(oldPassword: $oldPassword, newPassword: $newPassword, userId: $userId){
+            message
+        }
+    }
+`;

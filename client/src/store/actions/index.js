@@ -1,6 +1,6 @@
 import { getCategories, addCategory } from './category';
 import { signUp, signIn, forgotPassword, signOut } from './authenticate';
-import { getCurrentUser } from './user';
+import { getCurrentUser, changePassword } from './user';
 import { getTodos, addTodo } from './todo';
 import { getNotes, addNote } from './note';
 import message from './message';
@@ -12,6 +12,7 @@ export default {
     forgotPassword,
     signOut,
     getCurrentUser,
+    changePassword,
     getCategories,
     addCategory,
     getTodos,

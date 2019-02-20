@@ -60,7 +60,9 @@ export default {
         handleChangePassword(){
             if(this.$refs.form.validate()){
                 this.$store.dispatch('changePassword', { 
-                    email: this.email
+                    oldPassword: this.oldPassword,
+                    newPassword: this.newPassword,
+                    userId: this.user._id
                 });
             }
         }
