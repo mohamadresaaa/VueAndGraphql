@@ -29,6 +29,7 @@ export const addCategory = ({ commit }, payload) => {
 
   // set loading
   commit('setLoading', true);
+  
   apolloClient.mutate({ 
     mutation: ADD_CATEGORY,
     variables: payload,
