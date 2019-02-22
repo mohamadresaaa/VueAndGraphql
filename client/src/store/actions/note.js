@@ -50,6 +50,7 @@ export const addNote = ({ commit }, payload) => {
             // write updated data back to query
             cache.writeQuery({
                 query: GET_NOTES,
+                variables: { userId: payload.user },
                 data
             });
         },

@@ -50,11 +50,8 @@ import { mapGetters } from 'vuex';
 
 export default {
   name: 'notes',
-  watch: {
-    user(value){
-      if(value)
-        this.handleGetNotes();
-    }
+  mounted() {
+    this.handleGetNotes();
   },
   computed: {
     ...mapGetters(['user', 'notes'])
