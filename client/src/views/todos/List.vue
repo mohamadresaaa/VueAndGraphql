@@ -74,11 +74,8 @@ import { mapGetters } from 'vuex';
 
 export default {
   name: 'todos',
-  watch: {
-    user(value){
-      if(value)
-        this.handleGetTodos();
-    }
+  mounted() {
+    this.handleGetTodos();
   },
   computed: {
     ...mapGetters(['user', 'todos'])

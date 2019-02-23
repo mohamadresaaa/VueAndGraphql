@@ -62,7 +62,7 @@ export default {
                 this.$store.dispatch('addTodo', {
                     content: this.content,
                     status: this.status,
-                    user: this.user._id
+                    userId: this.user._id
                 });
             }
         }

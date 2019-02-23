@@ -15,8 +15,8 @@ export const GET_TODOS = gql `
 `;
 
 export const ADD_TODO = gql `
-    mutation ($content: String!, $status: Boolean!, $user: ID!){
-        addTodo(content: $content, status: $status, user: $user){
+    mutation ($content: String!, $status: Boolean!, $userId: ID!){
+        addTodo(content: $content, status: $status, userId: $userId){
             _id
             content
             status

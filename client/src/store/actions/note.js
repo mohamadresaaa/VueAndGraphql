@@ -41,7 +41,7 @@ export const addNote = ({ commit }, payload) => {
             // finding the query we want to update
             const data = cache.readQuery({ 
                 query: GET_NOTES,
-                variables: { userId: payload.user }
+                variables: { userId: payload.userId }
             });
 
             // update data
@@ -50,7 +50,7 @@ export const addNote = ({ commit }, payload) => {
             // write updated data back to query
             cache.writeQuery({
                 query: GET_NOTES,
-                variables: { userId: payload.user },
+                variables: { userId: payload.userId },
                 data
             });
         },
@@ -64,7 +64,7 @@ export const addNote = ({ commit }, payload) => {
                 createdAt: Date.now().toString(),
                 user: {
                     __typename: 'User',
-                    _id: payload.user
+                    _id: payload.userId
                 }
             }
         }

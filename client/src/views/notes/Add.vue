@@ -62,7 +62,7 @@ export default {
                 this.$store.dispatch('addNote', {
                     title: this.title,
                     content: this.content,
-                    user: this.user._id
+                    userId: this.user._id
                 });
             }
         }

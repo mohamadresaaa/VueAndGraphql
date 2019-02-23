@@ -38,7 +38,10 @@ export const addTodo = ({ commit }, payload) => {
         variables: payload,
         update: (cache, { data: { addTodo } }) => {
             // finding the query we want to update
-            const data = cache.readQuery({ query: GET_TODOS });
+            const data = cache.readQuery({ 
+                query: GET_TODOS,
+                variables: { userId: payload.userId }
+            });
 
             // update data
             data.getTodos.unshift(addTodo);
@@ -46,6 +49,7 @@ export const addTodo = ({ commit }, payload) => {
             // write updated data back to query
             cache.writeQuery({
                 query: GET_TODOS,
+                variables: { userId: payload.userId },
                 data
             });
         },
@@ -59,7 +63,7 @@ export const addTodo = ({ commit }, payload) => {
                 createdAt: Date.now().toString(),
                 user: {
                     __typename: 'User',
-                    _id: payload.user
+                    _id: payload.userId
                 }
             }
         }

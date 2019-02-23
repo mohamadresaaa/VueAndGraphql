@@ -1,11 +1,11 @@
 export const getTodos = async (_, { userId }, { Todo }) => (await Todo.find({ user: userId }));
 
-export const addTodo = async (_,{ content, status, user },{ Todo }) => {
+export const addTodo = async (_, { content, status, userId }, { Todo }) => {
     // create todo
     let newTodo = await Todo({
         content,
         status,
-        user
+        user: userId
     }).save();
 
     // return it
