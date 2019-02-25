@@ -6,7 +6,6 @@
                 <v-toolbar-title>Forgot password</v-toolbar-title>
               </v-toolbar>
               <v-card-text>
-                <formAlert v-if="error" :message="error.message" class="mb-3" />
                 <v-form v-model="isFormValid" lazy-validation ref="form">
                   <v-text-field v-model="email" :rules="emailRules" prepend-icon="person" name="email" label="Email" type="email"></v-text-field>
                 </v-form>
@@ -27,7 +26,6 @@
 <script>
 
 import { mapGetters } from 'vuex';
-import formAlert from '../../components/FormAlert';
 
 export default {
     name: 'forgotPassword',
@@ -59,7 +57,6 @@ export default {
                 });
             }
         }
-    },
-    components: { formAlert }
+    }
 }
 </script>

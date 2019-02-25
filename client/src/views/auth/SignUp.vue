@@ -6,7 +6,6 @@
                 <v-toolbar-title>Sign up</v-toolbar-title>
               </v-toolbar>
               <v-card-text>
-                <formAlert v-if="error" :message="error.message" class="mb-3" />
                 <v-form v-model="isFormValid" lazy-validation ref="form">
                   <v-text-field v-model="username" :rules="usernameRules" prepend-icon="person" name="username" label="Username" type="text"></v-text-field>
                   <v-text-field v-model="email" :rules="emailRules" prepend-icon="email" name="email" label="Email" type="email"></v-text-field>
@@ -35,7 +34,6 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import formAlert from '../../components/FormAlert';
 
 export default {
     name: 'signUp',
@@ -75,7 +73,6 @@ export default {
     },
     computed: {
         ...mapGetters(['loading', 'error'])
-    },
-    components: { formAlert }
+    }
 }
 </script>

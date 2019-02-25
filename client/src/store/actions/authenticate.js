@@ -1,10 +1,10 @@
 import { defaultClient as apolloClient } from '../../apollo';
-import router from '../../router';
 import { SIGN_UP, SIGN_IN, FORGOT_PASSWORD } from '../../graphql/authenticate';
+import router from '../../router';
 
 export const signUp = ({ commit }, payload) => {
-    // clear error
-    commit('clearError');
+    // clear message
+    commit('clearMessage');
 
     // set loading
     commit('setLoading', true);
@@ -30,14 +30,17 @@ export const signUp = ({ commit }, payload) => {
         // set loading
         commit('setLoading', false);
 
-        // set error
-        commit('setError', err);
+        // set message
+        commit('setMessage', {
+            content: err.message,
+            color: 'error'
+        });
     });
 };
 
 export const signIn = ({ commit }, payload) => {
-    // clear error
-    commit('clearError');
+    // clear message
+    commit('clearMessage');
 
     // set loading
     commit('setLoading', true);
@@ -64,14 +67,17 @@ export const signIn = ({ commit }, payload) => {
         // set loading
         commit('setLoading', false);
 
-        // set error
-        commit('setError', err);
+        // set message
+        commit('setMessage', {
+            content: err.message,
+            color: 'error'
+        });
     });
 };
 
 export const forgotPassword = ({ commit }, payload) => {
-    // clear error
-    commit('clearError');
+    // clear message
+    commit('clearMessage');
 
     // set loading
     commit('setLoading', true);
@@ -91,8 +97,11 @@ export const forgotPassword = ({ commit }, payload) => {
         commit('setLoading', false);
     })
     .catch(err => {
-        // set error
-        commit('setError', err);
+        // set message
+        commit('setMessage', {
+            content: err.message,
+            color: 'error'
+        });
 
         // set loading
         commit('setLoading', false);
