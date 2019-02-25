@@ -1,6 +1,5 @@
 import { defaultClient as apolloClient } from '../../apollo';
 import { GET_CURRENT_USER, CHANGE_PASSWORD } from '../../graphql/user';
-import router from '../../router';
 
 export const getCurrentUser = ({ commit }) => {
     // set loading
