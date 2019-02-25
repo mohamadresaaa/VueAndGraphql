@@ -68,9 +68,15 @@ export const addTodo = ({ commit }, payload) => {
             }
         }
     })
-    .then(({ data }) => {
+    .then(() => {
         // loading end
         commit('setLoading', false);
+
+        // set message
+        commit('setMessage', {
+            content: 'The todo has been successfully created.',
+            color: 'success'
+        });
 
         // redirect to /todos
         router.push('/todos');

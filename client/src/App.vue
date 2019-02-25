@@ -12,8 +12,8 @@
       </v-snackbar>
 
       <!-- message snackbar -->
-      <v-snackbar v-if="message" v-model="messageSnackbar" bottom>
-        {{message}}
+      <v-snackbar v-if="message" v-model="messageSnackbar" :color="message.color" bottom>
+        {{message.content}}
         <v-btn dark flat @click="closeMessage">Close</v-btn>
       </v-snackbar>
       

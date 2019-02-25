@@ -60,7 +60,10 @@ export const addCategory = ({ commit }, payload) => {
   })
   .then(() => {
     // set message
-    commit('setMessage', 'The category has been successfully created.');
+    commit('setMessage', {
+      content: 'The category has been successfully created.',
+      color: 'success'
+    });
 
     // redirect to /admin/categories
     router.push('/admin/categories');

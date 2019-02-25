@@ -36,7 +36,10 @@ export const changePassword = ({ commit }, payload) => {
     })
     .then(({ data }) => {
         // set message
-        commit('setMessage', data.changePassword.message);
+        commit('setMessage', {
+            content: data.changePassword.message,
+            color: 'success'
+        });
 
         // set loading
         commit('setLoading', false);

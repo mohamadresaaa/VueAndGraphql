@@ -15,7 +15,10 @@ export const signUp = ({ commit }, payload) => {
     })
     .then(({ data }) => {
         // set message
-        commit('setMessage', data.signUp.message);
+        commit('setMessage', {
+            content: data.signUp.message,
+            color: 'info'
+        });
 
         // redirect to sign in page
         router.push('/sign_in');
@@ -79,7 +82,10 @@ export const forgotPassword = ({ commit }, payload) => {
     })
     .then(({ data }) => {
         // set message 
-        commit('setMessage', data.forgotPassword.message);
+        commit('setMessage', {
+            content: data.forgotPassword.message,
+            color: 'info'
+        });
 
         // set loading
         commit('setLoading', false);

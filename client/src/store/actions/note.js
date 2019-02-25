@@ -18,7 +18,6 @@ export const getNotes = ({ commit }, payload) => {
         commit('setLoading', false);
     })
     .catch(err => {
-        console.log('err message:', err.message);
         // set error
         commit('setError', err);
         
@@ -72,6 +71,12 @@ export const addNote = ({ commit }, payload) => {
     .then(() => {
         // set loading
         commit('setLoading', false);
+
+        // set message
+        commit('setMessage', {
+            content: 'The note has been successfully created.',
+            color: 'success'
+        });
 
         // redirect to notes
         router.push('/notes');
