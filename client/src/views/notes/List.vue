@@ -28,7 +28,7 @@
           </v-flex>
           <v-flex xs12 sm4 md2>
             <div class="caption grey--text">Created at</div>
-            <div>{{note.createdAt}}</div>
+            <div>{{ calendarTime(note.createdAt) }}</div>
           </v-flex>
           <v-flex xs12 sm4 md2>
             <div class="text-xs-center">
@@ -47,6 +47,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import { calendarTime } from '../../lib/dateTime.js';
 
 export default {
   name: 'notes',
@@ -57,6 +58,7 @@ export default {
     ...mapGetters(['user', 'notes'])
   },
   methods: {
+    calendarTime,
     handleGetNotes() {
       this.$store.dispatch('getNotes', {
         userId: this.user._id
