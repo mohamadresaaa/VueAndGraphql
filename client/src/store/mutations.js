@@ -4,6 +4,7 @@ export default {
     setCategories: (state, payload) => state.categories = payload,
     setTodos: (state, payload) => state.todos = payload,
     setNotes: (state, payload) => state.notes = payload,
+    setNote: (state, payload) => state.note = payload,
     setLoading: (state, payload) => state.loading = payload,
     setError: (state, payload) => state.error = payload,
     setAuthError: (state, payload) => state.authError = payload,

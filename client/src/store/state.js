@@ -3,6 +3,7 @@ export default {
     categories: [],
     todos: [],
     notes: [],
+    note: null,
     loading: false,
     error: null,
     authError: null,

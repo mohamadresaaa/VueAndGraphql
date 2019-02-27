@@ -1,22 +1,14 @@
 <template>
   <div>
-    <h1 class="font-weight-medium text-capitalize">about me: {{ id }}</h1>
-    <v-card v-for="(todo, index) in todoes" :key="index" class="mt-3">
+    <v-card v-if="note" class="mt-3">
         <v-layout row wrap class="pa-3">
-          <!-- avatar of user -->
-          <v-flex xs12 md2>
-            <v-responsive class="pa-3">
-              <v-avatar size="150" class="grey lighten-2">
-                <img :src="todo.image" :alt="todo.title">
-              </v-avatar>
-            </v-responsive>
-          </v-flex>
-          
-          <!-- bio of user -->
-          <v-flex xs12 md10>
-            <div class="grey--text mb-1">Mohamadreza Mosalli</div>
+          <v-flex xs12 md12>
+            <div class="grey--text mb-1">
+                <h1 class="font-weight-medium text-capitalize">{{ note.title }}</h1>
+            </div>
             <v-divider></v-divider>
-            <div class="mt-3">{{todo.content}}</div>
+            <div class="mt-3">{{ note.content }}</div>
+            <v-btn router to="/notes" class="mt-3 mx-1">Back</v-btn>
           </v-flex>
         </v-layout>
     </v-card>
@@ -24,21 +16,24 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
-  name: 'detailsNote',
-  props: ['id'],
-  data() {
-    return {
-      todoes: [
-        { 
-          title: 'Design a new website',
-          image: 'https://avatars3.githubusercontent.com/u/41260098?s=460&v=4',
-          due: '1st Jan 2019',
-          status: 'uncomplete',
-          content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'
+    name: 'detailsNote',
+    props: ['id'],
+    mounted() {
+        this.handleGetNote();
+    },
+    computed: {
+        ...mapGetters(['user', 'note'])
+    },
+    methods: {
+        handleGetNote() {
+            this.$store.dispatch('getNote', {
+                id: this.id,
+                userId: this.user._id
+            });
         }
-      ]
-    }
-  }
+    },
 }
 </script>

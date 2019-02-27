@@ -1,5 +1,5 @@
 import { defaultClient as apolloClient } from '../../apollo';
-import { GET_NOTES, ADD_NOTE } from '../../graphql/note';
+import { GET_NOTES, GET_NOTE, ADD_NOTE } from '../../graphql/note';
 import router from '../../router';
 
 export const getNotes = ({ commit }, payload) => {
@@ -13,6 +13,30 @@ export const getNotes = ({ commit }, payload) => {
     .then(({ data }) => {
         // set notes
         commit('setNotes', data.getNotes);
+
+        // set loading
+        commit('setLoading', false);
+    })
+    .catch(err => {
+        // set error
+        commit('setError', err);
+        
+        // set loading
+        commit('setLoading', false);
+    });
+};
+
+export const getNote = ({ commit }, payload) => {
+    // set loading
+    commit('setLoading', true);
+
+    apolloClient.query({ 
+        query: GET_NOTE,
+        variables: payload 
+    })
+    .then(({ data }) => {
+        // set note
+        commit('setNote', data.getNote);
 
         // set loading
         commit('setLoading', false);
