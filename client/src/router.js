@@ -100,8 +100,7 @@ export default new Router({
       path: '/notes/:id',
       name: 'detailsNote',
       component: DetailsNote,
-      beforeEnter: afterAuthenticate,
-      props: true
+      beforeEnter: afterAuthenticate
     },
     {
       path: '/notes/add',

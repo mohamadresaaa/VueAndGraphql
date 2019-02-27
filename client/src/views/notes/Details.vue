@@ -20,7 +20,6 @@ import { mapGetters } from 'vuex';
 
 export default {
     name: 'detailsNote',
-    props: ['id'],
     mounted() {
         this.handleGetNote();
     },
@@ -30,7 +29,7 @@ export default {
     methods: {
         handleGetNote() {
             this.$store.dispatch('getNote', {
-                id: this.id,
+                id: this.$route.params.id,
                 userId: this.user._id
             });
         }
