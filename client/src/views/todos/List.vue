@@ -28,7 +28,7 @@
           </v-flex>
           <v-flex xs6 sm4 md2>
             <div class="caption grey--text">Due by</div>
-            <div>{{todo.createdAt}}</div>
+            <div>{{ relativeTime(todo.createdAt) }}</div>
           </v-flex>
           <v-flex xs6 sm4 md2>
             <div>
@@ -71,6 +71,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import { relativeTime } from '../../lib/dateTime.js';
 
 export default {
   name: 'todos',
@@ -81,6 +82,7 @@ export default {
     ...mapGetters(['user', 'todos'])
   },
   methods: {
+    relativeTime,
     handleGetTodos() {
       this.$store.dispatch('getTodos', {
         userId: this.user._id
