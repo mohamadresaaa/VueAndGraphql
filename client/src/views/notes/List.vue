@@ -32,11 +32,14 @@
           </v-flex>
           <v-flex xs12 sm4 md2>
             <div class="text-xs-center">
+                <v-btn router :to="'/notes/' + note._id" fab dark small color="primary">
+                  <v-icon dark>visibility</v-icon>
+                </v-btn>
                 <v-btn router to="/notes/edit" fab dark small color="primary">
-                    <v-icon dark>edit</v-icon>
+                  <v-icon dark>edit</v-icon>
                 </v-btn>
                 <v-btn fab dark small color="red">
-                    <v-icon dark>delete</v-icon>
+                  <v-icon dark>delete</v-icon>
                 </v-btn>
             </div>
           </v-flex>

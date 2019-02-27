@@ -9,6 +9,7 @@ import Todos from './views/todos/List.vue';
 import AddTodo from './views/todos/Add.vue';
 import Notes from './views/notes/List.vue';
 import AddNote from './views/notes/Add.vue';
+import DetailsNote from './views/notes/Details.vue';
 import ChangePassword from './views/account/ChangePassword.vue';
 
 // middleware
@@ -94,6 +95,13 @@ export default new Router({
       name: 'notes',
       component: Notes,
       beforeEnter: afterAuthenticate
+    },
+    {
+      path: '/notes/:id',
+      name: 'detailsNote',
+      component: DetailsNote,
+      beforeEnter: afterAuthenticate,
+      props: true
     },
     {
       path: '/notes/add',
