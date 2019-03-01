@@ -97,16 +97,16 @@ export default new Router({
       beforeEnter: afterAuthenticate
     },
     {
+      path: '/notes/add',
+      name: 'addNote',
+      component: AddNote,
+      beforeEnter: afterAuthenticate
+    },
+    {
       path: '/notes/:id',
       name: 'detailsNote',
       component: DetailsNote,
       beforeEnter: afterAuthenticate
     },
-    {
-      path: '/notes/add',
-      name: 'addNote',
-      component: AddNote,
-      beforeEnter: afterAuthenticate
-    }
   ]
 })
