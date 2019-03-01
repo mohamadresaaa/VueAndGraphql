@@ -4,7 +4,7 @@
     <v-card v-for="(todo, index) in todoes" :key="index" class="mt-3">
         <v-layout row wrap class="pa-3">
           <!-- avatar of user -->
-          <v-flex xs12 md2>
+          <v-flex xs12 md3>
             <v-responsive class="pa-3">
               <v-avatar size="150" class="grey lighten-2">
                 <img :src="todo.image" :alt="todo.title">
@@ -13,7 +13,7 @@
           </v-flex>
           
           <!-- bio of user -->
-          <v-flex xs12 md10>
+          <v-flex xs12 md9>
             <div class="grey--text mb-1">Mohamadreza Mosalli</div>
             <v-divider></v-divider>
             <div class="mt-3">{{todo.content}}</div>
