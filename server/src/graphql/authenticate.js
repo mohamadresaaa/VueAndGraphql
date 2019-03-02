@@ -23,7 +23,7 @@ export const signUp = async (_, { username, email, password }, { User }) => {
         throw new Error('Email is invalid or already taken');
 
     // create user
-    let newUser = await User({
+    await User({
         name: email.replace(separatingEmail, ''),
         username,
         email,

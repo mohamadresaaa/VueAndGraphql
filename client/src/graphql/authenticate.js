@@ -1,4 +1,6 @@
-import { gql } from "apollo-boost";
+import {
+  gql
+} from "apollo-boost";
 
 export const SIGN_UP = gql `
   mutation ($username: String!, $email: String!, $password: String!){
@@ -22,4 +24,12 @@ export const FORGOT_PASSWORD = gql `
       message
     }
   }
+`;
+
+export const RESET_PASSWORD = gql `
+  mutation($newPassword: String!, $activeCode: String!) {
+    resetPassword(newPassword: $newPassword, activeCode: $activeCode) {
+      message
+    }
+  } 
 `;

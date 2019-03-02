@@ -1,5 +1,5 @@
 import { defaultClient as apolloClient } from '../../apollo';
-import { SIGN_UP, SIGN_IN, FORGOT_PASSWORD } from '../../graphql/authenticate';
+import { SIGN_UP, SIGN_IN, FORGOT_PASSWORD, RESET_PASSWORD } from '../../graphql/authenticate';
 import router from '../../router';
 
 export const signUp = ({ commit }, payload) => {
@@ -106,6 +106,42 @@ export const forgotPassword = ({ commit }, payload) => {
         // set loading
         commit('setLoading', false);
     })
+};
+
+export const resetPassword = ({ commit }, payload) => {
+    // clear message
+    commit('clearMessage');
+
+    // set loading
+    commit('setLoading', true);
+
+    apolloClient.mutate({
+        mutation: RESET_PASSWORD,
+        variables: payload
+    })
+    .then(({ data }) => {
+        // set message 
+        commit('setMessage', {
+            content: data.resetPassword.message,
+            color: 'success'
+        });
+
+        // set loading
+        commit('setLoading', false);
+
+        // redirect to signIn page
+        router.push('/sign_in');
+    })
+    .catch(err => {
+        // set message
+        commit('setMessage', {
+            content: err.message,
+            color: 'error'
+        });
+
+        // set loading
+        commit('setLoading', false);
+    });
 };
 
 export const signOut = async ({ commit }) => {
