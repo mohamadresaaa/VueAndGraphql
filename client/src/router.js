@@ -12,6 +12,12 @@ import AddNote from './views/notes/Add.vue';
 import DetailsNote from './views/notes/Details.vue';
 import ChangePassword from './views/account/ChangePassword.vue';
 
+// auth views
+import signUp from './views/auth/SignUp.vue';
+import signIn from './views/auth/SignIn.vue';
+import forgotPassword from './views/auth/ForgotPassword.vue';
+import resetPassword from './views/auth/ResetPassword.vue';
+
 // middleware
 import { beforeAuthenticate, afterAuthenticate } from './authMiddleware';
 import { adminLevel } from './ACL';
@@ -45,19 +51,25 @@ export default new Router({
     {
       path: '/sign_up',
       name: 'signUp',
-      component: () => import('./views/auth/SignUp.vue'),
+      component: signUp,
       beforeEnter: beforeAuthenticate
     },
     {
       path: '/sign_in',
       name: 'signIn',
-      component: () => import('./views/auth/SignIn.vue'),
+      component: signIn,
       beforeEnter: beforeAuthenticate
     },
     {
       path: '/forgotPassword',
       name: 'forgotPassword',
-      component: () => import('./views/auth/ForgotPassword.vue'),
+      component: forgotPassword,
+      beforeEnter: beforeAuthenticate
+    },
+    {
+      path: '/resetPassword/:activeCode',
+      name: 'resetPassword',
+      component: resetPassword,
       beforeEnter: beforeAuthenticate
     },
     {
