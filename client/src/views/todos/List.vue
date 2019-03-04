@@ -57,7 +57,7 @@
             <v-btn v-if="!todo.status" fab dark small color="success">
               <v-icon dark>done</v-icon>
             </v-btn>
-            <v-btn router to="/todoes/edit" fab dark small color="primary">
+            <v-btn @click="editTodoDialog = true" fab dark small color="primary">
               <v-icon dark>edit</v-icon>
             </v-btn>
             <v-btn fab dark small color="red">
@@ -67,6 +67,31 @@
         </v-flex>
       </v-layout>
     </v-card>
+
+    <!-- edit todo dialog -->
+    <v-dialog v-model="editTodoDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
+      <v-card>
+        <v-toolbar dark color="primary">
+          <v-btn icon dark @click="editTodoDialog = false">
+            <v-icon>close</v-icon>
+          </v-btn>
+          <v-toolbar-title>Edit Todo</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-toolbar-items>
+            <v-btn dark flat @click="editTodoDialog = false">Update</v-btn>
+          </v-toolbar-items>
+        </v-toolbar>
+        <v-card-text>
+          <v-form v-model="isFormValid" lazy-validation ref="form" @submit.prevent="handleAddTodo" class="px-3">
+            <!-- content field -->
+            <v-text-field v-model="content" :rules="contentRules" label="Content"></v-text-field>
+
+            <!-- status field -->
+            <v-switch v-model="status" :label="`Status: ${ status === true ? 'complete' : 'uncomplete' }`"></v-switch>
+          </v-form>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -94,6 +119,11 @@
 
   export default {
     name: 'todos',
+    data() {
+      return {
+        editTodoDialog: false
+      }
+    },
     mounted() {
       this.handleGetTodos();
     },
