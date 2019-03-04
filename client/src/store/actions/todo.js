@@ -82,8 +82,11 @@ export const addTodo = ({ commit }, payload) => {
         router.push('/todos');
     })
     .catch(err => {
-        // set error
-        commit('setError', err);
+        // set message
+        commit('setMessage', { 
+            content: err.message,
+            color: 'error'
+        });
         
         // loading end
         commit('setLoading', false);

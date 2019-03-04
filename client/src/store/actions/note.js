@@ -107,7 +107,10 @@ export const addNote = ({ commit }, payload) => {
     })
     .catch(err => {
         // set error
-        commit('setError', err);
+        commit('setMessage', {
+            content: err.message,
+            color: 'error'
+        });
 
         // set loading
         commit('setLoading', false);

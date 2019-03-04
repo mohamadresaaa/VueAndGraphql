@@ -8,14 +8,6 @@
 
             <v-card-text>
                 <v-form v-model="isFormValid" lazy-validation ref="form" @submit.prevent="handleAddTodo" class="px-3">
-                    
-                    <!-- error alert -->
-                    <v-layout v-if="error" row class="mb-3">
-                        <v-flex xs12>
-                            <formAlert :message="error.message"></formAlert>
-                        </v-flex>
-                    </v-layout>
-                    
                     <!-- content field -->
                     <v-text-field v-model="content" :rules="contentRules" label="Content"></v-text-field>
                     
@@ -41,7 +33,6 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import formAlert from '../../components/FormAlert';
 
 export default {
     name: 'addTodo',
@@ -54,7 +45,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['loading', 'error', 'user'])
+        ...mapGetters(['loading', 'user'])
     },
     methods: {
         handleAddTodo(){
@@ -66,7 +57,6 @@ export default {
                 });
             }
         }
-    },
-    components: { formAlert }
+    }
 }
 </script>

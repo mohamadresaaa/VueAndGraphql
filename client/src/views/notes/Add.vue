@@ -8,14 +8,6 @@
 
             <v-card-text>
                 <v-form v-model="isFormValid" lazy-validation ref="form" @submit.prevent="handleAddNote" class="px-3">
-                    
-                    <!-- error alert -->
-                    <v-layout v-if="error" row class="mb-3">
-                        <v-flex xs12>
-                            <formAlert :message="error.message"></formAlert>
-                        </v-flex>
-                    </v-layout>
-                    
                     <!-- title field -->
                     <v-text-field v-model="title" :rules="titleRules" label="Title"></v-text-field>
                     
@@ -40,7 +32,6 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import formAlert from '../../components/FormAlert';
 
 export default {
     name: 'addNote',
@@ -54,7 +45,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['loading', 'error', 'user'])
+        ...mapGetters(['loading', 'user'])
     },
     methods: {
         handleAddNote(){
@@ -66,7 +57,6 @@ export default {
                 });
             }
         }
-    },
-    components: { formAlert }
+    }
 }
 </script>
