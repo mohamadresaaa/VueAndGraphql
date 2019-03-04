@@ -32,7 +32,11 @@
       <v-layout row wrap class="pa-3">
         <v-flex xs12 md6>
           <div class="caption grey--text">Title</div>
-          <div class="primary--text">{{note.title}}</div>
+          <div class="primary--text">
+            <router-link :to="'/notes/' + note._id">
+              {{note.title}}
+            </router-link>
+          </div>
         </v-flex>
         <v-flex xs12 sm4 md2>
           <div class="caption grey--text">Created at</div>
@@ -40,9 +44,6 @@
         </v-flex>
         <v-flex xs12 sm4 md2>
           <div class="text-xs-center">
-            <v-btn router :to="'/notes/' + note._id" fab dark small color="primary">
-              <v-icon dark>visibility</v-icon>
-            </v-btn>
             <v-btn router to="/notes/edit" fab dark small color="primary">
               <v-icon dark>edit</v-icon>
             </v-btn>
