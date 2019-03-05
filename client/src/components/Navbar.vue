@@ -1,22 +1,32 @@
 <template>
     <nav>
         <v-toolbar app dark color="primary">
-            <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
+            <v-toolbar-side-icon v-if="!activeSearchBox" @click="drawer = !drawer"></v-toolbar-side-icon>
             
             <!-- website name -->
-            <v-toolbar-title class="headline text-uppercase">
+            <v-toolbar-title v-if="!activeSearchBox" class="headline text-uppercase">
                 <router-link to="/">
                     <span class="white--text">hexzm</span>
                 </router-link>
                 <span class="font-weight-light text-lowercase">.org</span>
             </v-toolbar-title>
 
-            <v-spacer></v-spacer>
-            
+            <v-btn class="hidden-sm-and-up" v-if="activeSearchBox" @click="activeSearchBox = false" icon>
+                <v-icon>arrow_back</v-icon>
+            </v-btn>
+
+            <v-spacer v-if="!activeSearchBox"></v-spacer>
+
+            <v-btn v-if="!activeSearchBox" class="hidden-sm-and-up" @click="activeSearchBox = true" icon>
+                <v-icon>search</v-icon>
+            </v-btn>
+
+            <v-text-field v-if="activeSearchBox" solo-inverted flat hide-details label="Search"></v-text-field>
+
             <!-- search box -->
             <v-text-field class="hidden-sm-and-down" solo-inverted flat hide-details label="Search" prepend-inner-icon="search"></v-text-field>
             
-            <v-spacer></v-spacer>
+            <v-spacer class="hidden-sm-and-down"></v-spacer>
 
             <!-- auth link -->
             <AuthNavbarLinks :user="user" />
@@ -37,7 +47,6 @@
                 </v-flex>
             </v-layout>
             <v-list>
-
                 <!-- default navigation links -->
                 <DefaultNavigationLinks/>
                 
@@ -81,7 +90,8 @@ export default {
     data() {
         return {
             drawer: false,
-            avatar: null
+            avatar: null,
+            activeSearchBox: false
         };
     },
     computed: {
