@@ -43,7 +43,7 @@
 
         <!-- category title -->
         <v-flex xs6 md6>
-          <div class="caption grey--text">Category title</div>
+          <div class="caption grey--text">Title</div>
           <div class="primary--text">{{category.title}}</div>
         </v-flex>
 
