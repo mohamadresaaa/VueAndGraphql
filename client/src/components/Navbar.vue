@@ -11,13 +11,13 @@
                 <span class="font-weight-light text-lowercase">.org</span>
             </v-toolbar-title>
 
-            <v-btn class="hidden-sm-and-up" v-if="activeSearchBox" @click="activeSearchBox = false" icon>
+            <v-btn class="hidden-md-and-up" v-if="activeSearchBox" @click="activeSearchBox = false" icon>
                 <v-icon>arrow_back</v-icon>
             </v-btn>
 
             <v-spacer v-if="!activeSearchBox"></v-spacer>
 
-            <v-btn v-if="!activeSearchBox" class="hidden-sm-and-up" @click="activeSearchBox = true" icon>
+            <v-btn v-if="!activeSearchBox" class="hidden-md-and-up" @click="activeSearchBox = true" icon>
                 <v-icon>search</v-icon>
             </v-btn>
 
