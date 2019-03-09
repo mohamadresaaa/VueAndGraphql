@@ -24,7 +24,7 @@ export const addCategory = async (_, { title, url }, { Category }) => {
     return newCategory;
 };
 
-export const editCategory = async (_, { categoryId, title, url }, { Category }) => {
+export const updateCategory = async (_, { categoryId, title, url }, { Category }) => {
     try {
         // set url
         url = url.replace(slug, '-');

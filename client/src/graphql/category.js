@@ -20,9 +20,9 @@ export const ADD_CATEGORY = gql `
     }
 `;
 
-export const EDIT_CATEGORY = gql`
+export const UPDATE_CATEGORY = gql`
     mutation ($categoryId: ID!, $title: String!, $url: String!){
-        editCategory(categoryId: $categoryId, title: $title, url: $url){
+        updateCategory(categoryId: $categoryId, title: $title, url: $url){
             _id
             title
             url

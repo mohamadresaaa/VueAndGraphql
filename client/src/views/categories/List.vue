@@ -50,7 +50,7 @@
         <!-- actions button -->
         <v-flex xs6 sm4 md2>
           <div class="text-xs-center">
-            <v-btn @click="editCategoryDialog = true" fab dark small color="primary">
+            <v-btn @click="loadCategory(category)" fab dark small color="primary">
               <v-icon dark>edit</v-icon>
             </v-btn>
             <v-btn fab dark small color="red">
@@ -72,7 +72,7 @@
           <v-toolbar-title>Edit Category</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
-            <v-btn dark flat @click="editCategoryDialog = false">Update</v-btn>
+            <v-btn dark flat @click="handleUpdateCategory()" :disabled="!isFormValid">Update</v-btn>
           </v-toolbar-items>
         </v-toolbar>
         <v-card-text>
@@ -97,7 +97,12 @@
     name: 'categories',
     data() {
       return {
-        editCategoryDialog: false
+        editCategoryDialog: false,
+        title: '',
+        url: '',
+        titleRules: [title => !!title.trim() || 'Title is required'],
+        urlRules: [url => !!url.trim() || 'Url is required'],
+        isFormValid: true
       }
     },
     created() {
@@ -109,6 +114,20 @@
     methods: {
       handleGetCategories() {
         this.$store.dispatch('getCategories');
+      },
+      handleUpdateCategory() {
+        this.$store.dispatch('updateCategory', {
+          categoryId: this.categoryId,
+          title: this.title,
+          url: this.url
+        });
+        this.editCategoryDialog = false;
+      },
+      loadCategory({ _id, title, url }, editCategoryDialog = true) {
+        this.editCategoryDialog = editCategoryDialog;
+        this.categoryId = _id;
+        this.title = title;
+        this.url = url;
       },
       sortBy(prop) {
         return this.categories.sort((a, b) => a[prop] < b[prop] ? -1 : 1);

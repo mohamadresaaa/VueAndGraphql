@@ -1,5 +1,5 @@
 import { defaultClient as apolloClient } from '../../apollo';
-import { GET_CATEGORIES, ADD_CATEGORY } from '../../graphql/category';
+import { GET_CATEGORIES, ADD_CATEGORY, UPDATE_CATEGORY } from '../../graphql/category';
 import router from '../../router';
 
 export const getCategories = ({ commit }) => {
@@ -78,4 +78,45 @@ export const addCategory = ({ commit }, payload) => {
     // set error
     commit('setError', err);
   })
+};
+
+export const updateCategory = ({ state, commit }, payload) => {
+  // clear message
+  commit('clearMessage');
+
+  // set loading
+  commit('setLoading', true);
+
+  apolloClient.mutate({
+    mutation: UPDATE_CATEGORY,
+    variables: payload
+  })
+  .then(({ data }) => {
+    // find index
+    let index = state.categories.findIndex(category => category._id === data.updateCategory._id);
+
+    // update categories
+    let categories = [
+      ...state.categories.slice(0, index),
+      data.updateCategory,
+      ...state.categories.slice(index + 1)
+    ];
+
+    // set categories in state
+    commit('setCategories', categories);
+
+    // set loading
+    commit('setLoading', false);
+  })
+  .catch(err => {
+    // set message
+    commit('setMessage', {
+      content: err.message,
+      color: 'error'
+    });
+  
+    // set loading
+    commit('setLoading', false);
+  });
+
 };
