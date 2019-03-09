@@ -7,24 +7,27 @@ export const getCurrentUser = ({ commit }) => {
     
     apolloClient.query({ query: GET_CURRENT_USER })
     .then(({ data }) => {
-        // loading end
-        commit('setLoading', false);
-
         // set user
         commit('setUser', data.getCurrentUser);
-    })
-    .catch(err => {
+
         // loading end
         commit('setLoading', false);
+    })
+    .catch(err => {
+        // set message
+        commit('setMessage', {
+            content: err.message,
+            color: 'error'
+        });
 
-        // set error
-        commit('setError', err);
+        // loading end
+        commit('setLoading', false);
     });
 };
 
 export const changePassword = ({ commit }, payload) => {
-    // clear error
-    commit('clearError');
+    // clear message
+    commit('clearMessage');
 
     // set loading
     commit('setLoading', true);
@@ -44,8 +47,11 @@ export const changePassword = ({ commit }, payload) => {
         commit('setLoading', false);
     })
     .catch(err => {
-        // set error
-        commit('setError', err);
+        // set message
+        commit('setMessage', {
+            content: err.message,
+            color: 'error'
+        });
 
         // set loading
         commit('setLoading', false);

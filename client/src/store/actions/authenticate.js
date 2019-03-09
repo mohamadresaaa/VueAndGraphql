@@ -27,14 +27,14 @@ export const signUp = ({ commit }, payload) => {
         commit('setLoading', false);
     })
     .catch(err => {
-        // set loading
-        commit('setLoading', false);
-
         // set message
         commit('setMessage', {
             content: err.message,
             color: 'error'
         });
+
+        // set loading
+        commit('setLoading', false);
     });
 };
 
@@ -53,25 +53,26 @@ export const signIn = ({ commit }, payload) => {
       variables: payload
     })
     .then(({ data }) => {
-        // set loading
-        commit('setLoading', false);
 
         // set access token
         localStorage.setItem('accessToken', data.signIn.token);
+
+        // set loading
+        commit('setLoading', false);
 
         // refresh and redirect to home page
         router.go();
         router.push('/');
     })
     .catch(err => {
-        // set loading
-        commit('setLoading', false);
-
         // set message
         commit('setMessage', {
             content: err.message,
             color: 'error'
         });
+
+        // set loading
+        commit('setLoading', false);
     });
 };
 

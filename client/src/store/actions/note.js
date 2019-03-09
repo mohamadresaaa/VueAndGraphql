@@ -18,8 +18,11 @@ export const getNotes = ({ commit }, payload) => {
         commit('setLoading', false);
     })
     .catch(err => {
-        // set error
-        commit('setError', err);
+        // set message
+        commit('setMessage', {
+            content: err.message,
+            color: 'error'
+        });
         
         // set loading
         commit('setLoading', false);
@@ -42,8 +45,11 @@ export const getNote = ({ commit }, payload) => {
         commit('setLoading', false);
     })
     .catch(err => {
-        // set error
-        commit('setError', err);
+        // set message
+        commit('setMessage', {
+            content: err.message,
+            color: 'error'
+        });
         
         // set loading
         commit('setLoading', false);
@@ -51,8 +57,8 @@ export const getNote = ({ commit }, payload) => {
 };
 
 export const addNote = ({ commit }, payload) => {
-    // clear error
-    commit('clearError');
+    // clear message
+    commit('clearMessage');
 
     // set loading
     commit('setLoading', true);
@@ -93,20 +99,20 @@ export const addNote = ({ commit }, payload) => {
         }
     })
     .then(() => {
-        // set loading
-        commit('setLoading', false);
-
         // set message
         commit('setMessage', {
             content: 'The note has been successfully created.',
             color: 'success'
         });
 
+        // set loading
+        commit('setLoading', false);
+
         // redirect to notes
         router.push('/notes');
     })
     .catch(err => {
-        // set error
+        // set message
         commit('setMessage', {
             content: err.message,
             color: 'error'

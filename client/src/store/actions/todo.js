@@ -18,17 +18,20 @@ export const getTodos = ({ commit }, payload) => {
         commit('setLoading', false);
     })
     .catch(err => {
+        // set message
+        commit('setMessage', {
+            content: err.message,
+            color: 'error'
+        });
+
         // loading end
         commit('setLoading', false);
-        
-        // set error
-        commit('setError', err);
     });
 };
 
 export const addTodo = ({ commit }, payload) => {
-    // clear error
-    commit('clearError');
+    // clear message
+    commit('clearMessage');
 
     // set loading
     commit('setLoading', true);
@@ -69,14 +72,14 @@ export const addTodo = ({ commit }, payload) => {
         }
     })
     .then(() => {
-        // loading end
-        commit('setLoading', false);
-
         // set message
         commit('setMessage', {
             content: 'The todo has been successfully created.',
             color: 'success'
         });
+
+        // loading end
+        commit('setLoading', false);
 
         // redirect to /todos
         router.push('/todos');

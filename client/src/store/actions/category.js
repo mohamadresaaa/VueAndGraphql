@@ -15,17 +15,20 @@ export const getCategories = ({ commit }) => {
     commit('setLoading', false);
   })
   .catch(err => {
+    // set message
+    commit('setMessage', {
+      content: err.message,
+      color: 'error'
+    });
+
     // loading end
     commit('setLoading', false);
-    
-    // set error
-    commit('setError', err);
   });
 };
 
 export const addCategory = ({ commit }, payload) => {
-  // clear error
-  commit('clearError');
+  // clear message
+  commit('clearMessage');
 
   // set loading
   commit('setLoading', true);
@@ -64,19 +67,22 @@ export const addCategory = ({ commit }, payload) => {
       content: 'The category has been successfully created.',
       color: 'success'
     });
+    
+    // set loading
+    commit('setLoading', false);
 
     // redirect to /admin/categories
     router.push('/admin/categories');
-
-    // set loading
-    commit('setLoading', false);
   })
   .catch(err => {
+    // set message
+    commit('setMessage', {
+      content: err.message,
+      color: 'error'
+    });
+
     // loading end
     commit('setLoading', false);
-
-    // set error
-    commit('setError', err);
   })
 };
 

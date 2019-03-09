@@ -6,9 +6,7 @@ export default {
     setNotes: (state, payload) => state.notes = payload,
     setNote: (state, payload) => state.note = payload,
     setLoading: (state, payload) => state.loading = payload,
-    setError: (state, payload) => state.error = payload,
     setAuthError: (state, payload) => state.authError = payload,
-    clearError: state => state.error = null,
     setMessage: (state, payload) => state.message = payload,
     clearMessage: state => state.message = null
 };
