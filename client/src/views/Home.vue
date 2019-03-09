@@ -1,7 +1,7 @@
 <template>
   <v-container text-xs-center>
+    <Loading v-if="loading" :loading="loading" />
     <v-flex xs12>
-      <v-btn color="success" router to="/profile">profile</v-btn>
       <ul v-if="!loading">
         <li v-for="(category, index) in categories" :key="index">
           {{ category.title }} - {{ category.url }}
@@ -13,6 +13,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import Loading from '../components/Loading';
 
 export default {
   name: 'home',
@@ -27,6 +28,7 @@ export default {
       // reach out to Vuex store, fire action that gets posts for carousel
       this.$store.dispatch("getCategories");
     }
-  }
+  },
+  components: { Loading }
 };
 </script>
