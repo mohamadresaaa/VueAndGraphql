@@ -6,7 +6,6 @@
                 <v-toolbar-title>Change password</v-toolbar-title>
               </v-toolbar>
               <v-card-text>
-                <formAlert v-if="error" :message="error.message" class="mb-3" />
                 <v-form v-model="isFormValid" lazy-validation ref="form">
                   <v-text-field v-model="oldPassword" :rules="oldPasswordRules" name="oldPassword" label="Old password" type="password"></v-text-field>
                   <v-text-field v-model="newPassword" :rules="newPasswordRules" name="newPassword" label="New password" type="password"></v-text-field>
@@ -29,7 +28,6 @@
 <script>
 
 import { mapGetters } from 'vuex';
-import formAlert from '../../components/FormAlert';
 
 export default {
     name: 'changePassword',
@@ -54,7 +52,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['loading','error','user'])
+        ...mapGetters(['loading','user'])
     },
     methods: {
         handleChangePassword(){
@@ -66,7 +64,6 @@ export default {
                 });
             }
         }
-    },
-    components: { formAlert }
+    }
 }
 </script>
