@@ -39,6 +39,16 @@ export const updateCategory = async (_, { categoryId, title, url }, { Category }
         // return it
         return category;
     } catch (err) {
-        throw new Error(err.message);
+        // title duplicate 
+        if(new RegExp('title_1 dup key').test(err.message))
+            throw new Error('Title is already taken');
+
+        // url duplicate 
+        else if(new RegExp('url_1 dup key').test(err.message))
+            throw new Error('Url is already taken');
+
+        // otherwise
+        else
+            throw new Error('Category editing failed successfully');
     }
 };
