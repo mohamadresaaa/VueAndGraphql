@@ -1,7 +1,11 @@
 <template>
   <div>
     <h1 class="font-weight-medium text-capitalize">todo list</h1>
-    <v-layout row wrap class="mb-3">
+
+    <!-- loading -->
+    <Loading v-if="loading" :loading="loading" />
+
+    <v-layout v-if="!loading" row wrap class="mb-3">
       <v-tooltip bottom>
         <v-btn router to="/todos/add" slot="activator" flat color="grey">
           <v-icon small left>create_new_folder</v-icon>
@@ -115,6 +119,7 @@
 
 <script>
   import { mapGetters } from 'vuex';
+  import Loading from '../../components/Loading';
   import { relativeTime } from '../../lib/dateTime.js';
 
   export default {
@@ -128,7 +133,7 @@
       this.handleGetTodos();
     },
     computed: {
-      ...mapGetters(['user', 'todos'])
+      ...mapGetters(['loading', 'user', 'todos'])
     },
     methods: {
       relativeTime,
@@ -141,5 +146,6 @@
         return this.todos.sort((a, b) => a[prop] < b[prop] ? -1 : 1);
       }
     },
+    components: { Loading }
   }
 </script>

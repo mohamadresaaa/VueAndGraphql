@@ -1,7 +1,11 @@
 <template>
   <div>
     <h1 class="font-weight-medium text-capitalize">notes list</h1>
-    <v-layout row wrap class="mb-3">
+
+    <!-- loading -->
+    <Loading v-if="loading" :loading="loading" />
+
+    <v-layout v-if="!loading" row wrap class="mb-3">
       <v-tooltip bottom>
         <v-btn router to="/notes/add" slot="activator" flat color="grey">
           <v-icon small left>create_new_folder</v-icon>
@@ -59,6 +63,7 @@
 
 <script>
   import { mapGetters } from 'vuex';
+  import Loading from '../../components/Loading';
   import { calendarTime } from '../../lib/dateTime.js';
 
   export default {
@@ -67,7 +72,7 @@
       this.handleGetNotes();
     },
     computed: {
-      ...mapGetters(['user', 'notes'])
+      ...mapGetters(['loading', 'user', 'notes'])
     },
     methods: {
       calendarTime,
@@ -79,6 +84,7 @@
       sortBy(prop) {
         return this.notes.sort((a, b) => a[prop] < b[prop] ? -1 : 1);
       }
-    }
+    },
+    components: { Loading }
   }
 </script>
