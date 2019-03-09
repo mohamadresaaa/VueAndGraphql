@@ -40,7 +40,7 @@ export default {
         return {
             content: '',
             status: false,
-            contentRules: [content => !!content || 'Content is required'],
+            contentRules: [content => !!content.trim() || 'Content is required'],
             isFormValid: true
         }
     },

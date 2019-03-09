@@ -39,8 +39,8 @@ export default {
         return {
             title: '',
             url: '',
-            titleRules: [title => !!title || 'Title is required'],
-            urlRules: [url => !!url || 'Url is required'],
+            titleRules: [title => !!title.trim() || 'Title is required'],
+            urlRules: [url => !!url.trim() || 'Url is required'],
             isFormValid: true
         }
     },
