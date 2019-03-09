@@ -23,3 +23,22 @@ export const addCategory = async (_, { title, url }, { Category }) => {
     // return it
     return newCategory;
 };
+
+export const editCategory = async (_, { categoryId, title, url }, { Category }) => {
+    try {
+        // set url
+        url = url.replace(slug, '-');
+
+        // find and update category
+        let category = await Category.findOneAndUpdate(
+            { _id: categoryId },
+            { title, url },
+            { new: true }
+        );
+
+        // return it
+        return category;
+    } catch (err) {
+        throw new Error(err.message);
+    }
+};
