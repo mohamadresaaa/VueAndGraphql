@@ -1,24 +1,38 @@
-export const getNotes = async (_, { userId }, { Note }) => (await Note.find({ user: userId }));
+export const getNotes = async (_, { userId }, { Note }) => {
+    try {
+        return await Note.find({ user: userId });
+    } catch (err) {
+        throw new Error(err);
+    }
+};
 
 export const getNote = async (_, { id, userId }, { Note }) => {
-    // find note
-    let note = await Note.findOne({ _id: id, user: userId });
+    try {
+        // find note
+        let note = await Note.findOne({ _id: id, user: userId });
 
-    // if not, handle it
-    if(!note) throw new Error('not found');
+        // if not, handle it
+        if(!note) throw new Error('Not found');
 
-    // otherwise return note
-    return note;
+        // otherwise return note
+        return note;
+    } catch (err) {
+        throw new Error(err);
+    }
 };
 
 export const addNote = async (_, { title, content, userId }, { Note }) => {
-    // create note
-    let newNote = await Note({
-        title,
-        content,
-        user: userId
-    }).save();
+    try {
+        // create note
+        let newNote = await Note({
+            title,
+            content,
+            user: userId
+        }).save();
 
-    // return it
-    return newNote;
+        // return it
+        return newNote;
+    } catch (err) {
+        throw new Error(err);
+    }
 };

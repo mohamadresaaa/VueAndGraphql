@@ -8,82 +8,98 @@ import resetPasswordTemplate from '../mailTemplate/passwordRecovery';
 
 
 export const signUp = async (_, { username, email, password }, { User }) => {
-    // check username is valid
-    if(!validationUsername.test(username)) 
-        throw new Error('Username is not valid');
+    try {
+        // check username is valid
+        if(!validationUsername.test(username)) 
+            throw new Error('Username is not valid');
 
-    // checked username exists
-    const usernameExists = await User.findOne({ username });
-    if(usernameExists)
-        throw new Error('Username is already taken');
+        // checked username exists
+        const usernameExists = await User.findOne({ username });
+        if(usernameExists)
+            throw new Error('Username is already taken');
 
-    // checked email exists
-    const emailExists = await User.findOne({ email });
-    if(emailExists) 
-        throw new Error('Email is invalid or already taken');
+        // checked email exists
+        const emailExists = await User.findOne({ email });
+        if(emailExists) 
+            throw new Error('Email is invalid or already taken');
 
-    // create user
-    await User({
-        name: email.replace(separatingEmail, ''),
-        username,
-        email,
-        password,
-        avatar: await generateAvatar(username)
-        // generate name
-    }).save();
+        // create user
+        await User({
+            name: email.replace(separatingEmail, ''),
+            username,
+            email,
+            password,
+            avatar: await generateAvatar(username)
+            // generate name
+        }).save();
 
-    // return message
-    return { message: 'Your account was successfully registered. Please refer to your email for activation' };
+        // return message
+        return { message: 'Your account was successfully registered. Please refer to your email for activation' };
+    } catch (err) {
+        throw new Error(err);
+    }
 };
 
 export const signIn = async (_, { email, password }, { User }) => {
-    // find user
-    const user = await User.findOne({ email });
+    try {
+        // find user
+        const user = await User.findOne({ email });
 
-    // if not user exists
-    if(!user) throw new Error('Incorrect email or password');
+        // if not user exists
+        if(!user) throw new Error('Incorrect email or password');
 
-    // if user is disable
-    if(!user.isActive) throw new Error('Your account is disabled, please confirm your email');
+        // if user is disable
+        if(!user.isActive) throw new Error('Your account is disabled, please confirm your email');
 
-    // compare password
-    const isMatch = await user.comparePassword(password);
+        // compare password
+        const isMatch = await user.comparePassword(password);
 
-    // if the password was not equal
-    if(!isMatch) throw new Error('Incorrect email or password');
-    
-    // otherwise generate token
-    return { token: await generateToken(user, 'secretKey') };
+        // if the password was not equal
+        if(!isMatch) throw new Error('Incorrect email or password');
+        
+        // otherwise generate token
+        return { token: await generateToken(user, 'secretKey') };
+    } catch (err) {
+        throw new Error(err);
+    }
 };
 
 export const forgotPassword = async (_, { email }, { User }) => {
-    // find user
-    let user = await User.findOne({ email });
+    try {
+        // find user
+        let user = await User.findOne({ email });
 
-    // if not, handle it
-    if(!user) throw new Error('The email you entered is not correct');
+        // if not, handle it
+        if(!user) throw new Error('The email you entered is not correct');
 
-    // send mail
-    await sendMail(await forgotPasswordTemplate(user));
+        // send mail
+        await sendMail(await forgotPasswordTemplate(user));
 
-    // return message
-    return { message: 'Password recovery link sent' };
+        // return message
+        return { message: 'Password recovery link sent' };
+    } catch (err) {
+        throw new Error(err);
+    }
 };
 
 export const resetPassword = async (_, { newPassword, activeCode }, { User }) => {
-    // find user
-    let user = await User.findOne({ activeCode });
+    try {
+        // find user
+        let user = await User.findOne({ activeCode });
 
-    // if not, handle it
-    if(!user) throw new Error('The code is not valid');
-    
-    // set new password
-    user.password = newPassword;
-    await user.save();
+        // if not, handle it
+        if(!user) throw new Error('The code is not valid');
+        
+        // set new password
+        user.password = newPassword;
+        await user.save();
 
-    // send mail
-    await sendMail(await resetPasswordTemplate(user));
+        // send mail
+        await sendMail(await resetPasswordTemplate(user));
 
-    // return message
-    return { message: 'Password recovery was successful' };
+        // return message
+        return { message: 'Password recovery was successful' };
+    } catch (err) {
+        throw new Error(err);
+    }
 };
