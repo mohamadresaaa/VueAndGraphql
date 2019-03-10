@@ -1,7 +1,7 @@
 import { signUp, signIn, forgotPassword, resetPassword } from './authenticate';
 import { addCategory, updateCategory } from './category';
 import { addTodo } from './todo';
-import { addNote } from './note';
+import { addNote, updateNote } from './note';
 import { changePassword } from './user';
 
 module.exports = {
@@ -13,5 +13,6 @@ module.exports = {
     addCategory,
     updateCategory,
     addTodo,
-    addNote
+    addNote,
+    updateNote
 };

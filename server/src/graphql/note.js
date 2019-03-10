@@ -36,3 +36,15 @@ export const addNote = async (_, { title, content, userId }, { Note }) => {
         throw new Error(err);
     }
 };
+
+export const updateNote = async (_, { noteId, userId, title, content }, { Note }) => {
+    try {
+        // find note and update it
+        return await Note.findOneAndUpdate(
+            { _id: noteId, user: userId },
+            { title, content }
+        );
+    } catch (err) {
+        throw new Error(err);
+    }
+};
