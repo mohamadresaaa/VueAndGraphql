@@ -21,3 +21,15 @@ export const addTodo = async (_, { content, status, userId }, { Todo }) => {
         throw new Error(err);
     }
 };
+
+export const updateTodo = async (_, { todoId, userId, content, status }, { Todo }) => {
+    try {
+        // find and update it
+        return await Todo.findOneAndUpdate(
+            { _id: todoId, user: userId },
+            { content, status }
+        );
+    } catch (err) {
+        throw new Error(err);
+    }
+};
