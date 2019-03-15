@@ -22,6 +22,19 @@ export const addTodo = async (_, { content, status, userId }, { Todo }) => {
     }
 };
 
+export const doneTodo = async (_, { todoId, userId }, { Todo }) => {
+    try {
+        // find and update status
+        return await Todo.findOneAndUpdate(
+            { _id: todoId, user: userId },
+            { status: true },
+            { new: true }
+        );
+    } catch (err) {
+        throw new Error(err);
+    }
+};
+
 export const updateTodo = async (_, { todoId, userId, content, status }, { Todo }) => {
     try {
         // find and update it
