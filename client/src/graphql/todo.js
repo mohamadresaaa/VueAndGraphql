@@ -28,6 +28,20 @@ export const ADD_TODO = gql `
     }
 `;
 
+export const DONE_TODO = gql`
+    mutation ($todoId: ID!, $userId: ID!) {
+        doneTodo (todoId: $todoId, userId: $userId) {
+            _id
+            content
+            status
+            createdAt
+            user {
+                _id
+            }
+        }
+    }
+`;
+
 export const UPDATE_TODO = gql`
     mutation ($todoId: ID!, $userId: ID!, $content: String!, $status: Boolean!) {
         updateTodo (todoId: $todoId, userId: $userId, content: $content, status: $status) {

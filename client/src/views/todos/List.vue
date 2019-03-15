@@ -58,7 +58,7 @@
         </v-flex>
         <v-flex xs12 sm4 md2>
           <div class="text-xs-center">
-            <v-btn v-if="!todo.status" fab dark small color="success">
+            <v-btn v-if="!todo.status" @click="handleDoneTodo(todo)" fab dark small color="success">
               <v-icon dark>done</v-icon>
             </v-btn>
             <v-btn @click="loadTodo(todo)" fab dark small color="primary">
@@ -143,6 +143,12 @@
       relativeTime,
       handleGetTodos() {
         this.$store.dispatch('getTodos', {
+          userId: this.user._id
+        });
+      },
+      handleDoneTodo({ _id }) {
+        this.$store.dispatch('doneTodo', {
+          todoId: _id,
           userId: this.user._id
         });
       },
