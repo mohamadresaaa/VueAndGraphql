@@ -1,5 +1,5 @@
 import { defaultClient as apolloClient } from '../../apollo';
-import { GET_TODOS, ADD_TODO } from '../../graphql/todo';
+import { GET_TODOS, ADD_TODO, UPDATE_TODO } from '../../graphql/todo';
 import router from '../../router';
 
 export const getTodos = ({ commit }, payload) => {
@@ -92,6 +92,52 @@ export const addTodo = ({ commit }, payload) => {
         });
         
         // loading end
+        commit('setLoading', false);
+    });
+};
+
+export const updateTodo = ({ state, commit }, payload) => {
+    // clear message
+    commit('clearMessage');
+
+    // set loading
+    commit('setLoading', true);
+
+    apolloClient.mutate({
+        mutation: UPDATE_TODO,
+        variables: payload
+    })
+    .then(({ data }) => {
+        // find index
+        let index = state.todos.findIndex(todo => todo._id === data.updateTodo._id);
+
+        // update todos
+        let todos = [
+            ...state.todos.slice(0, index),
+            data.updateTodo,
+            ...state.todos.slice(index + 1)
+        ];
+
+        // set todos in state
+        commit('setTodos', todos);
+
+        // set success message
+        commit('setMessage', {
+            content: 'updated',
+            color: 'success'
+        });
+
+        // set loading
+        commit('setLoading', false);
+    })
+    .catch(err => {
+        // set error message
+        commit('setMessage', {
+            content: err.message,
+            color: 'error'
+        });
+
+        // set loading
         commit('setLoading', false);
     });
 };

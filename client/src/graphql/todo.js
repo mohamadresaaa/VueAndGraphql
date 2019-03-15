@@ -27,3 +27,17 @@ export const ADD_TODO = gql `
         }
     }
 `;
+
+export const UPDATE_TODO = gql`
+    mutation ($todoId: ID!, $userId: ID!, $content: String!, $status: Boolean!) {
+        updateTodo (todoId: $todoId, userId: $userId, content: $content, status: $status) {
+            _id
+            content
+            status
+            createdAt
+            user {
+                _id
+            }
+        }
+    }
+`;

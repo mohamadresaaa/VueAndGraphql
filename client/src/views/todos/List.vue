@@ -82,7 +82,7 @@
           <v-toolbar-title>Edit Todo</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
-            <v-btn dark flat @click="editTodoDialog = false">Update</v-btn>
+            <v-btn dark flat @click="handleUpdateTodo">Update</v-btn>
           </v-toolbar-items>
         </v-toolbar>
         <v-card-text>
@@ -145,6 +145,15 @@
         this.$store.dispatch('getTodos', {
           userId: this.user._id
         });
+      },
+      handleUpdateTodo() {
+        this.$store.dispatch('updateTodo', {
+          todoId: this.todoId,
+          userId: this.user._id,
+          content: this.content, 
+          status: this.status
+        });
+        this.editTodoDialog = false;
       },
       loadTodo({ _id, user, content, status }, editTodoDialog = true) {
         this.editTodoDialog = editTodoDialog;
