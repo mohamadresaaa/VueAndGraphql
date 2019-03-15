@@ -42,7 +42,8 @@ export const updateNote = async (_, { noteId, userId, title, content }, { Note }
         // find note and update it
         return await Note.findOneAndUpdate(
             { _id: noteId, user: userId },
-            { title, content }
+            { title, content },
+            { new: true }
         );
     } catch (err) {
         throw new Error(err);

@@ -69,7 +69,7 @@
           <v-toolbar-title>Edit Note</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
-            <v-btn dark flat @click="editNoteDialog = false">Update</v-btn>
+            <v-btn dark flat @click="handleUpdateNote()" :disabled="!isFormValid">Update</v-btn>
           </v-toolbar-items>
         </v-toolbar>
         <v-card-text>
@@ -116,10 +116,18 @@
           userId: this.user._id
         });
       },
+      handleUpdateNote() {
+        this.$store.dispatch('updateNote', {
+          noteId: this.NoteId,
+          userId: this.user._id,
+          title: this.title,
+          content: this.content
+        });
+        this.editNoteDialog = false;
+      }, 
       loadNote({ _id, user, title, content }, editNoteDialog = true) {
         this.editNoteDialog = editNoteDialog;
         this.NoteId = _id;
-        this.userId = user; 
         this.title = title;
         this.content = content;
       },
