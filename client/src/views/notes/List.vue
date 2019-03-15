@@ -48,7 +48,7 @@
         </v-flex>
         <v-flex xs12 sm4 md2>
           <div class="text-xs-center">
-            <v-btn router to="/notes/edit" fab dark small color="primary">
+            <v-btn @click="loadNote(note)" fab dark small color="primary">
               <v-icon dark>edit</v-icon>
             </v-btn>
             <v-btn fab dark small color="red">
@@ -58,6 +58,31 @@
         </v-flex>
       </v-layout>
     </v-card>
+
+    <!-- edit Note dialog -->
+    <v-dialog v-model="editNoteDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
+      <v-card>
+        <v-toolbar dark color="primary">
+          <v-btn icon dark @click="editNoteDialog = false">
+            <v-icon>close</v-icon>
+          </v-btn>
+          <v-toolbar-title>Edit Note</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-toolbar-items>
+            <v-btn dark flat @click="editNoteDialog = false">Update</v-btn>
+          </v-toolbar-items>
+        </v-toolbar>
+        <v-card-text>
+          <v-form v-model="isFormValid" lazy-validation ref="form" @submit.prevent="handleAddTodo" class="px-3">
+            <!-- title field -->
+            <v-text-field v-model="title" :rules="titleRules" label="Title"></v-text-field>
+                    
+            <!-- content field -->
+            <v-textarea outline v-model="content" :rules="contentRules" label="Content"></v-textarea>
+          </v-form>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -68,6 +93,16 @@
 
   export default {
     name: 'notes',
+    data() {
+      return {
+        editNoteDialog: false,
+        title: '',
+        content: '',
+        titleRules: [title => !!title.trim() || 'Title is required'],
+        contentRules: [content => !!content.trim() || 'Content is required'],
+        isFormValid: true
+      }
+    },
     mounted() {
       this.handleGetNotes();
     },
@@ -80,6 +115,13 @@
         this.$store.dispatch('getNotes', {
           userId: this.user._id
         });
+      },
+      loadNote({ _id, user, title, content }, editNoteDialog = true) {
+        this.editNoteDialog = editNoteDialog;
+        this.NoteId = _id;
+        this.userId = user; 
+        this.title = title;
+        this.content = content;
       },
       sortBy(prop) {
         return this.notes.sort((a, b) => a[prop] < b[prop] ? -1 : 1);
