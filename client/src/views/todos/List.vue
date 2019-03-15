@@ -61,7 +61,7 @@
             <v-btn v-if="!todo.status" fab dark small color="success">
               <v-icon dark>done</v-icon>
             </v-btn>
-            <v-btn @click="editTodoDialog = true" fab dark small color="primary">
+            <v-btn @click="loadTodo(todo)" fab dark small color="primary">
               <v-icon dark>edit</v-icon>
             </v-btn>
             <v-btn fab dark small color="red">
@@ -126,7 +126,11 @@
     name: 'todos',
     data() {
       return {
-        editTodoDialog: false
+        editTodoDialog: false,
+        content: '',
+        status: null,
+        contentRules: [content => !!content.trim() || 'Content is required'],
+        isFormValid: true
       }
     },
     mounted() {
@@ -141,6 +145,13 @@
         this.$store.dispatch('getTodos', {
           userId: this.user._id
         });
+      },
+      loadTodo({ _id, user, content, status }, editTodoDialog = true) {
+        this.editTodoDialog = editTodoDialog;
+        this.todoId = _id;
+        this.userId = user;
+        this.content = content;
+        this.status = status;
       },
       sortBy(prop) {
         return this.todos.sort((a, b) => a[prop] < b[prop] ? -1 : 1);
