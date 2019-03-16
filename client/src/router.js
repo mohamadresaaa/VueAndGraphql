@@ -9,7 +9,6 @@ import Todos from './views/todos/List.vue';
 import AddTodo from './views/todos/Add.vue';
 import Notes from './views/notes/List.vue';
 import AddNote from './views/notes/Add.vue';
-import DetailsNote from './views/notes/Details.vue';
 import ChangePassword from './views/account/ChangePassword.vue';
 
 // auth views
@@ -113,12 +112,6 @@ export default new Router({
       name: 'addNote',
       component: AddNote,
       beforeEnter: afterAuthenticate
-    },
-    {
-      path: '/notes/:id',
-      name: 'detailsNote',
-      component: DetailsNote,
-      beforeEnter: afterAuthenticate
-    },
+    }
   ]
 })

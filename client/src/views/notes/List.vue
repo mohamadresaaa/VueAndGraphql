@@ -37,9 +37,7 @@
         <v-flex xs12 md6>
           <div class="caption grey--text">Title</div>
           <div class="primary--text">
-            <router-link :to="'/notes/' + note._id">
-              {{note.title}}
-            </router-link>
+            {{note.title}}
           </div>
         </v-flex>
         <v-flex xs12 sm4 md2>
@@ -48,7 +46,10 @@
         </v-flex>
         <v-flex xs12 sm4 md2>
           <div class="text-xs-center">
-            <v-btn @click="loadNote(note)" fab dark small color="primary">
+            <v-btn @click="loadNote(note)" fab dark small color="black">
+              <v-icon dark>visibility</v-icon>
+            </v-btn>
+            <v-btn @click="loadNote(note, 'edit')" fab dark small color="primary">
               <v-icon dark>edit</v-icon>
             </v-btn>
             <v-btn fab dark small color="red">
@@ -58,6 +59,32 @@
         </v-flex>
       </v-layout>
     </v-card>
+
+    <!-- details Note dialog -->
+    <v-dialog v-model="detailsNoteDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
+      <v-card>
+        <v-toolbar dark color="black">
+          <v-btn icon dark @click="detailsNoteDialog = false">
+            <v-icon>close</v-icon>
+          </v-btn>
+          <v-toolbar-title>Details Note</v-toolbar-title>
+        </v-toolbar>
+        <v-flex xs12 md12 justify-center>
+          <v-card class="elevation-0 transparent">
+            <v-card-text class="text-xs-center">
+              <h2 class="grey--text">{{ this.title }}</h2>
+            </v-card-text>
+          </v-card>
+        </v-flex>
+        <v-flex xs12 md12>
+          <v-card class="elevation-0 transparent">
+            <v-card-text>
+              <p>{{ this.content }}</p>
+            </v-card-text>
+          </v-card>
+        </v-flex>
+      </v-card>
+    </v-dialog>
 
     <!-- edit Note dialog -->
     <v-dialog v-model="editNoteDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
@@ -96,6 +123,7 @@
     data() {
       return {
         editNoteDialog: false,
+        detailsNoteDialog: false,
         title: '',
         content: '',
         titleRules: [title => !!title.trim() || 'Title is required'],
@@ -125,11 +153,11 @@
         });
         this.editNoteDialog = false;
       }, 
-      loadNote({ _id, user, title, content }, editNoteDialog = true) {
-        this.editNoteDialog = editNoteDialog;
+      loadNote({ _id, title, content }, button) {
         this.NoteId = _id;
         this.title = title;
         this.content = content;
+        button === 'edit' ? this.editNoteDialog = true : this.detailsNoteDialog = true;
       },
       sortBy(prop) {
         return this.notes.sort((a, b) => a[prop] < b[prop] ? -1 : 1);

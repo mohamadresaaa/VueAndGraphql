@@ -11,15 +11,6 @@ export const GET_NOTES = gql `
     }
 `;
 
-export const GET_NOTE = gql `
-    query($id: ID!, $userId: ID!) {
-        getNote(id: $id, userId: $userId) {
-            title
-            content
-        }
-    }
-`;
-
 export const ADD_NOTE = gql `
     mutation ($title: String!, $content: String!, $userId: ID!){
         addNote(title: $title, content: $content, userId: $userId){
