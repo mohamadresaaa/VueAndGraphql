@@ -62,7 +62,6 @@ type Query {
     getCategories: [Category]
     getTodos(userId: ID!): [Todo]
     getNotes(userId: ID!): [Note]
-    getNote(id: ID!, userId: ID!): Note
 }
 
 type Mutation {

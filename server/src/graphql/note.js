@@ -6,21 +6,6 @@ export const getNotes = async (_, { userId }, { Note }) => {
     }
 };
 
-export const getNote = async (_, { id, userId }, { Note }) => {
-    try {
-        // find note
-        let note = await Note.findOne({ _id: id, user: userId });
-
-        // if not, handle it
-        if(!note) throw new Error('Not found');
-
-        // otherwise return note
-        return note;
-    } catch (err) {
-        throw new Error(err);
-    }
-};
-
 export const addNote = async (_, { title, content, userId }, { Note }) => {
     try {
         // create note
