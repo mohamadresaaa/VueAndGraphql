@@ -17,6 +17,9 @@ import signIn from './views/auth/SignIn.vue';
 import forgotPassword from './views/auth/ForgotPassword.vue';
 import resetPassword from './views/auth/ResetPassword.vue';
 
+// not found page
+import notFound from './views/NotFound';
+
 // middleware
 import { beforeAuthenticate, afterAuthenticate } from './authMiddleware';
 import { adminLevel } from './ACL';
@@ -112,6 +115,11 @@ export default new Router({
       name: 'addNote',
       component: AddNote,
       beforeEnter: afterAuthenticate
+    },
+    {
+      path: '*',
+      name: 'notFound',
+      component: notFound
     }
   ]
 })
