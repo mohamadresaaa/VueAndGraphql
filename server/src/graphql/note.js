@@ -1,8 +1,10 @@
+import errorHandle from '../lib/errorHandle';
+
 export const getNotes = async (_, { userId }, { Note }) => {
     try {
         return await Note.find({ user: userId });
     } catch (err) {
-        throw new Error(err);
+        errorHandle(err);
     }
 };
 
@@ -18,7 +20,7 @@ export const addNote = async (_, { title, content, userId }, { Note }) => {
         // return it
         return newNote;
     } catch (err) {
-        throw new Error(err);
+        errorHandle(err);
     }
 };
 
@@ -31,6 +33,6 @@ export const updateNote = async (_, { noteId, userId, title, content }, { Note }
             { new: true }
         );
     } catch (err) {
-        throw new Error(err);
+        errorHandle(err);
     }
 };

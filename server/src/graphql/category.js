@@ -1,10 +1,11 @@
 import { slug } from '../lib/regex';
+import errorHandle from '../lib/errorHandle';
 
 export const getCategories = async (_, args, { Category }) => {
     try {
         return await Category.find();
     } catch (err) {
-        throw new Error(err);
+        errorHandle(err);
     }
 };
 
@@ -30,7 +31,7 @@ export const addCategory = async (_, { title, url }, { Category }) => {
         // return it
         return newCategory;
     } catch (err) {
-        throw new Error(err);
+        errorHandle(err);
     }
 };
 
@@ -59,6 +60,6 @@ export const updateCategory = async (_, { categoryId, title, url }, { Category }
 
         // otherwise
         else
-            throw new Error('Category editing failed successfully');
+            errorHandle(err);
     }
 };

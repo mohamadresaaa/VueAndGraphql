@@ -1,8 +1,10 @@
+import errorHandle from '../lib/errorHandle';
+
 export const getCurrentUser = async (_, args, { User, currentUserId }) => {
     try {
         return await User.findById(currentUserId);
     } catch (err) {
-        throw new Error(err);
+        errorHandle(err);
     }
 };
 
@@ -27,6 +29,6 @@ export const changePassword = async (_, { oldPassword, newPassword, userId }, { 
         // return message
         return { message: 'Password was successfully changed' };
     } catch (err) {
-        throw new Error(err);
+        errorHandle(err);
     }
 };

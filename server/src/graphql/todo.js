@@ -1,8 +1,10 @@
+import errorHandle from '../lib/errorHandle';
+
 export const getTodos = async (_, { userId }, { Todo }) => {
     try {
         return await Todo.find({ user: userId });
     } catch (err) {
-        throw new Error(err);
+        errorHandle(err);
     }
 };
 
@@ -18,7 +20,7 @@ export const addTodo = async (_, { content, status, userId }, { Todo }) => {
         // return it
         return newTodo;
     } catch (err) {
-        throw new Error(err);
+        errorHandle(err);
     }
 };
 
@@ -31,7 +33,7 @@ export const doneTodo = async (_, { todoId, userId }, { Todo }) => {
             { new: true }
         );
     } catch (err) {
-        throw new Error(err);
+        errorHandle(err);
     }
 };
 
@@ -44,6 +46,6 @@ export const updateTodo = async (_, { todoId, userId, content, status }, { Todo 
             { new: true }
         );
     } catch (err) {
-        throw new Error(err);
+        errorHandle(err);
     }
 };

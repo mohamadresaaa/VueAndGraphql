@@ -1,8 +1,9 @@
 import generateAvatar from '../lib/generateAvatar';
 import generateToken from '../lib/generateToken';
 import { validationUsername, separatingEmail } from '../lib/regex';
-
 import sendMail from '../lib/mail';
+import errorHandle from '../lib/errorHandle';
+
 import forgotPasswordTemplate from '../mailTemplate/forgotPassword';
 import resetPasswordTemplate from '../mailTemplate/passwordRecovery';
 
@@ -36,7 +37,7 @@ export const signUp = async (_, { username, email, password }, { User }) => {
         // return message
         return { message: 'Your account was successfully registered. Please refer to your email for activation' };
     } catch (err) {
-        throw new Error(err);
+        errorHandle(err);
     }
 };
 
@@ -60,7 +61,7 @@ export const signIn = async (_, { email, password }, { User }) => {
         // otherwise generate token
         return { token: await generateToken(user, 'secretKey') };
     } catch (err) {
-        throw new Error(err);
+        errorHandle(err);
     }
 };
 
@@ -78,7 +79,7 @@ export const forgotPassword = async (_, { email }, { User }) => {
         // return message
         return { message: 'Password recovery link sent' };
     } catch (err) {
-        throw new Error(err);
+        errorHandle(err);
     }
 };
 
@@ -100,6 +101,6 @@ export const resetPassword = async (_, { newPassword, activeCode }, { User }) =>
         // return message
         return { message: 'Password recovery was successful' };
     } catch (err) {
-        throw new Error(err);
+        errorHandle(err);
     }
 };
