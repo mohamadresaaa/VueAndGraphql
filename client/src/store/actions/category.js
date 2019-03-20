@@ -1,5 +1,5 @@
 import { defaultClient as apolloClient } from '../../apollo';
-import { GET_CATEGORIES, ADD_CATEGORY, UPDATE_CATEGORY } from '../../graphql/category';
+import { GET_CATEGORIES, ADD_CATEGORY, UPDATE_CATEGORY, DELETE_CATEGORY } from '../../graphql/category';
 import router from '../../router';
 
 export const getCategories = ({ commit }) => {
@@ -125,4 +125,37 @@ export const updateCategory = ({ state, commit }, payload) => {
     commit('setLoading', false);
   });
 
+};
+
+export const deleteCategory = ({ state, commit }, payload) => {
+  apolloClient.mutate({
+    mutation: DELETE_CATEGORY,
+    variables: payload
+  })
+  .then(({ data }) => {
+    // find index
+    let index = state.categories.findIndex(category => category._id === data.deleteCategory._id);
+
+    // update categories
+    let categories = [
+      ...state.categories.slice(0, index),
+      ...state.categories.slice(index + 1)
+    ];
+
+    // set categories in state
+    commit('setCategories', categories);
+
+    // set success message
+    commit('setMessage', {
+      content: 'delete category',
+      color: 'success'
+    });
+  })
+  .catch(err => {
+    // set message
+    commit('setMessage', {
+      content: err.message,
+      color: 'error'
+    });
+  });
 };

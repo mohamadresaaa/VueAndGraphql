@@ -66,9 +66,13 @@ export const updateCategory = async (_, { categoryId, title, url }, { Category }
 };
 
 export const deleteCategory = async (_, { categoryId }, { Category }) => {
-    // find and remove category
-    let category = await Category.findOneAndRemove({ _id: categoryId });
-    
-    // return it
-    return category;
+    try {
+        // find and remove category
+        let category = await Category.findOneAndRemove({ _id: categoryId });
+
+        // return it
+        return category;        
+    } catch (err) {
+        errorHandle(err);
+    }
 };

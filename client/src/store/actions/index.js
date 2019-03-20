@@ -1,4 +1,4 @@
-import { getCategories, addCategory, updateCategory } from './category';
+import { getCategories, addCategory, updateCategory, deleteCategory } from './category';
 import { signUp, signIn, forgotPassword, resetPassword, signOut } from './authenticate';
 import { getCurrentUser, changePassword } from './user';
 import { getTodos, addTodo, doneTodo, updateTodo } from './todo';
@@ -17,6 +17,7 @@ export default {
     getCategories,
     addCategory,
     updateCategory,
+    deleteCategory,
     getTodos,
     addTodo,
     doneTodo,

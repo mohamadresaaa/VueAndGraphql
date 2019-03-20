@@ -53,7 +53,7 @@
             <v-btn @click="loadCategory(category)" fab dark small color="primary">
               <v-icon dark>edit</v-icon>
             </v-btn>
-            <v-btn fab dark small color="red">
+            <v-btn @click="handleDeleteCategory(category._id)" fab dark small color="red">
               <v-icon dark>delete</v-icon>
             </v-btn>
           </div>
@@ -122,6 +122,11 @@
           url: this.url
         });
         this.editCategoryDialog = false;
+      },
+      handleDeleteCategory(categoryId) {
+        this.$store.dispatch('deleteCategory', {
+          categoryId
+        });
       },
       loadCategory({ _id, title, url }, editCategoryDialog = true) {
         this.editCategoryDialog = editCategoryDialog;
