@@ -2,6 +2,7 @@ import errorHandle from '../lib/errorHandle';
 
 export const getTodos = async (_, { userId }, { Todo }) => {
     try {
+        // find todos
         return await Todo.find({ user: userId });
     } catch (err) {
         errorHandle(err);
@@ -42,7 +43,7 @@ export const updateTodo = async (_, { todoId, userId, content, status }, { Todo 
         // find and update it
         return await Todo.findOneAndUpdate(
             { _id: todoId, user: userId },
-            { content, status },
+            { $set: { content, status } },
             { new: true }
         );
     } catch (err) {

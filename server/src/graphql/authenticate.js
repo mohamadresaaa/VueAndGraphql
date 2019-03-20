@@ -31,7 +31,6 @@ export const signUp = async (_, { username, email, password }, { User }) => {
             email,
             password,
             avatar: await generateAvatar(username)
-            // generate name
         }).save();
 
         // return message

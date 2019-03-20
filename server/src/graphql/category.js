@@ -3,6 +3,7 @@ import errorHandle from '../lib/errorHandle';
 
 export const getCategories = async (_, args, { Category }) => {
     try {
+        // find categories
         return await Category.find();
     } catch (err) {
         errorHandle(err);
@@ -43,7 +44,7 @@ export const updateCategory = async (_, { categoryId, title, url }, { Category }
         // find and update category
         let category = await Category.findOneAndUpdate(
             { _id: categoryId },
-            { title, url },
+            { $set: { title, url } },
             { new: true }
         );
 
@@ -65,6 +66,9 @@ export const updateCategory = async (_, { categoryId, title, url }, { Category }
 };
 
 export const deleteCategory = async (_, { categoryId }, { Category }) => {
+    // find and remove category
     let category = await Category.findOneAndRemove({ _id: categoryId });
+    
+    // return it
     return category;
 };
