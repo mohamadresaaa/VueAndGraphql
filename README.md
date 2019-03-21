@@ -15,7 +15,25 @@ npm install
 npm i
 ```
 
-step 3: run project
+step 3: create .env file and write it
+```
+# port server
+PORT=example => 2000 
+
+# server mode
+MODE=example => dev 
+
+# database url
+MONGODB_DATABASE_URL=example => mongodb://localhost:27017/testGraphql
+
+# mail service 
+MAIL_HOST=example => host service
+MAIL_PORT=example => port service
+MAIL_AUTH_USERNAME=example =>username service
+MAIL_AUTH_PASSWORD=example =>password service
+```
+
+step 4: run project
 
 just run server
 ```
