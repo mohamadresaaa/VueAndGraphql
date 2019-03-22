@@ -50,3 +50,12 @@ export const updateTodo = async (_, { todoId, userId, content, status }, { Todo 
         errorHandle(err);
     }
 };
+
+export const deleteTodo = async (_, { todoId, userId }, { Todo }) => {
+    try {
+        // find and remove todo
+        return await Todo.findOneAndRemove({ _id: todoId, user: userId });
+    } catch (err) {
+        errorHandle(err);
+    }
+};

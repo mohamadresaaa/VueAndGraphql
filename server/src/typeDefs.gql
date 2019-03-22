@@ -83,6 +83,7 @@ type Mutation {
     addTodo(content: String!, status: Boolean!, userId: ID!): Todo!
     doneTodo(todoId: ID!, userId: ID!): Todo!
     updateTodo(todoId: ID!, userId: ID!, content: String!, status: Boolean!): Todo!
+    deleteTodo(todoId: ID!, userId: ID!): Todo!
     
     # note
     addNote(title: String!, content: String!, userId: ID!): Note!
