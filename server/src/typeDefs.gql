@@ -88,4 +88,5 @@ type Mutation {
     # note
     addNote(title: String!, content: String!, userId: ID!): Note!
     updateNote(noteId: ID!, userId: ID!, title: String!, content: String!): Note!
+    deleteNote(noteId: ID!, userId: ID!): Note!
 }

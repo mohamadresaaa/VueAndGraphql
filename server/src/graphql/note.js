@@ -37,3 +37,12 @@ export const updateNote = async (_, { noteId, userId, title, content }, { Note }
         errorHandle(err);
     }
 };
+
+export const deleteNote = async (_, { noteId, userId }, { Note }) => {
+    try {
+        // find and remove note
+        return await Note.findOneAndRemove({ _id: noteId, user: userId });
+    } catch (err) {
+        errorHandle(err);
+    }
+};
