@@ -64,7 +64,7 @@
             <v-btn @click="loadTodo(todo)" fab dark small color="primary">
               <v-icon dark>edit</v-icon>
             </v-btn>
-            <v-btn fab dark small color="red">
+            <v-btn @click="handleDeleteTodo(todo._id)" fab dark small color="red">
               <v-icon dark>delete</v-icon>
             </v-btn>
           </div>
@@ -160,6 +160,12 @@
           status: this.status
         });
         this.editTodoDialog = false;
+      },
+      handleDeleteTodo(todoId) {
+        this.$store.dispatch('deleteTodo', {
+          todoId,
+          userId: this.user._id
+        });
       },
       loadTodo({ _id, user, content, status }, editTodoDialog = true) {
         this.editTodoDialog = editTodoDialog;

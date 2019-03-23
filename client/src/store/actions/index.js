@@ -1,7 +1,7 @@
 import { getCategories, addCategory, updateCategory, deleteCategory } from './category';
 import { signUp, signIn, forgotPassword, resetPassword, signOut } from './authenticate';
 import { getCurrentUser, changePassword } from './user';
-import { getTodos, addTodo, doneTodo, updateTodo } from './todo';
+import { getTodos, addTodo, doneTodo, updateTodo, deleteTodo } from './todo';
 import { getNotes, addNote, updateNote } from './note';
 import message from './message';
 
@@ -25,5 +25,6 @@ export default {
     getNotes,
     addNote,
     updateNote,
+    deleteTodo,
     message
 };
