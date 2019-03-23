@@ -2,7 +2,7 @@ import { getCategories, addCategory, updateCategory, deleteCategory } from './ca
 import { signUp, signIn, forgotPassword, resetPassword, signOut } from './authenticate';
 import { getCurrentUser, changePassword } from './user';
 import { getTodos, addTodo, doneTodo, updateTodo, deleteTodo } from './todo';
-import { getNotes, addNote, updateNote } from './note';
+import { getNotes, addNote, updateNote, deleteNote } from './note';
 import message from './message';
 
 // using actions
@@ -22,9 +22,10 @@ export default {
     addTodo,
     doneTodo,
     updateTodo,
+    deleteTodo,
     getNotes,
     addNote,
     updateNote,
-    deleteTodo,
+    deleteNote,
     message
 };

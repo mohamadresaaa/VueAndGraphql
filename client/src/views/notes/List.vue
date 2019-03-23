@@ -52,7 +52,7 @@
             <v-btn @click="loadNote(note, 'edit')" fab dark small color="primary">
               <v-icon dark>edit</v-icon>
             </v-btn>
-            <v-btn fab dark small color="red">
+            <v-btn @click="handleDeleteNote(note._id)" fab dark small color="red">
               <v-icon dark>delete</v-icon>
             </v-btn>
           </div>
@@ -152,6 +152,12 @@
           content: this.content
         });
         this.editNoteDialog = false;
+      },
+      handleDeleteNote(noteId) {
+        this.$store.dispatch('deleteNote', {
+          noteId,
+          userId: this.user._id
+        });
       }, 
       loadNote({ _id, title, content }, button) {
         this.NoteId = _id;
