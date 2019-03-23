@@ -7,9 +7,6 @@ export const GET_TODOS = gql `
             content
             status
             createdAt
-            user {
-                _id
-            }
         }
     }
 `;
@@ -21,9 +18,6 @@ export const ADD_TODO = gql `
             content
             status
             createdAt
-            user {
-                _id
-            }
         }
     }
 `;
@@ -35,9 +29,6 @@ export const DONE_TODO = gql`
             content
             status
             createdAt
-            user {
-                _id
-            }
         }
     }
 `;
@@ -49,9 +40,6 @@ export const UPDATE_TODO = gql`
             content
             status
             createdAt
-            user {
-                _id
-            }
         }
     }
 `;
