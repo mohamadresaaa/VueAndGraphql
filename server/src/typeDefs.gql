@@ -56,6 +56,15 @@ type Message {
     message: String!
 }
 
+type Ticket {
+    _id: ID
+    subject: String!
+    priority: String!
+    status: Boolean!
+    user: User!
+    assignee: User
+}
+
 type Query {
     getCurrentUser: User
     getArticles: [Article]
