@@ -11,7 +11,8 @@ import {
     getNotes
 } from './note';
 import {
-    getUserTickets
+    getUserTickets,
+    getAllTickets
 } from './ticket';
 
 module.exports = {
@@ -19,5 +20,6 @@ module.exports = {
     getCurrentUser,
     getTodos,
     getNotes,
-    getUserTickets
+    getUserTickets,
+    getAllTickets
 };

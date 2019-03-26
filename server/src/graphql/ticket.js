@@ -16,6 +16,17 @@ export const getUserTickets = async (_, {
     }
 };
 
+export const getAllTickets = async (_, arg, {
+    Ticket
+}) => {
+    try {
+        // find all tickets
+        return await Ticket.find();
+    } catch (err) {
+        errorHandle(err);
+    }
+};
+
 export const addTicket = async (_, {
     subject,
     priority,

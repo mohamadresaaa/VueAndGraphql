@@ -75,6 +75,7 @@ type Query {
   getTodos(userId: ID!): [Todo]
   getNotes(userId: ID!): [Note]
   getUserTickets(userId: ID!): [Ticket]
+  getAllTickets: [Ticket]
 }
 
 type Mutation {
