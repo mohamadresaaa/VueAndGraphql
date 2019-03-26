@@ -9,21 +9,21 @@ import resetPasswordTemplate from '../mailTemplate/passwordRecovery';
 
 
 export const signUp = async (_, { username, email, password }, { User }) => {
+    // check username is valid
+    if(!validationUsername.test(username)) 
+        throw new Error('Username is not valid');
+
+    // checked username exists
+    const usernameExists = await User.findOne({ username });
+    if(usernameExists)
+        throw new Error('Username is already taken');
+
+    // checked email exists
+    const emailExists = await User.findOne({ email });
+    if(emailExists) 
+        throw new Error('Email is invalid or already taken');
+
     try {
-        // check username is valid
-        if(!validationUsername.test(username)) 
-            throw new Error('Username is not valid');
-
-        // checked username exists
-        const usernameExists = await User.findOne({ username });
-        if(usernameExists)
-            throw new Error('Username is already taken');
-
-        // checked email exists
-        const emailExists = await User.findOne({ email });
-        if(emailExists) 
-            throw new Error('Email is invalid or already taken');
-
         // create user
         await User({
             name: email.replace(separatingEmail, ''),
