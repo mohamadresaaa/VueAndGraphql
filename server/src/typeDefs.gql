@@ -60,7 +60,10 @@ type Ticket {
     _id: ID
     subject: String!
     priority: String!
-    status: Boolean!
+    status: Boolean
+    code: String
+    createdAt: Date
+    updatedAt: Date
     user: User!
     assignee: User
 }
@@ -98,4 +101,7 @@ type Mutation {
     addNote(title: String!, content: String!, userId: ID!): Note!
     updateNote(noteId: ID!, userId: ID!, title: String!, content: String!): Note!
     deleteNote(noteId: ID!, userId: ID!): Note!
+
+    # ticket
+    addTicket(subject: String!, priority: String!, userId: ID!): Ticket!
 }

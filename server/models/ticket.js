@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import shortid from 'shortid';
 
 const ticketSchema = new mongoose.Schema({
     subject: {
@@ -12,12 +11,11 @@ const ticketSchema = new mongoose.Schema({
     },
     status: {
         type: Boolean,
-        required: true
+        default: true
     },
     code: {
         type: String,
-        unique: true,
-        default: `H-${shortid.generate()}`
+        unique: true
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
@@ -26,8 +24,7 @@ const ticketSchema = new mongoose.Schema({
     },
     assignee: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        default: null
+        ref: 'User'
     }
 }, { timestamps: true });
 
