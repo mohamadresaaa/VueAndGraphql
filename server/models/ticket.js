@@ -11,7 +11,7 @@ const ticketSchema = new mongoose.Schema({
     },
     status: {
         type: Boolean,
-        default: true
+        default: false
     },
     code: {
         type: String,
@@ -26,6 +26,8 @@ const ticketSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }
-}, { timestamps: true });
+}, {
+    timestamps: true
+});
 
 export default mongoose.model('Ticket', ticketSchema);
