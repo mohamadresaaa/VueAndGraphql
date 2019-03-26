@@ -41,65 +41,61 @@ export const signUp = async (_, { username, email, password }, { User }) => {
 };
 
 export const signIn = async (_, { email, password }, { User }) => {
-    try {
-        // find user
-        const user = await User.findOne({ email });
+    // find user
+    const user = await User.findOne({ email });
 
-        // if not user exists
-        if(!user) throw new Error('Incorrect email or password');
+    // if not user exists
+    if(!user) throw new Error('Incorrect email or password');
 
-        // if user is disable
-        if(!user.isActive) throw new Error('Your account is disabled, please confirm your email');
+    // if user is disable
+    if(!user.isActive) throw new Error('Your account is disabled, please confirm your email');
 
-        // compare password
-        const isMatch = await user.comparePassword(password);
+    // compare password
+    const isMatch = await user.comparePassword(password);
 
-        // if the password was not equal
-        if(!isMatch) throw new Error('Incorrect email or password');
+    // if the password was not equal
+    if(!isMatch) throw new Error('Incorrect email or password');
         
-        // otherwise generate token
-        return { token: await generateToken(user, 'secretKey') };
-    } catch (err) {
-        errorHandle(err);
-    }
+    // otherwise generate token
+    return { token: await generateToken(user, 'secretKey') };
 };
 
 export const forgotPassword = async (_, { email }, { User }) => {
+    // find user
+    let user = await User.findOne({ email });
+
+    // if not, handle it
+    if(!user) throw new Error('The email you entered is not correct');
+
     try {
-        // find user
-        let user = await User.findOne({ email });
-
-        // if not, handle it
-        if(!user) throw new Error('The email you entered is not correct');
-
         // send mail
         await sendMail(await forgotPasswordTemplate(user));
-
-        // return message
-        return { message: 'Password recovery link sent' };
     } catch (err) {
         errorHandle(err);
     }
+
+    // return message
+    return { message: 'Password recovery link sent' };
 };
 
 export const resetPassword = async (_, { newPassword, activeCode }, { User }) => {
-    try {
-        // find user
-        let user = await User.findOne({ activeCode });
+    // find user
+    let user = await User.findOne({ activeCode });
 
-        // if not, handle it
-        if(!user) throw new Error('The code is not valid');
-        
+    // if not, handle it
+    if(!user) throw new Error('The code is not valid');
+
+    try {
         // set new password
         user.password = newPassword;
         await user.save();
 
         // send mail
         await sendMail(await resetPasswordTemplate(user));
-
-        // return message
-        return { message: 'Password recovery was successful' };
     } catch (err) {
         errorHandle(err);
     }
+
+    // return message
+    return { message: 'Password recovery was successful' };
 };

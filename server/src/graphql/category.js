@@ -11,18 +11,18 @@ export const getCategories = async (_, args, { Category }) => {
 };
 
 export const addCategory = async (_, { title, url }, { Category }) => {
-    try {
-        // set url
-        url = url.replace(slug, '-');
+    // set url
+    url = url.replace(slug, '-');
         
-        // checked title exists
-        const titleExists = await Category.findOne({ title });
-        if(titleExists) throw new Error('Title is already taken');
+    // checked title exists
+    const titleExists = await Category.findOne({ title });
+    if(titleExists) throw new Error('Title is already taken');
 
-        // checked url exists
-        const urlExists = await Category.findOne({ url });
-        if(urlExists) throw new Error('Url is already taken');
+    // checked url exists
+    const urlExists = await Category.findOne({ url });
+    if(urlExists) throw new Error('Url is already taken');
 
+    try {
         // create category
         let newCategory = await Category({
             title,
@@ -37,10 +37,10 @@ export const addCategory = async (_, { title, url }, { Category }) => {
 };
 
 export const updateCategory = async (_, { categoryId, title, url }, { Category }) => {
+    // set url
+    url = url.replace(slug, '-');
+    
     try {
-        // set url
-        url = url.replace(slug, '-');
-
         // find and update category
         let category = await Category.findOneAndUpdate(
             { _id: categoryId },
