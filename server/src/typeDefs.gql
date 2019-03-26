@@ -1,107 +1,117 @@
 scalar Date
 
 type User {
-    _id: ID
-    name: String
-    username: String!
-    email: String!
-    password: String!
-    role: String
-    avatar: String
-    joinDate: Date
-    isActive: Boolean
-    activeCode: String
+  _id: ID
+  name: String
+  username: String!
+  email: String!
+  password: String!
+  role: String
+  avatar: String
+  joinDate: Date
+  isActive: Boolean
+  activeCode: String
 }
 
 type Category {
-    _id: ID
-    title: String!
-    url: String!
+  _id: ID
+  title: String!
+  url: String!
 }
 
 type Article {
-    _id: ID
-    summery: String!
-    content: String!
-    image: String!
-    url: String!
-    isActive: Boolean
-    createdDate: Date
-    countView: Int
-    category: Category!
-    createdBy: User!
+  _id: ID
+  summery: String!
+  content: String!
+  image: String!
+  url: String!
+  isActive: Boolean
+  createdDate: Date
+  countView: Int
+  category: Category!
+  createdBy: User!
 }
 
 type Token {
-    token: String!
+  token: String!
 }
 
-type Todo { 
-    _id: ID
-    content: String!
-    status: Boolean!
-    createdAt: Date
-    user: User!
+type Todo {
+  _id: ID
+  content: String!
+  status: Boolean!
+  createdAt: Date
+  user: User!
 }
 
 type Note {
-    _id: ID
-    title: String!
-    content: String!
-    createdAt: Date
-    user: User!
+  _id: ID
+  title: String!
+  content: String!
+  createdAt: Date
+  user: User!
 }
 
 type Message {
-    message: String!
+  message: String!
 }
 
 type Ticket {
-    _id: ID
-    subject: String!
-    priority: String!
-    status: Boolean
-    code: String
-    createdAt: Date
-    updatedAt: Date
-    user: User!
-    assignee: User
+  _id: ID
+  subject: String!
+  priority: String!
+  status: Boolean
+  code: String
+  createdAt: Date
+  updatedAt: Date
+  user: User!
+  assignee: User
 }
 
 type Query {
-    getCurrentUser: User
-    getArticles: [Article]
-    getCategories: [Category]
-    getTodos(userId: ID!): [Todo]
-    getNotes(userId: ID!): [Note]
+  getCurrentUser: User
+  getArticles: [Article]
+  getCategories: [Category]
+  getTodos(userId: ID!): [Todo]
+  getNotes(userId: ID!): [Note]
+  getUserTickets(userId: ID!): [Ticket]
 }
 
 type Mutation {
-    # authenticate
-    signUp(username: String!, email: String!, password: String!): Message!
-    signIn(email: String!, password: String!): Token!
-    forgotPassword(email: String!): Message!
-    resetPassword(newPassword: String!, activeCode: String!): Message!
+  # authenticate
+  signUp(username: String!, email: String!, password: String!): Message!
+  signIn(email: String!, password: String!): Token!
+  forgotPassword(email: String!): Message!
+  resetPassword(newPassword: String!, activeCode: String!): Message!
 
-    # user
-    changePassword(oldPassword: String!, newPassword: String!, userId: ID!): Message!
+  # user
+  changePassword(
+    oldPassword: String!
+    newPassword: String!
+    userId: ID!
+  ): Message!
 
-    # category
-    addCategory(title: String!, url: String!): Category!
-    updateCategory(categoryId: ID!, title: String!, url: String!): Category!
-    deleteCategory(categoryId: ID!): Category!
+  # category
+  addCategory(title: String!, url: String!): Category!
+  updateCategory(categoryId: ID!, title: String!, url: String!): Category!
+  deleteCategory(categoryId: ID!): Category!
 
-    # todo
-    addTodo(content: String!, status: Boolean!, userId: ID!): Todo!
-    doneTodo(todoId: ID!, userId: ID!): Todo!
-    updateTodo(todoId: ID!, userId: ID!, content: String!, status: Boolean!): Todo!
-    deleteTodo(todoId: ID!, userId: ID!): Todo!
-    
-    # note
-    addNote(title: String!, content: String!, userId: ID!): Note!
-    updateNote(noteId: ID!, userId: ID!, title: String!, content: String!): Note!
-    deleteNote(noteId: ID!, userId: ID!): Note!
+  # todo
+  addTodo(content: String!, status: Boolean!, userId: ID!): Todo!
+  doneTodo(todoId: ID!, userId: ID!): Todo!
+  updateTodo(
+    todoId: ID!
+    userId: ID!
+    content: String!
+    status: Boolean!
+  ): Todo!
+  deleteTodo(todoId: ID!, userId: ID!): Todo!
 
-    # ticket
-    addTicket(subject: String!, priority: String!, userId: ID!): Ticket!
+  # note
+  addNote(title: String!, content: String!, userId: ID!): Note!
+  updateNote(noteId: ID!, userId: ID!, title: String!, content: String!): Note!
+  deleteNote(noteId: ID!, userId: ID!): Note!
+
+  # ticket
+  addTicket(subject: String!, priority: String!, userId: ID!): Ticket!
 }

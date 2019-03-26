@@ -1,7 +1,28 @@
 import errorHandle from '../lib/errorHandle';
 import shortid from 'shortid';
 
-export const addTicket = async (_, { subject, priority, userId }, { Ticket }) => {
+export const getUserTickets = async (_, {
+    userId
+}, {
+    Ticket
+}) => {
+    try {
+        // find tickets with userId
+        return await Ticket.find({
+            user: userId
+        });
+    } catch (err) {
+        errorHandle(err);
+    }
+};
+
+export const addTicket = async (_, {
+    subject,
+    priority,
+    userId
+}, {
+    Ticket
+}) => {
     try {
         // create ticket
         let newTicket = await Ticket({
