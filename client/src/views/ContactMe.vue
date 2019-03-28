@@ -1,6 +1,6 @@
 <template>
   <v-layout row wrap>
-    <v-flex xs12 sm6 md12>
+    <v-flex xs12 sm12 md12>
       <v-card>
         <!-- background image -->
         <v-img src="https://cdn.vuetifyjs.com/images/lists/ali.png" height="335px">
