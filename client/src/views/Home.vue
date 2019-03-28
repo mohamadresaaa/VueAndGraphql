@@ -6,8 +6,8 @@
         <v-layout row wrap>
           <v-flex class="pa-2" xs6 sm4 md2 v-for="(category, index) in categories" :key="index">
             <v-container grid-list-xl pa-0>
-              <v-card :style="`background-color: ${genrateColor()}`">
-                <v-card-text class="white--text text-xs-center">
+              <v-card>
+                <v-card-text class="text-xs-center">
                   {{ category.title }}
                 </v-card-text>
               </v-card>
