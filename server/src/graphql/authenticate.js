@@ -1,5 +1,6 @@
 import generateAvatar from '../lib/generateAvatar';
 import generateToken from '../lib/generateToken';
+import { generateTwoFactorCode } from '../lib/generator';
 import { validationUsername, separatingEmail } from '../lib/regex';
 import sendMail from '../lib/mail';
 import errorHandle from '../lib/errorHandle';
@@ -64,6 +65,9 @@ export const signIn = async (_, { email, password }, { User }) => {
         };
     
     // generate unique code
+    let code = await generateTwoFactorCode(user._id);
+
+    // send code to email
 
     // return it
     return { 
