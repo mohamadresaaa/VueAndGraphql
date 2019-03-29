@@ -40,7 +40,7 @@
                   </v-toolbar>
                   <v-list two-line>
                     <template v-for="(item, index) in categories">
-                      <v-list-tile :key="item.title" avatar ripple>
+                      <v-list-tile :key="item.title" avatar @click="handleGetCategories">
                         <v-list-tile-content>
                           <router-link style="text-decoration: none" :to="`/categories/${item.url}`">
                             <v-list-tile-title>{{ item.title }}</v-list-tile-title>
