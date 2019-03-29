@@ -32,8 +32,9 @@ type Article {
   createdBy: User!
 }
 
-type Token {
-  token: String!
+type Auth {
+  token: String
+  twoFactorAuthWithEmail: Boolean!
 }
 
 type Todo {
@@ -81,7 +82,7 @@ type Query {
 type Mutation {
   # authenticate
   signUp(username: String!, email: String!, password: String!): Message!
-  signIn(email: String!, password: String!): Token!
+  signIn(email: String!, password: String!): Auth!
   forgotPassword(email: String!): Message!
   resetPassword(newPassword: String!, activeCode: String!): Message!
 

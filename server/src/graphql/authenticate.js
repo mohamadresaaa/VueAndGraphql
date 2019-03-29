@@ -55,9 +55,21 @@ export const signIn = async (_, { email, password }, { User }) => {
 
     // if the password was not equal
     if(!isMatch) throw new Error('Incorrect email or password');
-        
-    // otherwise generate token
-    return { token: await generateToken(user, 'secretKey') };
+
+    // if twoFactorAuthWithEmail was disabled
+    if(!user.twoFactorAuthWithEmail)
+        return { 
+            token: await generateToken(user, 'secretKey'),
+            twoFactorAuthWithEmail: user.twoFactorAuthWithEmail
+        };
+    
+    // generate unique code
+
+    // return it
+    return { 
+        token: null,
+        twoFactorAuthWithEmail: user.twoFactorAuthWithEmail
+    };
 };
 
 export const forgotPassword = async (_, { email }, { User }) => {
