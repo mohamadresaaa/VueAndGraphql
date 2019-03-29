@@ -1,5 +1,8 @@
+import md5 from 'md5';
 import shortid from 'shortid';
+import jwt from 'jsonwebtoken';
 import errorHandle from './errorHandle';
+import { AuthenticationError } from 'apollo-server-express';
 
 export const generateTwoFactorCode = async (user) => {
     try {
@@ -21,10 +24,34 @@ export const generateTwoFactorCode = async (user) => {
         // update code
         twoFactorCode.$set({ code: shortid.generate() });
         await twoFactorCode.save();
-        
+
         // return it
         return twoFactorCode.code;
     } catch (err) {
         errorHandle(err);
+    }
+};
+
+export const generateAvatar = async () => (`http://gravatar.com/avatar/${md5(username)}?d=identicon`);
+
+export const generateToken = async (user, secretKey) => {
+    return await jwt.sign({
+            id: user._id
+        },
+        secretKey
+    );
+};
+
+export const verifyToken = async token => {
+    if (token) {
+        try {
+            // get user id
+            let { id } = await jwt.verify(token, 'secretKey');
+
+            // return id
+            return id;
+        } catch (error) {
+            throw new AuthenticationError('Your session has ended! Please sign in again.');
+        }
     }
 };

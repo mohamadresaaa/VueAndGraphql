@@ -1,6 +1,4 @@
-import generateAvatar from '../lib/generateAvatar';
-import generateToken from '../lib/generateToken';
-import { generateTwoFactorCode } from '../lib/generator';
+import { generateToken, generateAvatar, generateTwoFactorCode } from '../lib/generator';
 import { validationUsername, separatingEmail } from '../lib/regex';
 import sendMail from '../lib/mail';
 import errorHandle from '../lib/errorHandle';
