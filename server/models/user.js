@@ -44,6 +44,10 @@ const userSchema = new mongoose.Schema({
     activeCode: {
         type: String,
         unique: true
+    },
+    twoFactorAuthWithEmail: {
+        type: Boolean,
+        default: false
     }
 });
 
