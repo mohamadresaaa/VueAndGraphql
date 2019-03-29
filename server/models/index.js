@@ -4,7 +4,7 @@ import User from './user';
 import Todo from './todo';
 import Note from './note';
 import Ticket from './ticket';
-import TwoFactorAuthCode from './twoFactorAuthCode';
+import TwoFactorCode from './twoFactorCode';
 
 module.exports = {
     Article,
@@ -13,5 +13,5 @@ module.exports = {
     Todo,
     Note,
     Ticket,
-    TwoFactorAuthCode
+    TwoFactorCode
 };

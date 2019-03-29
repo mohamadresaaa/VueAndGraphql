@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const twoFactorAuthCodeSchema = new mongoose.Schema({
+const twoFactorCodeSchema = new mongoose.Schema({
     code: {
         type: String,
         unique: true
@@ -12,4 +12,4 @@ const twoFactorAuthCodeSchema = new mongoose.Schema({
     }
 });
 
-export default mongoose.model('TwoFactorAuthCode', twoFactorAuthCodeSchema);
+export default mongoose.model('TwoFactorCode', twoFactorCodeSchema);
