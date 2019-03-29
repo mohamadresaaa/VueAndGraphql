@@ -4,6 +4,7 @@ import User from './user';
 import Todo from './todo';
 import Note from './note';
 import Ticket from './ticket';
+import TwoFactorAuthCode from './twoFactorAuthCode';
 
 module.exports = {
     Article,
@@ -11,5 +12,6 @@ module.exports = {
     User,
     Todo,
     Note,
-    Ticket
+    Ticket,
+    TwoFactorAuthCode
 };
