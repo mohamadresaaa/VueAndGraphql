@@ -34,7 +34,7 @@ type Article {
 
 type Auth {
   token: String
-  twoFactorAuthWithEmail: Boolean!
+  twoFactorAuth: Boolean
 }
 
 type Todo {

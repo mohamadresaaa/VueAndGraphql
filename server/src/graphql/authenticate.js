@@ -58,10 +58,7 @@ export const signIn = async (_, { email, password }, { User }) => {
 
     // if twoFactorAuthWithEmail was disabled
     if(!user.twoFactorAuthWithEmail)
-        return { 
-            token: await generateToken(user._id, 'secretKey'),
-            twoFactorAuthWithEmail: user.twoFactorAuthWithEmail
-        };
+        return { token: await generateToken(user._id, 'secretKey') };
     
     // generate unique code
     let code = await generateTwoFactorCode(user._id);
@@ -74,25 +71,19 @@ export const signIn = async (_, { email, password }, { User }) => {
     }
     
     // return it
-    return { 
-        token: null,
-        twoFactorAuthWithEmail: user.twoFactorAuthWithEmail
-    };
+    return { twoFactorAuth: true };
 };
 
 export const twoFactorAuthenticate = async (_, { code }, { TwoFactorCode }) => {
     // find user with code
-    let userId = await TwoFactorCode.findOne({ code });
+    let user = await TwoFactorCode.findOneAndRemove({ code });
 
     // if not, handle it
-    if(!userId) throw new Error('Code is not valid');
+    if(!user) throw new Error('Code is not valid');
 
     try {
         // generate token and return it
-        return { 
-            token: await generateToken(userId, 'secretKey'),
-            twoFactorAuthWithEmail: true
-        };
+        return { token: await generateToken(user._id, 'secretKey') };
     } catch (err) {
         errorHandle(err);
     }
