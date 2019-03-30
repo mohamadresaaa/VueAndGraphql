@@ -13,6 +13,7 @@ SPA with Vue and Graphql
 * todo(CRUD)
 * note(CRUD)
 * category(CRUD)
+* developing...
 
 ## How run project
 
