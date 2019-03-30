@@ -25,7 +25,7 @@ git clone https://github.com/mohamadrezamosalli/hexzm.git
 step 2: install packages
 ```
 npm install 
-    OR
+    (OR)
 npm i
 ```
 
