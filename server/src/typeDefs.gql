@@ -83,6 +83,7 @@ type Mutation {
   # authenticate
   signUp(username: String!, email: String!, password: String!): Message!
   signIn(email: String!, password: String!): Auth!
+  twoFactorAuthenticate(code: String!): Auth!
   forgotPassword(email: String!): Message!
   resetPassword(newPassword: String!, activeCode: String!): Message!
 

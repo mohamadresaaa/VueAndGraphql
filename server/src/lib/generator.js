@@ -34,9 +34,9 @@ export const generateTwoFactorCode = async (user) => {
 
 export const generateAvatar = async () => (`http://gravatar.com/avatar/${md5(username)}?d=identicon`);
 
-export const generateToken = async (user, secretKey) => {
+export const generateToken = async (userId, secretKey) => {
     return await jwt.sign({
-            id: user._id
+            id: userId
         },
         secretKey
     );

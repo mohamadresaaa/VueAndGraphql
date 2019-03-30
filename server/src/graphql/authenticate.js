@@ -5,7 +5,7 @@ import errorHandle from '../lib/errorHandle';
 
 import forgotPasswordTemplate from '../mailTemplate/forgotPassword';
 import resetPasswordTemplate from '../mailTemplate/passwordRecovery';
-import twoFactorAuthenticate from '../mailTemplate/twoFactorAuthenticate';
+import twoFactorAuthenticateTemplate from '../mailTemplate/twoFactorAuthenticate';
 
 
 export const signUp = async (_, { username, email, password }, { User }) => {
@@ -59,7 +59,7 @@ export const signIn = async (_, { email, password }, { User }) => {
     // if twoFactorAuthWithEmail was disabled
     if(!user.twoFactorAuthWithEmail)
         return { 
-            token: await generateToken(user, 'secretKey'),
+            token: await generateToken(user._id, 'secretKey'),
             twoFactorAuthWithEmail: user.twoFactorAuthWithEmail
         };
     
@@ -68,7 +68,7 @@ export const signIn = async (_, { email, password }, { User }) => {
 
     // send code to email
     try {
-        await sendMail(await twoFactorAuthenticate(user, code));
+        await sendMail(await twoFactorAuthenticateTemplate(user, code));
     } catch (err) {
         errorHandle(err);
     }
@@ -78,6 +78,24 @@ export const signIn = async (_, { email, password }, { User }) => {
         token: null,
         twoFactorAuthWithEmail: user.twoFactorAuthWithEmail
     };
+};
+
+export const twoFactorAuthenticate = async (_, { code }, { TwoFactorCode }) => {
+    // find user with code
+    let userId = await TwoFactorCode.findOne({ code });
+
+    // if not, handle it
+    if(!userId) throw new Error('Code is not valid');
+
+    try {
+        // generate token and return it
+        return { 
+            token: await generateToken(userId, 'secretKey'),
+            twoFactorAuthWithEmail: true
+        };
+    } catch (err) {
+        errorHandle(err);
+    }
 };
 
 export const forgotPassword = async (_, { email }, { User }) => {

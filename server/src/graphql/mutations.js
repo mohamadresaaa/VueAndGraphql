@@ -1,4 +1,4 @@
-import { signUp, signIn, forgotPassword, resetPassword } from './authenticate';
+import { signUp, signIn, twoFactorAuthenticate, forgotPassword, resetPassword } from './authenticate';
 import { addCategory, updateCategory, deleteCategory } from './category';
 import { addTodo, doneTodo, updateTodo, deleteTodo } from './todo';
 import { addNote, updateNote, deleteNote } from './note';
@@ -8,6 +8,7 @@ import { changePassword } from './user';
 module.exports = {
     signUp,
     signIn,
+    twoFactorAuthenticate,
     forgotPassword,
     resetPassword,
     changePassword,
