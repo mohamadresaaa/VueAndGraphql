@@ -1,5 +1,6 @@
 # hexzm
 SPA with Vue and Graphql
+<img src="https://camo.githubusercontent.com/e78e52aa36ff76ef5e142bfeced3b5f657b3fc26/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f3830302f312a483941414e6f6f664c716a53313058643554775259772e706e67" data-canonical-src="https://cdn-images-1.medium.com/max/800/1*H9AANoofLqjS10Xd5TwRYw.png" style="max-width:100%;">
 
 ## How run project
 
