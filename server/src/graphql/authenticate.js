@@ -5,6 +5,7 @@ import errorHandle from '../lib/errorHandle';
 
 import forgotPasswordTemplate from '../mailTemplate/forgotPassword';
 import resetPasswordTemplate from '../mailTemplate/passwordRecovery';
+import twoFactorAuthenticate from '../mailTemplate/twoFactorAuthenticate';
 
 
 export const signUp = async (_, { username, email, password }, { User }) => {
@@ -66,7 +67,12 @@ export const signIn = async (_, { email, password }, { User }) => {
     let code = await generateTwoFactorCode(user._id);
 
     // send code to email
-
+    try {
+        await sendMail(await twoFactorAuthenticate(user, code));
+    } catch (err) {
+        errorHandle(err);
+    }
+    
     // return it
     return { 
         token: null,
