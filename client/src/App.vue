@@ -13,7 +13,7 @@
 
       <!-- message snackbar -->
       <v-snackbar v-if="message" v-model="messageSnackbar" :color="message.color" bottom>
-        {{message.content.replace('GraphQL error:', '')}}
+        {{ message.content === 'Network error: Failed to fetch' ? 'Your connection to the Internet is disconnected' : message.content.replace('GraphQL error:', '') }}
         <v-btn dark flat @click="closeMessage">Close</v-btn>
       </v-snackbar>
       

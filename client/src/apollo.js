@@ -21,10 +21,7 @@ export const defaultClient = new ApolloClient({
             }
         })
     },
-    onError: ({ graphQLErrors, networkError }) => {
-        if(networkError)
-            console.log('networkError', networkError);
-
+    onError: ({ graphQLErrors }) => {
         if(graphQLErrors)
             for (const err of graphQLErrors) {
                 if(err.name === 'AuthenticationError'){
