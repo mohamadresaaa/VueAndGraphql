@@ -53,7 +53,6 @@ export const signIn = ({ commit }, payload) => {
       variables: payload
     })
     .then(({ data }) => {
-
         // set access token
         localStorage.setItem('accessToken', data.signIn.token);
 
@@ -61,7 +60,7 @@ export const signIn = ({ commit }, payload) => {
         commit('setLoading', false);
 
         // redirect to home page
-        router.push('/');
+        router.go();
     })
     .catch(err => {
         // set message
