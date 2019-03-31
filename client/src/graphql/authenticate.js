@@ -18,6 +18,14 @@ export const SIGN_IN = gql `
   }
 `;
 
+export const TWO_FACTOR_AUTHENTICATE = gql `
+  mutation ($code: String!){
+    twoFactorAuthenticate(code: $code){
+      token
+    }
+  }
+`;
+
 export const FORGOT_PASSWORD = gql `
   mutation ($email: String!){
     forgotPassword(email: $email){
