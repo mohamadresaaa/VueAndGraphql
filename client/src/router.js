@@ -14,6 +14,7 @@ import ChangePassword from './views/account/ChangePassword.vue';
 // auth views
 import signUp from './views/auth/SignUp.vue';
 import signIn from './views/auth/SignIn.vue';
+import twoFactorAuthenticate from './views/auth/TwoFactorAuth.vue';
 import forgotPassword from './views/auth/ForgotPassword.vue';
 import resetPassword from './views/auth/ResetPassword.vue';
 
@@ -61,6 +62,11 @@ export default new Router({
       name: 'signIn',
       component: signIn,
       beforeEnter: beforeAuthenticate
+    },
+    {
+      path: '/two_factor_authenticate',
+      name: 'twoFactorAuthenticate',
+      component: twoFactorAuthenticate
     },
     {
       path: '/forgotPassword',
