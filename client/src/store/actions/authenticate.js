@@ -60,8 +60,7 @@ export const signIn = ({ commit }, payload) => {
         // set loading
         commit('setLoading', false);
 
-        // refresh and redirect to home page
-        router.go();
+        // redirect to home page
         router.push('/');
     })
     .catch(err => {
