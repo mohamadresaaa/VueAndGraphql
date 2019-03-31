@@ -1,5 +1,5 @@
 import { defaultClient as apolloClient } from '../../apollo';
-import { SIGN_UP, SIGN_IN, FORGOT_PASSWORD, RESET_PASSWORD } from '../../graphql/authenticate';
+import { SIGN_UP, SIGN_IN, FORGOT_PASSWORD, RESET_PASSWORD, TWO_FACTOR_AUTHENTICATE } from '../../graphql/authenticate';
 import router from '../../router';
 
 export const signUp = ({ commit }, payload) => {
@@ -59,6 +59,39 @@ export const signIn = ({ commit }, payload) => {
         
         // set access token
         localStorage.setItem('accessToken', data.signIn.token);
+
+        // set loading
+        commit('setLoading', false);
+
+        // redirect to home page
+        router.go();
+    })
+    .catch(err => {
+        // set message
+        commit('setMessage', {
+            content: err.message,
+            color: 'error'
+        });
+
+        // set loading
+        commit('setLoading', false);
+    });
+};
+
+export const twoFactorAuthenticate = ({ commit }, payload) => {
+    // clear message
+    commit('clearMessage');
+
+    // set loading
+    commit('setLoading', true);
+
+    apolloClient.mutate({
+        mutation: TWO_FACTOR_AUTHENTICATE,
+        variables: payload
+    })
+    .then(({ data }) => {
+        // set access token
+        localStorage.setItem('accessToken', data.twoFactorAuthenticate.token);
 
         // set loading
         commit('setLoading', false);
