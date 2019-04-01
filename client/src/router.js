@@ -9,7 +9,7 @@ import Todos from './views/todos/List.vue';
 import AddTodo from './views/todos/Add.vue';
 import Notes from './views/notes/List.vue';
 import AddNote from './views/notes/Add.vue';
-import ChangePassword from './views/account/ChangePassword.vue';
+import ChangePassword from './views/user/ChangePassword.vue';
 
 // auth views
 import signUp from './views/auth/SignUp.vue';
