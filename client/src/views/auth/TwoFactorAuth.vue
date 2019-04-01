@@ -5,7 +5,7 @@
                 <v-toolbar dark color="primary">
                     <v-toolbar-title>Two Factor Authenticate</v-toolbar-title>
                 </v-toolbar>
-                <v-form v-model="isFormValid" lazy-validation ref="form" @submit.prevent="handleForgotPassword">
+                <v-form v-model="isFormValid" lazy-validation ref="form" @submit.prevent="handleTwoFactorAuthenticate">
                     <v-card-text>
                         <v-text-field v-model="code" :rules="codeRules" prepend-icon="code" name="code" label="Code" type="email"></v-text-field>
                     </v-card-text>
@@ -28,7 +28,7 @@
 import { mapGetters } from 'vuex';
 
 export default {
-    name: 'forgotPassword',
+    name: 'twoFactorAuthenticate',
     data() {
         return {
             isFormValid: true,
@@ -43,8 +43,17 @@ export default {
     watch: {
         user(value){
             if(value)
-                this.$router.push('/');      
+                this.$router.push('/');
         }
-    }
+    },
+    methods: {
+        handleTwoFactorAuthenticate(){
+            if(this.$refs.form.validate()){
+                this.$store.dispatch('twoFactorAuthenticate', {
+                    code: this.code
+                });
+            }
+        }
+    },
 }
 </script>

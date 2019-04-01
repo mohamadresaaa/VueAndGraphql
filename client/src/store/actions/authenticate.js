@@ -53,18 +53,22 @@ export const signIn = ({ commit }, payload) => {
       variables: payload
     })
     .then(({ data }) => {
-        // if two factor authenticate
-        if(data.signIn.twoFactorAuth)
-            return router.push('/two_factor_authenticate');
-        
-        // set access token
-        localStorage.setItem('accessToken', data.signIn.token);
+        // if not two factor authenticate
+        if(!data.signIn.twoFactorAuth){
+            // set access token
+            localStorage.setItem('accessToken', data.signIn.token);
 
+            // set loading
+            commit('setLoading', false);
+
+            // redirect to home page
+            router.go();
+        }
         // set loading
         commit('setLoading', false);
 
-        // redirect to home page
-        router.go();
+        // otherwise
+        router.push('/two_factor_authenticate');
     })
     .catch(err => {
         // set message

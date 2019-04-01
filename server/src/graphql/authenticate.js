@@ -76,14 +76,14 @@ export const signIn = async (_, { email, password }, { User }) => {
 
 export const twoFactorAuthenticate = async (_, { code }, { TwoFactorCode }) => {
     // find user with code
-    let user = await TwoFactorCode.findOneAndRemove({ code });
+    let authCode = await TwoFactorCode.findOneAndRemove({ code });
 
     // if not, handle it
-    if(!user) throw new Error('Code is not valid');
+    if(!authCode) throw new Error('Code is not valid');
 
     try {
         // generate token and return it
-        return { token: await generateToken(user._id, 'secretKey') };
+        return { token: await generateToken(authCode.user, 'secretKey') };
     } catch (err) {
         errorHandle(err);
     }
