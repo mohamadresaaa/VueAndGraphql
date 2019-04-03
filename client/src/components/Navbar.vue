@@ -1,11 +1,11 @@
 <template>
     <nav>
-        <v-toolbar app dark color="primary">
+        <v-toolbar app dark color="secondary">
             <v-toolbar-side-icon v-if="!activeSearchBox" @click="drawer = !drawer"></v-toolbar-side-icon>
             
             <!-- website name -->
             <v-toolbar-title v-if="!activeSearchBox" class="headline text-uppercase">
-                <router-link to="/">
+                <router-link style="text-decoration: none" to="/">
                     <span class="white--text">hexzm</span>
                 </router-link>
                 <span class="font-weight-light text-lowercase">.org</span>
@@ -68,7 +68,7 @@
 
 <style>
     #avatarBackground{
-        background-color: #0984e3
+        background-color: #333644
     }
 </style>
 

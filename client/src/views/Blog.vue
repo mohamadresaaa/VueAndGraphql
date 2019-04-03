@@ -35,7 +35,7 @@
             <v-flex class="pa-2" xs12 sm12 md12>
               <v-container grid-list-xl pa-0>
                 <v-card>
-                  <v-toolbar dark>
+                  <v-toolbar dark color="secondary">
                     <v-toolbar-title>Categories</v-toolbar-title>
                   </v-toolbar>
                   <v-list two-line>

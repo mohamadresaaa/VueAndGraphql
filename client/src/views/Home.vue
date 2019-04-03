@@ -5,9 +5,9 @@
         <v-layout row wrap>
           <v-flex class="pa-2" xs12 sm6 md3 v-for="(category, index) in categories" :key="index">
             <v-container grid-list-xl pa-0>
-              <v-card class="mx-auto" color="#26c6da" dark max-width="400">
+              <v-card class="mx-auto" color="secondary" dark max-width="400">
                 <v-card-title>
-                  <span class="title font-weight-light">Title</span>
+                  <span class="title font-weight-light" style="color: #E1BF7F;">Title</span>
                 </v-card-title>
 
                 <v-card-text class="headline font-weight-bold">
