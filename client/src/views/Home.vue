@@ -51,7 +51,7 @@
   export default {
     name: 'home',
     created() {
-      this.handleGetCategories();
+      // this.handleGetCategories();
     },
     computed: {
       ...mapGetters(["loading", "categories"])

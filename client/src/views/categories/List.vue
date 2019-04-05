@@ -1,71 +1,44 @@
 <template>
   <div>
-    <h1 class="font-weight-medium text-capitalize">category list</h1>
+    <!-- categories -->
+    <v-card>
+      <v-card-title>
+        <h1 class="font-weight-medium text-capitalize">Categories</h1>
+        <v-tooltip bottom>
+          <!-- create category link -->
+          <v-btn router to="/admin/categories/add" slot="activator" flat color="grey">
+            <v-icon small left>create_new_folder</v-icon>
+            <span class="caption text-capitalize">new category</span>
+          </v-btn>
 
-    <!-- loading -->
-    <Loading v-if="loading" :loading="loading" />
-
-    <v-layout v-if="!loading" row wrap class="mb-3">
-      <v-tooltip bottom>
-        <!-- create category link -->
-        <v-btn router to="/admin/categories/add" slot="activator" flat color="grey">
-          <v-icon small left>create_new_folder</v-icon>
-          <span class="caption text-capitalize">new category</span>
-        </v-btn>
-
-        <!-- tooltip -->
-        <span>Create a new category</span>
-      </v-tooltip>
-      <v-tooltip bottom>
-        <!-- sort categories -->
-        <v-btn slot="activator" flat color="grey" @click="sortBy('title')">
-          <v-icon small left>sort_by_alpha</v-icon>
-          <span class="caption text-capitalize">sort title</span>
-        </v-btn>
-
-        <!-- tooltip -->
-        <span>Sort by title of category</span>
-      </v-tooltip>
-
-      <v-tooltip bottom>
-        <!-- total categories -->
-        <v-btn slot="activator" flat color="grey" disabled>
-          <span class="caption text-capitalize">total ({{ categories.length }})</span>
-        </v-btn>
-
-        <!-- tooltip -->
-        <span>Total number of categories</span>
-      </v-tooltip>
-    </v-layout>
-
-    <v-card v-for="category in categories" :key="category._id" class="mb-3">
-      <v-layout row wrap class="pa-3">
-
-        <!-- category title -->
-        <v-flex xs6 md6>
-          <div class="caption grey--text">Title</div>
-          <div class="primary--text">{{category.title}}</div>
-        </v-flex>
-
-        <!-- actions button -->
-        <v-flex xs6 sm4 md2>
-          <div class="text-xs-center">
-            <v-btn @click="loadCategory(category)" fab dark small color="primary">
+          <!-- tooltip -->
+          <span>Create a new category</span>
+        </v-tooltip>
+        <v-spacer></v-spacer>
+        <v-text-field v-model="search" append-icon="search" label="Search" outline></v-text-field>
+      </v-card-title>
+      <v-data-table :loading="loading" :headers="headers" :items="categories" :search="search">
+        <template v-slot:items="props">
+          <td>{{ props.item.title }}</td>
+          <td>
+            <v-btn @click="loadCategory(props.item)" flat icon dark small color="primary">
               <v-icon dark>edit</v-icon>
             </v-btn>
-            <v-btn @click="handleDeleteCategory(category._id)" fab dark small color="red">
+            <v-btn @click="handleDeleteCategory(props.item._id)" flat icon dark small color="red">
               <v-icon dark>delete</v-icon>
             </v-btn>
-          </div>
-        </v-flex>
-
-      </v-layout>
+          </td>
+        </template>
+        <v-alert v-slot:no-results :value="true" color="error" icon="warning">
+          Your search for "{{ search }}" found no results.
+        </v-alert>
+      </v-data-table>
     </v-card>
 
     <!-- edit todo dialog -->
     <v-dialog v-model="editCategoryDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
       <v-card>
-        <v-toolbar dark color="primary">
+        <v-toolbar dark color="secondary">
           <v-btn icon dark @click="editCategoryDialog = false">
             <v-icon>close</v-icon>
           </v-btn>
@@ -91,12 +64,23 @@
 
 <script>
   import { mapGetters } from 'vuex';
-  import Loading from '../../components/Loading';
 
   export default {
     name: 'categories',
     data() {
       return {
+        search: '',
+        headers: [
+          {
+            text: 'Title',
+            align: 'left',
+            value: 'title'
+          },
+          {
+            text: 'Actions',
+            sortable: false
+          }
+        ],
         editCategoryDialog: false,
         title: '',
         url: '',
@@ -133,11 +117,7 @@
         this.categoryId = _id;
         this.title = title;
         this.url = url;
-      },
-      sortBy(prop) {
-        return this.categories.sort((a, b) => a[prop] < b[prop] ? -1 : 1);
       }
-    },
-    components: { Loading }
+    }
   }
 </script>
