@@ -36,9 +36,14 @@
               <v-container grid-list-xl pa-0>
                 <v-card>
                   <v-toolbar dark color="secondary">
-                    <v-toolbar-title>Categories</v-toolbar-title>
+                    <v-toolbar-title>
+                      <span>Categories</span>
+                      <v-btn flat icon dark small @click="showCategories = !showCategories">
+                        <v-icon>arrow_drop_down</v-icon>
+                      </v-btn>
+                    </v-toolbar-title>
                   </v-toolbar>
-                  <v-list two-line>
+                  <v-list two-line v-if="showCategories">
                     <template v-for="(item, index) in categories">
                       <v-list-tile :key="item.title" avatar @click="handleGetCategories">
                         <v-list-tile-content>
@@ -91,6 +96,7 @@ export default {
   name: 'blog',
   data() {
     return {
+      showCategories: true,
       breadcrumbs: [
         {
           text: 'Home',
