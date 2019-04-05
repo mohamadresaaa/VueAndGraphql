@@ -46,7 +46,7 @@
         </v-flex>
         <v-flex xs12 sm4 md2>
           <div class="text-xs-center">
-            <v-btn @click="loadNote(note)" fab dark small color="black">
+            <v-btn @click="loadNote(note)" fab dark small color="secondary">
               <v-icon dark>visibility</v-icon>
             </v-btn>
             <v-btn @click="loadNote(note, 'edit')" fab dark small color="primary">
@@ -63,7 +63,7 @@
     <!-- details Note dialog -->
     <v-dialog v-model="detailsNoteDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
       <v-card>
-        <v-toolbar dark color="black">
+        <v-toolbar dark color="secondary">
           <v-btn icon dark @click="detailsNoteDialog = false">
             <v-icon>close</v-icon>
           </v-btn>
@@ -89,7 +89,7 @@
     <!-- edit Note dialog -->
     <v-dialog v-model="editNoteDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
       <v-card>
-        <v-toolbar dark color="primary">
+        <v-toolbar dark color="secondary">
           <v-btn icon dark @click="editNoteDialog = false">
             <v-icon>close</v-icon>
           </v-btn>
