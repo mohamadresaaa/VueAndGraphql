@@ -9,6 +9,7 @@ import Todos from './views/todos/List.vue';
 import AddTodo from './views/todos/Add.vue';
 import Notes from './views/notes/List.vue';
 import AddNote from './views/notes/Add.vue';
+import Dashboard from './views/user/Dashboard.vue';
 import ChangePassword from './views/user/ChangePassword.vue';
 
 // auth views
@@ -79,6 +80,12 @@ export default new Router({
       name: 'resetPassword',
       component: resetPassword,
       beforeEnter: beforeAuthenticate
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: Dashboard,
+      // beforeEnter: beforeAuthenticate
     },
     {
       path: '/user/changePassword',
